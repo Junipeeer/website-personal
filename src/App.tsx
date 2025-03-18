@@ -1,10 +1,11 @@
-import "./App.css";
+import Landing from "./Landing";
+import "./index.css";
 
 function App() {
   return (
-    <>
-      <div>my app :)</div>
-    </>
+    <main className="w-full h-full">
+      <Landing />
+    </main>
   );
 }
 

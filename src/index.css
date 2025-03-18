@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+* {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  #root {
+    @apply w-full h-full bg-black text-white;
+  }
+}
