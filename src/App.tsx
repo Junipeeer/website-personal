@@ -1,10 +1,10 @@
-import Landing from "./Landing";
+import Home from "./Routes/Home";
 import "./index.css";
 
 function App() {
   return (
     <main className="w-full h-full">
-      <Landing />
+      <Home />
     </main>
   );
 }
