@@ -9,3 +9,7 @@
     @apply w-full h-full bg-black text-white;
   }
 }
+
+body {
+  color: red;
+}

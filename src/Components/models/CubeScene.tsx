@@ -8,6 +8,7 @@ import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useRef } from "react";
 import { Group, Object3D } from "three";
+import { Text } from "@react-three/drei";
 
 export function CubeScene({ isMouseInWindow, ...props }) {
   const { nodes, materials } = useGLTF("/models/cube_scene.glb");
@@ -96,9 +97,9 @@ export function CubeScene({ isMouseInWindow, ...props }) {
         makeDefault={true}
         far={2000}
         near={0.1}
-        fov={22.895}
-        position={[0, 5.802, 88.424]}
-        rotation={[-0.087, 0, 0]}
+        fov={28}
+        position={[0, 4, 88.424]}
+        rotation={[0, 0, 0]}
       />
       <pointLight
         intensity={20000}
@@ -112,28 +113,77 @@ export function CubeScene({ isMouseInWindow, ...props }) {
         geometry={nodes.Cube.geometry}
         material={materials.glass}
         position={[0, -25, 0]}
-        castShadow
-        receiveShadow
+        castShadow={true}
+        receiveShadow={true}
       >
         <pointLight
           intensity={5000}
           decay={2}
           color="#7c8dff"
           rotation={[-2.752, -0.324, -2.15]}
-          scale={4.32}
+          scale={12}
         />
+        <Text
+          fontSize={7}
+          position={[0, 0, 5.01]}
+          color="#ffffff"
+          anchorX="center"
+          anchorY="middle"
+        >
+          👋
+        </Text>
+        <Text
+          fontSize={7}
+          position={[0, 5.01, 0]}
+          rotation={[Math.PI / 2, 0, Math.PI]}
+          color="#ffffff"
+          anchorX="center"
+          anchorY="middle"
+        >
+          🌐
+        </Text>
+        <Text
+          fontSize={7}
+          position={[5.01, 0, 0]}
+          rotation={[0, Math.PI / 2, 0]}
+          color="#ffffff"
+          anchorX="center"
+          anchorY="middle"
+        >
+          🛠️
+        </Text>
+        <Text
+          fontSize={7}
+          position={[-5.01, 0, 0]}
+          rotation={[0, Math.PI / 2, (Math.PI * 3) / 2]}
+          color="#ffffff"
+          anchorX="center"
+          anchorY="middle"
+        >
+          🎨
+        </Text>
+        <Text
+          fontSize={7}
+          position={[0, -5.01, 0]}
+          rotation={[Math.PI / 2, 0, 0]}
+          color="#ffffff"
+          anchorX="center"
+          anchorY="middle"
+        >
+          💡
+        </Text>
       </mesh>
       <mesh
         geometry={nodes.ground_plane.geometry}
         material={materials["Material.001"]}
-        castShadow
-        receiveShadow
+        castShadow={true}
+        receiveShadow={true}
         position={[0, -13.5, 0]}
       />
       <mesh
         ref={pedestalLowerRef}
-        castShadow
-        receiveShadow
+        castShadow={true}
+        receiveShadow={true}
         geometry={nodes.Pedestal_bottom.geometry}
         material={materials["Material.001"]}
         position={[0, -10, 0]}
@@ -141,8 +191,8 @@ export function CubeScene({ isMouseInWindow, ...props }) {
       />
       <mesh
         ref={pedestalUpperRef}
-        castShadow
-        receiveShadow
+        castShadow={true}
+        receiveShadow={true}
         geometry={nodes.Pedestal_top.geometry}
         material={materials["Material.001"]}
         position={[0, -10, 0]}
@@ -150,8 +200,8 @@ export function CubeScene({ isMouseInWindow, ...props }) {
       />
       <mesh
         geometry={nodes.Pedestal_base.geometry}
-        castShadow
-        receiveShadow
+        castShadow={true}
+        receiveShadow={true}
         material={materials["Material.001"]}
         position={[0, -10, 0]}
         scale={0.6}
