@@ -15,17 +15,18 @@ export function CubeScene({ isMouseInWindow, ...props }) {
   const cubeRef = useRef(new Object3D());
   const pedestalLowerRef = useRef(new Object3D());
   const pedestalUpperRef = useRef(new Object3D());
+  let showCube = false;
 
   useFrame((state, delta) => {
     const elapsed = state.clock.getElapsedTime();
 
-    const cubeTranslateY = Math.sin(elapsed) * 0.5;
-    const idleCubeRotX = Math.sin(elapsed * 0.5) * 0.2;
-    const idleCubeRotY = Math.cos(elapsed * 0.3) * 0.2;
-    const idleCubeRotZ = Math.sin(elapsed * 0.7) * 0.08;
+    const cubeTranslateY = Math.sin(elapsed) * 0.1;
+    const idleCubeRotX = Math.sin(elapsed * 0.5) * 0.1;
+    const idleCubeRotY = Math.cos(elapsed * 0.3) * 0.1;
+    const idleCubeRotZ = Math.sin(elapsed * 0.7) * 0.04;
 
-    //adjust camera position
-    easing.damp3(state.camera.position, [0, 5.802, 88.424], 0.25, delta);
+    // //adjust camera position
+    // easing.damp3(state.camera.position, [0, 5.802, 88.424], 0.25, delta);
 
     //cube rotation based on mouse position and idle rotation
     easing.dampE(
@@ -42,26 +43,44 @@ export function CubeScene({ isMouseInWindow, ...props }) {
     //lower pedestal rotation based on mouse position
     easing.dampE(
       pedestalLowerRef.current.rotation,
-      [0, isMouseInWindow ? state.pointer.y + state.pointer.x : 0, 0],
+      [
+        0,
+        isMouseInWindow ? Math.sin(state.pointer.y + state.pointer.x) * 2 : 0,
+        0,
+      ],
       0.25,
       delta
     );
     //lower pedestal rotation based on mouse position
     easing.dampE(
       pedestalUpperRef.current.rotation,
-      [0, isMouseInWindow ? -state.pointer.y + -state.pointer.x : 0, 0],
+      [
+        0,
+        isMouseInWindow ? Math.cos(state.pointer.y + state.pointer.x) * 4 : 0,
+        0,
+      ],
       0.25,
       delta
     );
 
-    //cube vertical wobble
-    easing.damp3(
-      cubeRef.current.position,
-      [0, 4 + cubeTranslateY, 0],
-      0.25,
-      delta
-    );
+    //cube vertical wobble and intro
+    if (showCube) {
+      easing.damp3(
+        cubeRef.current.position,
+        [0, 4 + cubeTranslateY, 0],
+        0.25,
+        delta
+      );
+
+      setTimeout(() => {
+        easing.damp3(cubeRef.current.scale, 1.5, 0.25, delta);
+      }, 1000);
+    }
   });
+
+  setTimeout(() => {
+    showCube = true;
+  }, 1000);
 
   return (
     <group {...props} ref={groupRef} dispose={null}>
@@ -75,7 +94,7 @@ export function CubeScene({ isMouseInWindow, ...props }) {
       />
       <PerspectiveCamera
         makeDefault={true}
-        far={1000}
+        far={2000}
         near={0.1}
         fov={22.895}
         position={[0, 5.802, 88.424]}
@@ -92,7 +111,9 @@ export function CubeScene({ isMouseInWindow, ...props }) {
         ref={cubeRef}
         geometry={nodes.Cube.geometry}
         material={materials.glass}
-        position={[0, 4, 0]}
+        position={[0, -25, 0]}
+        castShadow
+        receiveShadow
       >
         <pointLight
           intensity={5000}
@@ -105,10 +126,14 @@ export function CubeScene({ isMouseInWindow, ...props }) {
       <mesh
         geometry={nodes.ground_plane.geometry}
         material={materials["Material.001"]}
+        castShadow
+        receiveShadow
         position={[0, -13.5, 0]}
       />
       <mesh
         ref={pedestalLowerRef}
+        castShadow
+        receiveShadow
         geometry={nodes.Pedestal_bottom.geometry}
         material={materials["Material.001"]}
         position={[0, -10, 0]}
@@ -116,6 +141,8 @@ export function CubeScene({ isMouseInWindow, ...props }) {
       />
       <mesh
         ref={pedestalUpperRef}
+        castShadow
+        receiveShadow
         geometry={nodes.Pedestal_top.geometry}
         material={materials["Material.001"]}
         position={[0, -10, 0]}
@@ -123,6 +150,8 @@ export function CubeScene({ isMouseInWindow, ...props }) {
       />
       <mesh
         geometry={nodes.Pedestal_base.geometry}
+        castShadow
+        receiveShadow
         material={materials["Material.001"]}
         position={[0, -10, 0]}
         scale={0.6}
