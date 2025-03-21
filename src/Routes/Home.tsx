@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <section id="Home" className="min-h-screen w-full flex flex-col relative">
       <div className="w-full h-full absolute inset-0">
-        <Canvas>
+        <Canvas shadows>
           <Suspense fallback={`<h1 className="text-white">loading</h1>`}>
             <OrbitControls makeDefault />
             <ambientLight intensity={1} />
