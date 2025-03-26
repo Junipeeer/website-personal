@@ -88,7 +88,6 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
     const idleCubeRotX = Math.sin(elapsed * 0.5) * 0.1;
     const idleCubeRotY = Math.cos(elapsed * 0.3) * 0.1;
     const idleCubeRotZ = Math.sin(elapsed * 0.7) * 0.04;
-    const targetRadius = activeFaceRef.current === 0 ? 5 : 0.01;
 
     //adjust camera position
     //easing.damp3(state.camera.position, [0, 5.802, 88.424], 0.25, delta);
