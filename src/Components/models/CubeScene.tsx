@@ -52,12 +52,12 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
         rotation={[0, 0, 0]}
       />
       <pointLight
-        intensity={20000}
+        intensity={10000}
         decay={2}
         color="#67fcff"
         position={[-15.788, 19.857, -19.49]}
         rotation={[-2.752, -0.324, -2.15]}
-        scale={4.32}
+        scale={1}
       />
       <pointLight
         intensity={20000}
@@ -65,6 +65,7 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
         color="#ff9aef"
         position={[0, -31.01, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
+        scale={1}
       />
       <Cube
         isMouseInWindow={isMouseInWindow}
@@ -73,36 +74,33 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
       />
       <mesh
         geometry={nodes.ground_plane.geometry}
-        material={materials["Material.001"]}
-        castShadow={true}
-        receiveShadow={true}
+        material={materials.plane_material}
         position={[0, -13.5, 0]}
+        castShadow
+        receiveShadow
       />
       <mesh
         ref={pedestalLowerRef}
-        castShadow={true}
-        receiveShadow={true}
+        castShadow
+        receiveShadow
         geometry={nodes.Pedestal_bottom.geometry}
-        material={materials["Material.001"]}
+        material={materials.outer_pedestal}
         position={[0, -10, 0]}
-        scale={0.6}
       />
       <mesh
         ref={pedestalUpperRef}
-        castShadow={true}
-        receiveShadow={true}
+        castShadow
+        receiveShadow
         geometry={nodes.Pedestal_top.geometry}
-        material={materials["Material.001"]}
+        material={materials.inner_pedestal}
         position={[0, -10, 0]}
-        scale={0.6}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Pedestal_base.geometry}
-        castShadow={true}
-        receiveShadow={true}
-        material={materials["Material.001"]}
+        material={materials.pedestal_ring}
         position={[0, -10, 0]}
-        scale={0.6}
       />
     </group>
   );
