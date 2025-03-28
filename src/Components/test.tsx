@@ -1,88 +1,10 @@
 import { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  OrbitControls,
-  MeshPortalMaterial,
-  CameraControls,
-} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, CameraControls } from "@react-three/drei";
 import * as THREE from "three";
-import { easing } from "maath";
-import ClickPlane from "./Components/models/ClickPlane";
-
-const NestedScene = ({
-  bgColor = "hotpink",
-  position = [0, 0, 0],
-  rotation = [0, 0, 0],
-  children,
-}) => {
-  return (
-    <group>
-      {children}
-      <mesh rotation={rotation} position={position}>
-        <cylinderGeometry args={[0.4, 0.4, 3, 32, 1, true]} />
-        <meshToonMaterial
-          side={THREE.DoubleSide}
-          emissive={bgColor}
-          color={bgColor}
-        />
-      </mesh>
-    </group>
-  );
-};
-
-const PortalPlane = ({
-  active = false,
-  position = [0, 0, 0.51],
-  rotation = [0, 0, 0.51],
-  children,
-}) => {
-  // Initialize the portal ref with a null initial value to satisfy TS
-  const portal = useRef<any>(null);
-  const mesh = useRef(new THREE.Mesh());
-  const target = useRef(new THREE.Group());
-  const circleGeometry = useRef(new THREE.CircleGeometry(0.001, 64));
-
-  useFrame((_, delta) => {
-    const targetRadius = active ? 0.4 : 0.001;
-    const currentRadius = circleGeometry.current.parameters.radius;
-    const targetPos = active
-      ? new THREE.Vector3(0, 0, 0)
-      : new THREE.Vector3(0, -1, 0);
-    easing.damp3(target.current.position, targetPos, 0.25, delta);
-
-    // Ease the radius value toward the target using a damping factor (e.g. 4)
-    easing.damp(
-      circleGeometry.current.parameters,
-      "radius",
-      targetRadius,
-      0.05,
-      delta
-    );
-
-    // Only update geometry if the change is significant
-    if (
-      Math.abs(circleGeometry.current.parameters.radius - currentRadius) > 0.001
-    ) {
-      const newGeometry = new THREE.CircleGeometry(
-        circleGeometry.current.parameters.radius,
-        64
-      );
-      mesh.current.geometry.dispose(); // Dispose the old geometry
-      mesh.current.geometry = newGeometry;
-      circleGeometry.current = newGeometry;
-    }
-  });
-
-  return (
-    <mesh ref={mesh} position={position} rotation={rotation}>
-      <primitive object={circleGeometry.current} />
-      <MeshPortalMaterial ref={portal} side={THREE.DoubleSide} worldUnits>
-        <ambientLight />
-        <group ref={target}>{children}</group>
-      </MeshPortalMaterial>
-    </mesh>
-  );
-};
+import ClickPlane from "./ClickPlane";
+import NestedScene from "./NestedScene";
+import PortalPlane from "./PortalPlane";
 
 const App = () => {
   const [activeFace, setActiveFace] = useState(-1);
@@ -138,10 +60,10 @@ const App = () => {
           ))}
           <PortalPlane
             active={activeFace === 0}
-            position={[0, 0.51, 0]}
-            rotation={[pi / 2, 0, 0]}
+            position={new THREE.Vector3(0, 0.51, 0)}
+            rotation={new THREE.Euler(pi / 2, 0, 0)}
           >
-            <NestedScene bgColor="white" position={[0, -1, 0]}>
+            <NestedScene bgColor="white" position={new THREE.Vector3(0, -1, 0)}>
               <mesh ref={topGeo} position={[0, 0, 0]}>
                 <boxGeometry args={[0.5, 0.5, 0.5]} />
                 <meshStandardMaterial color="maroon" />
@@ -150,10 +72,10 @@ const App = () => {
           </PortalPlane>
           <PortalPlane
             active={activeFace === 1}
-            position={[0, -0.51, 0]}
-            rotation={[pi / 2, 0, 0]}
+            position={new THREE.Vector3(0, -0.51, 0)}
+            rotation={new THREE.Euler(pi / 2, 0, 0)}
           >
-            <NestedScene bgColor="aqua" position={[0, 1, 0]}>
+            <NestedScene bgColor="aqua" position={new THREE.Vector3(0, 1, 0)}>
               <mesh>
                 <boxGeometry args={[0.5, 0.5, 0.5]} />
                 <meshStandardMaterial color="maroon" />
@@ -162,13 +84,13 @@ const App = () => {
           </PortalPlane>
           <PortalPlane
             active={activeFace === 2}
-            position={[0.51, 0, 0]}
-            rotation={[0, pi / 2, 0]}
+            position={new THREE.Vector3(0.51, 0, 0)}
+            rotation={new THREE.Euler(0, pi / 2, 0)}
           >
             <NestedScene
               bgColor="orange"
-              position={[-1, 0, 0]}
-              rotation={[0, 0, pi / 2]}
+              position={new THREE.Vector3(-1, 0, 0)}
+              rotation={new THREE.Euler(0, 0, pi / 2)}
             >
               <mesh>
                 <boxGeometry args={[0.5, 0.5, 0.5]} />
@@ -178,10 +100,13 @@ const App = () => {
           </PortalPlane>
           <PortalPlane
             active={activeFace === 3}
-            position={[-0.51, 0, 0]}
-            rotation={[0, pi / 2, 0]}
+            position={new THREE.Vector3(-0.51, 0, 0)}
+            rotation={new THREE.Euler(0, pi / 2, 0)}
           >
-            <NestedScene position={[1, 0, 0]} rotation={[0, 0, pi / 2]}>
+            <NestedScene
+              position={new THREE.Vector3(1, 0, 0)}
+              rotation={new THREE.Euler(0, 0, pi / 2)}
+            >
               <mesh>
                 <boxGeometry args={[0.5, 0.5, 0.5]} />
                 <meshStandardMaterial color="maroon" />

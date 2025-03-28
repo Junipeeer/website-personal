@@ -4,7 +4,7 @@ import { Object3D } from "three";
 import { useControls } from "leva";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
-import ClickPlane from "./ClickPlane";
+import ClickPlane from "../ClickPlane";
 
 interface Props {
   geometry: any;
