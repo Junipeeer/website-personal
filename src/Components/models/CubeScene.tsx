@@ -48,14 +48,14 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
         far={2000}
         near={0.1}
         fov={28}
-        position={[0, 4, 88.424]}
+        position={[0, 0, 88.424]}
         rotation={[0, 0, 0]}
       />
       <pointLight
         intensity={10000}
         decay={2}
         color="#67fcff"
-        position={[-15.788, 19.857, -19.49]}
+        position={[-15.788, 14.857, -19.49]}
         rotation={[-2.752, -0.324, -2.15]}
         scale={1}
       />
@@ -63,7 +63,7 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
         intensity={20000}
         decay={2}
         color="#ff9aef"
-        position={[0, -31.01, 0]}
+        position={[0, -35.01, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={1}
       />
@@ -75,7 +75,7 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
       <mesh
         geometry={nodes.ground_plane.geometry}
         material={materials.plane_material}
-        position={[0, -13.5, 0]}
+        position={[0, -17.5, 0]}
         castShadow
         receiveShadow
       />
@@ -85,7 +85,7 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
         receiveShadow
         geometry={nodes.Pedestal_bottom.geometry}
         material={materials.outer_pedestal}
-        position={[0, -10, 0]}
+        position={[0, -14, 0]}
       />
       <mesh
         ref={pedestalUpperRef}
@@ -93,14 +93,14 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
         receiveShadow
         geometry={nodes.Pedestal_top.geometry}
         material={materials.inner_pedestal}
-        position={[0, -10, 0]}
+        position={[0, -14, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Pedestal_base.geometry}
         material={materials.pedestal_ring}
-        position={[0, -10, 0]}
+        position={[0, -14, 0]}
       />
     </group>
   );

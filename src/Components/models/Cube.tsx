@@ -48,7 +48,7 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
     if (showCube) {
       easing.damp3(
         cubeRef.current.position,
-        [0, 4 + cubeTranslateY, 0],
+        [0, cubeTranslateY, 0],
         0.25,
         delta
       );
