@@ -1,11 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Text } from "@react-three/drei";
 import { Object3D } from "three";
-import { useControls } from "leva";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
 import ClickPlane from "../ClickPlane";
 import { clickPlanes, emojis } from "../../constants/components";
+import PortalPlane from "../PortalPlane";
+import NestedScene from "../NestedScene";
 
 interface Props {
   geometry: any;
@@ -15,18 +16,10 @@ interface Props {
 
 const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
   const cubeRef = useRef(new Object3D());
-
-  const activeFaceRef = useRef(-1);
+  const [activeFace, setActiveFace] = useState(-1);
 
   let showCube = false;
   const pi = Math.PI;
-
-  let test = useControls({
-    px: { value: 1, min: 0.01, max: 10 },
-    rX: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
-    rY: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
-    rZ: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
-  });
 
   useFrame((state, delta) => {
     const elapsed = state.clock.getElapsedTime();
@@ -88,18 +81,16 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
       {clickPlanes.map((plane) => (
         <ClickPlane
           key={plane.label}
+          position={plane.position}
+          rotation={plane.rotation}
           onPointerEnter={(e: Event) => {
             e.stopPropagation();
-            activeFaceRef.current = plane.index;
+            setActiveFace(plane.index);
           }}
           onPointerOut={(e: Event) => {
             e.stopPropagation();
-            activeFaceRef.current = -1;
+            setActiveFace(-1);
           }}
-          rotateX={plane.rotation.x}
-          rotateY={plane.rotation.y}
-          rotateZ={plane.rotation.z}
-          position={plane.position}
         />
       ))}
 
@@ -114,6 +105,59 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
           {emoji.emoji}
         </Text>
       ))}
+
+      <PortalPlane
+        active={activeFace === 0}
+        position={[0, 5.01, 0]}
+        rotation={[pi / 2, 0, 0]}
+      >
+        <NestedScene bgColor="white" position={[0, -10, 0]}>
+          <mesh>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color="maroon" />
+          </mesh>
+        </NestedScene>
+      </PortalPlane>
+      <PortalPlane
+        active={activeFace === 1}
+        position={[0, -5.01, 0]}
+        rotation={[pi / 2, 0, 0]}
+      >
+        <NestedScene bgColor="aqua" position={[0, 10, 0]}>
+          <mesh>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color="maroon" />
+          </mesh>
+        </NestedScene>
+      </PortalPlane>
+      <PortalPlane
+        active={activeFace === 2}
+        position={[5.01, 0, 0]}
+        rotation={[0, pi / 2, 0]}
+      >
+        <NestedScene
+          bgColor="orange"
+          position={[-10, 0, 0]}
+          rotation={[0, 0, pi / 2]}
+        >
+          <mesh>
+            <boxGeometry args={[5, 5, 5]} />
+            <meshStandardMaterial color="maroon" />
+          </mesh>
+        </NestedScene>
+      </PortalPlane>
+      <PortalPlane
+        active={activeFace === 3}
+        position={[-5.01, 0, 0]}
+        rotation={[0, pi / 2, 0]}
+      >
+        <NestedScene position={[10, 0, 0]} rotation={[0, 0, pi / 2]}>
+          <mesh>
+            <boxGeometry args={[5, 5, 5]} />
+            <meshStandardMaterial color="maroon" />
+          </mesh>
+        </NestedScene>
+      </PortalPlane>
     </group>
   );
 };

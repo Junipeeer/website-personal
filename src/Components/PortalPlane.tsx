@@ -20,10 +20,10 @@ const PortalPlane = ({
   const portal = useRef<any>(null);
   const mesh = useRef(new Mesh());
   const target = useRef(new Group());
-  const circleGeometry = useRef(new CircleGeometry(0.001, 64));
+  const circleGeometry = useRef(new CircleGeometry(4, 64));
 
   useFrame((_, delta) => {
-    const targetRadius = active ? 0.4 : 0.001;
+    const targetRadius = active ? 4 : 4;
     const currentRadius = circleGeometry.current.parameters.radius;
     const targetPos = active ? new Vector3(0, 0, 0) : new Vector3(0, -1, 0);
     easing.damp3(target.current.position, targetPos, 0.25, delta);

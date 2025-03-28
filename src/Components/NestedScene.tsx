@@ -1,3 +1,4 @@
+import { useControls } from "leva";
 import { ReactElement } from "react";
 import { DoubleSide, Euler, Vector3 } from "three";
 
@@ -14,19 +15,27 @@ const NestedScene = ({
   rotation = new Euler(0, 0, 0),
   children,
 }: Props) => {
+  const pi = Math.PI;
+  let test = useControls({
+    px: { value: 1, min: 0.01, max: 10 },
+    rX: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
+    rY: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
+    rZ: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
+  });
+
   return (
-    <group rotation={rotation} position={position}>
+    <group rotation={rotation} position={[test.rX, test.rY, test.rZ]}>
       {children}
       <mesh>
-        <cylinderGeometry args={[0.4, 0.4, 3, 32, 1, true]} />
+        <cylinderGeometry args={[4, 4, 30, 32, 1, true]} />
         <meshToonMaterial
           side={DoubleSide}
           emissive={bgColor}
           color={bgColor}
         />
       </mesh>
-      <mesh position={[0, -1, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[0.4, 32]} />
+      <mesh position={[0, -40, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[4, 32]} />
         <meshToonMaterial
           side={DoubleSide}
           emissive={bgColor}

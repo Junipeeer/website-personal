@@ -1,3 +1,5 @@
+import { Euler, Vector3 } from "three";
+
 const pi = Math.PI;
 
 export const emojis = [
@@ -11,26 +13,26 @@ export const emojis = [
 export const clickPlanes = [
   {
     index: 0,
-    rotation: { x: pi / 2, y: 0, z: 0 },
-    position: [0, 5.01, 0],
+    rotation: new Euler( pi / 2, 0, 0 ),
+    position: new Vector3(0, 5.01, 0),
     label: "top",
   },
   {
     index: 1,
-    rotation: { x: pi / 2, y: 0, z: 0 },
-    position: [0, -5.01, 0],
+    rotation: new Euler( pi / 2, 0, 0 ),
+    position: new Vector3(0, -5.01, 0),
     label: "bottom",
   },
   {
     index: 2,
-    rotation: { x: 0, y: pi / 2, z: 0 },
-    position: [5.01, 0, 0],
+    rotation: new Euler( 0, pi / 2, 0 ),
+    position: new Vector3( 5.01, 0, 0),
     label: "right",
   },
   {
     index: 3,
-    rotation: { x: 0, y: pi / 2, z: 0 },
-    position: [-5.01, 0, 0],
+    rotation: new Euler( 0, pi / 2, 0 ),
+    position: new Vector3( -5.01, 0, 0),
     label: "left",
   },
 ];
