@@ -6,8 +6,8 @@ import { CircleGeometry, DoubleSide, Euler, Group, Mesh, Vector3 } from "three";
 
 interface Props {
   active?: boolean;
-  position?: Vector3;
-  rotation?: Euler;
+  position?: [number, number, number] | Vector3;
+  rotation?: [number, number, number] | Euler;
   children: ReactElement;
 }
 
@@ -28,7 +28,6 @@ const PortalPlane = ({
     const targetPos = active ? new Vector3(0, 0, 0) : new Vector3(0, -1, 0);
     easing.damp3(target.current.position, targetPos, 0.25, delta);
 
-    // Ease the radius value toward the target using a damping factor (e.g. 4)
     easing.damp(
       circleGeometry.current.parameters,
       "radius",
@@ -37,7 +36,6 @@ const PortalPlane = ({
       delta
     );
 
-    // Only update geometry if the change is significant
     if (
       Math.abs(circleGeometry.current.parameters.radius - currentRadius) > 0.001
     ) {
@@ -45,7 +43,7 @@ const PortalPlane = ({
         circleGeometry.current.parameters.radius,
         64
       );
-      mesh.current.geometry.dispose(); // Dispose the old geometry
+      mesh.current.geometry.dispose();
       mesh.current.geometry = newGeometry;
       circleGeometry.current = newGeometry;
     }

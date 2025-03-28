@@ -3,8 +3,8 @@ import { DoubleSide, Euler, Vector3 } from "three";
 
 interface Props {
   bgColor?: string;
-  position?: Vector3;
-  rotation?: Euler;
+  position?: [number, number, number] | Vector3;
+  rotation?: [number, number, number] | Euler;
   children?: ReactElement;
 }
 

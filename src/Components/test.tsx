@@ -63,7 +63,7 @@ const App = () => {
             position={new THREE.Vector3(0, 0.51, 0)}
             rotation={new THREE.Euler(pi / 2, 0, 0)}
           >
-            <NestedScene bgColor="white" position={new THREE.Vector3(0, -1, 0)}>
+            <NestedScene bgColor="white" position={[0, -1, 0]}>
               <mesh ref={topGeo} position={[0, 0, 0]}>
                 <boxGeometry args={[0.5, 0.5, 0.5]} />
                 <meshStandardMaterial color="maroon" />
@@ -75,7 +75,7 @@ const App = () => {
             position={new THREE.Vector3(0, -0.51, 0)}
             rotation={new THREE.Euler(pi / 2, 0, 0)}
           >
-            <NestedScene bgColor="aqua" position={new THREE.Vector3(0, 1, 0)}>
+            <NestedScene bgColor="aqua" position={[0, 1, 0]}>
               <mesh>
                 <boxGeometry args={[0.5, 0.5, 0.5]} />
                 <meshStandardMaterial color="maroon" />
@@ -89,7 +89,7 @@ const App = () => {
           >
             <NestedScene
               bgColor="orange"
-              position={new THREE.Vector3(-1, 0, 0)}
+              position={[-1, 0, 0]}
               rotation={new THREE.Euler(0, 0, pi / 2)}
             >
               <mesh>
@@ -104,7 +104,7 @@ const App = () => {
             rotation={new THREE.Euler(0, pi / 2, 0)}
           >
             <NestedScene
-              position={new THREE.Vector3(1, 0, 0)}
+              position={[1, 0, 0]}
               rotation={new THREE.Euler(0, 0, pi / 2)}
             >
               <mesh>

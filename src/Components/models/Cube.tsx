@@ -5,6 +5,7 @@ import { useControls } from "leva";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
 import ClickPlane from "../ClickPlane";
+import { clickPlanes, emojis } from "../../constants/components";
 
 interface Props {
   geometry: any;
@@ -26,60 +27,6 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
     rY: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
     rZ: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
   });
-
-  const emojis = [
-    { emoji: "👋", pos: { x: 0, y: 0, z: 5.02 }, rot: { x: 0, y: 0, z: 0 } },
-    {
-      emoji: "🌐",
-      pos: { x: 0, y: 5.02, z: 0 },
-      //rot: { x: test.rX, y: test.rY, z: test.rZ },
-      rot: { x: pi / 2, y: 0, z: 0 },
-    },
-    {
-      emoji: "🛠️",
-      pos: { x: 5.02, y: 0, z: 0 },
-      rot: { x: 0, y: pi / 2, z: 0 },
-    },
-    {
-      emoji: "🎨",
-      pos: { x: -5.02, y: 0, z: 0 },
-      //rot: { x: 0, y: pi / 2, z: (pi / 2) * 3 },
-      //rot: { x: 0, y: -0.39, z: 0},
-      rot: { x: test.rX, y: test.rY, z: test.rZ },
-    },
-    {
-      emoji: "💡",
-      pos: { x: 0, y: -5.02, z: 0 },
-      rot: { x: pi / 2, y: 0, z: 0 },
-    },
-  ];
-
-  const clickPlanes = [
-    {
-      index: 0,
-      rotation: { x: pi / 2, y: 0, z: 0 },
-      position: [0, 5.01, 0],
-      label: "top",
-    },
-    {
-      index: 1,
-      rotation: { x: pi / 2, y: 0, z: 0 },
-      position: [0, -5.01, 0],
-      label: "bottom",
-    },
-    {
-      index: 2,
-      rotation: { x: 0, y: pi / 2, z: 0 },
-      position: [5.01, 0, 0],
-      label: "right",
-    },
-    {
-      index: 3,
-      rotation: { x: 0, y: pi / 2, z: 0 },
-      position: [-5.01, 0, 0],
-      label: "left",
-    },
-  ];
 
   useFrame((state, delta) => {
     const elapsed = state.clock.getElapsedTime();
