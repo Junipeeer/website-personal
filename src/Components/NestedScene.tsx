@@ -27,7 +27,8 @@ const NestedScene = ({
   //[test.rX, test.rY, test.rZ]
   return (
     <group position={position} rotation={rotation}>
-      {children}
+      <group>{children}</group>
+
       <mesh>
         <cylinderGeometry args={[4, 4, 30, 64, 1, true]} />
         <meshToonMaterial

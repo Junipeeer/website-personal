@@ -57,11 +57,6 @@ export function CubeScene({ isMouseInWindow }: Props) {
         rotation={[-Math.PI / 2, 0, 0]}
         scale={1}
       />
-      <Cube
-        isMouseInWindow={isMouseInWindow}
-        material={materials.glass}
-        geometry={nodes.Cube.geometry}
-      />
       <mesh
         geometry={nodes.ground_plane.geometry}
         material={materials.plane_material}

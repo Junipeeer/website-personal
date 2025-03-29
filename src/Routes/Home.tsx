@@ -4,11 +4,13 @@
 // needs 3d import, and create scripts
 import { Canvas } from "@react-three/fiber";
 import CubeScene from "../Components/models/CubeScene";
-import { OrbitControls } from "@react-three/drei";
-import { Suspense, useEffect, useState } from "react";
+import { OrbitControls, useGLTF } from "@react-three/drei";
+import { Suspense, use, useEffect, useState } from "react";
+import Cube from "../Components/models/Cube";
 
 const Home = () => {
   const [isMouseInWindow, setIsMouseInWindow] = useState(true);
+  const { nodes, materials } = useGLTF("/models/cube_scene.glb");
 
   useEffect(() => {
     const handleMouseLeave = () => {
@@ -43,6 +45,11 @@ const Home = () => {
           <Suspense fallback={`<h1 className="text-white">loading</h1>`}>
             <ambientLight intensity={1} />
             <OrbitControls />
+            <Cube
+              isMouseInWindow={isMouseInWindow}
+              material={materials.glass}
+              geometry={nodes.Cube.geometry}
+            />
             <CubeScene isMouseInWindow={isMouseInWindow} />
           </Suspense>
         </Canvas>
