@@ -17,7 +17,7 @@ const Cube = ({ isMouseInWindow }: Props) => {
   const clickPlaneRefs = useRef<Object3D[]>([]);
   const [activeFace, setActiveFace] = useState(-1);
   const [showCube, setShowCube] = useState(false);
-  const { nodes, materials } = useGLTF("/models/cube_scene.glb");
+  const { nodes, materials } = useGLTF("/models/cube.glb");
 
   // Handle cube appearance after mount
   useEffect(() => {
@@ -100,7 +100,9 @@ const Cube = ({ isMouseInWindow }: Props) => {
         0.25,
         delta
       );
-      easing.damp3(cubeRef.current.scale, [1.5, 1.5, 1.5], 0.25, delta);
+      setTimeout(() => {
+        easing.damp3(cubeRef.current.scale, 1.5, 0.25, delta);
+      }, 1500);
     }
   });
 

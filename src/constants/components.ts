@@ -6,7 +6,7 @@ export const mainCam = {
   position: [0, 0, 88.424] as [number, number, number],
   far: 1000,
   near: 0.1,
-  fov: 75,
+  fov: 28,
   rotation: [0, 0, 0] as [number, number, number],
 };
 

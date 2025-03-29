@@ -8,8 +8,8 @@ interface Props {
   isMouseInWindow: boolean;
 }
 
-export function CubeScene({ isMouseInWindow }: Props) {
-  const { nodes, materials } = useGLTF("/models/cube_scene.glb");
+export function HomeScene({ isMouseInWindow }: Props) {
+  const { nodes, materials } = useGLTF("/models/home_scene.glb");
   const pedestalLowerRef = useRef(new Object3D());
   const pedestalUpperRef = useRef(new Object3D());
 
@@ -59,7 +59,7 @@ export function CubeScene({ isMouseInWindow }: Props) {
       <mesh
         geometry={(nodes.ground_plane as Mesh).geometry}
         material={materials.Rock}
-        position={[0, -17.5, 0]}
+        position={[0, -17, -219.025]}
         castShadow
         receiveShadow
       />
@@ -92,4 +92,4 @@ export function CubeScene({ isMouseInWindow }: Props) {
 
 useGLTF.preload("/models/cube_scene.glb");
 
-export default CubeScene;
+export default HomeScene;
