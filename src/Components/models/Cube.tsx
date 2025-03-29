@@ -4,7 +4,7 @@ import { Euler, Object3D, PerspectiveCamera, Vector3 } from "three";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
 import ClickPlane from "../ClickPlane";
-import { clickPlanes, emojis, pi } from "../../constants/components";
+import { clickPlanes, emojis, mainCam, pi } from "../../constants/components";
 import PortalPlane from "../PortalPlane";
 import NestedScene from "../NestedScene";
 
@@ -40,8 +40,8 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
       const { camera, size } = state;
       const fov =
         camera instanceof PerspectiveCamera ? (camera.fov * pi) / 180 : pi / 2;
-      const cubeSize = 10; // actual geometry size
-      const distance = 88.424; // camera distance
+      const cubeSize = 10;
+      const distance = mainCam.position[2];
       // Calculate projected size in pixels
       const projectedSize =
         (cubeSize * size.height) / (3 * distance * Math.tan(fov / 2));
