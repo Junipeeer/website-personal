@@ -1,37 +1,43 @@
-import { useRef, useState } from "react";
-import { Text } from "@react-three/drei";
-import { Euler, Object3D, Vector3 } from "three";
+import { useEffect, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, CameraControls } from "@react-three/drei";
+import * as THREE from "three";
+import ClickPlane from "./ClickPlane";
+import NestedScene from "./NestedScene";
+import PortalPlane from "./PortalPlane";
+import { clickPlanes } from "../constants/components";
 import { easing } from "maath";
-import { useFrame } from "@react-three/fiber";
-import ClickPlane from "../ClickPlane";
-import { clickPlanes, emojis, pi } from "../../constants/components";
-import PortalPlane from "../PortalPlane";
-import NestedScene from "../NestedScene";
 
-interface Props {
-  geometry: any;
-  material: any;
-  isMouseInWindow: boolean;
-}
-
-const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
-  const cubeRef = useRef(new Object3D());
+function Scene() {
   const [activeFace, setActiveFace] = useState(-1);
+  const cubeRef = useRef(new THREE.Mesh());
+  const pi = Math.PI;
 
-  let showCube = false;
+  const [isMouseInWindow, setIsMouseInWindow] = useState(true);
+
+  useEffect(() => {
+    const handleMouseLeave = () => {
+      setIsMouseInWindow(false);
+    };
+    const handleMouseEnter = () => {
+      setIsMouseInWindow(true);
+    };
+
+    document.body.addEventListener("mouseenter", handleMouseEnter);
+    document.body.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      document.body.removeEventListener("mouseenter", handleMouseEnter);
+      document.body.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
 
   useFrame((state, delta) => {
     const elapsed = state.clock.getElapsedTime();
-
-    const cubeTranslateY = Math.sin(elapsed) * 0.1;
     const idleCubeRotX = Math.sin(elapsed * 0.5) * 0.1;
     const idleCubeRotY = Math.cos(elapsed * 0.3) * 0.1;
     const idleCubeRotZ = Math.sin(elapsed * 0.7) * 0.04;
 
-    //adjust camera position
-    //easing.damp3(state.camera.position, [0, 5.802, 88.424], 0.25, delta);
-
-    //cube rotation based on mouse position and idle rotation
     easing.dampE(
       cubeRef.current.rotation,
       [
@@ -42,60 +48,45 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
       0.25,
       delta
     );
-
-    //cube vertical wobble and intro
-    if (showCube) {
-      easing.damp3(
-        cubeRef.current.position,
-        [0, cubeTranslateY, 0],
-        0.25,
-        delta
-      );
-
-      setTimeout(() => {
-        easing.damp3(cubeRef.current.scale, 1.5, 0.25, delta);
-      }, 2000);
-    }
+    //cube rotation based on mouse position and idle rotation
+    easing.dampE(
+      cubeRef.current.rotation,
+      [idleCubeRotY, idleCubeRotX, idleCubeRotZ],
+      0.25,
+      delta
+    );
   });
-
-  setTimeout(() => {
-    showCube = true;
-  }, 1000);
-
   return (
-    <group ref={cubeRef} position={[0, -25, 0]}>
+    <group ref={cubeRef}>
+      <mesh>
+        <boxGeometry args={[10, 10, 10]} />
+        <meshStandardMaterial color="blue" />
+      </mesh>
+      <ambientLight intensity={1} />
+      <OrbitControls />
+      <CameraControls makeDefault />
+
       {clickPlanes.map((plane) => (
         <ClickPlane
           key={plane.label}
-          position={plane.position}
-          rotation={plane.rotation}
           onPointerEnter={(e: Event) => {
             e.stopPropagation();
+            console.log(plane.index);
             setActiveFace(plane.index);
           }}
           onPointerOut={(e: Event) => {
             e.stopPropagation();
             setActiveFace(-1);
+            console.log(activeFace);
           }}
+          rotation={plane.rotation}
+          position={plane.position}
         />
       ))}
-
-      {emojis.map((emoji, index) => (
-        <Text
-          key={index}
-          fontSize={7}
-          position={[emoji.pos.x, emoji.pos.y, emoji.pos.z]}
-          rotation={[emoji.rot.x, emoji.rot.y, emoji.rot.z]}
-          color="#ffffff"
-        >
-          {emoji.emoji}
-        </Text>
-      ))}
-
       <PortalPlane
         active={activeFace === 0}
-        position={new Vector3(0, 5.01, 0)}
-        rotation={new Euler(pi / 2, 0, 0)}
+        position={new THREE.Vector3(0, 5.01, 0)}
+        rotation={new THREE.Euler(pi / 2, 0, 0)}
       >
         <NestedScene
           bgColor="white"
@@ -110,8 +101,8 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
       </PortalPlane>
       <PortalPlane
         active={activeFace === 1}
-        position={new Vector3(0, -5.01, 0)}
-        rotation={new Euler(pi / 2, 0, 0)}
+        position={new THREE.Vector3(0, -5.01, 0)}
+        rotation={new THREE.Euler(pi / 2, 0, 0)}
       >
         <NestedScene
           bgColor="aqua"
@@ -126,8 +117,8 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
       </PortalPlane>
       <PortalPlane
         active={activeFace === 2}
-        position={new Vector3(5.01, 0, 0)}
-        rotation={new Euler(0, pi / 2, 0)}
+        position={new THREE.Vector3(5.01, 0, 0)}
+        rotation={new THREE.Euler(0, pi / 2, 0)}
       >
         <NestedScene
           bgColor="orange"
@@ -142,8 +133,8 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
       </PortalPlane>
       <PortalPlane
         active={activeFace === 3}
-        position={new Vector3(-5.01, 0, 0)}
-        rotation={new Euler(0, pi / 2, 0)}
+        position={new THREE.Vector3(-5.01, 0, 0)}
+        rotation={new THREE.Euler(0, pi / 2, 0)}
       >
         <NestedScene position={[0, 0, 15]} rotation={[-pi / 2, 0, 0]}>
           <mesh position={[0, 12.5, 0]}>
@@ -152,22 +143,20 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
           </mesh>
         </NestedScene>
       </PortalPlane>
-
-      <mesh
-        geometry={geometry}
-        material={material}
-        castShadow={true}
-        receiveShadow={true}
-      ></mesh>
-      <pointLight
-        intensity={5000}
-        decay={2}
-        color="#7c8dff"
-        rotation={[-2.752, -0.324, -2.15]}
-        scale={12}
-      />
     </group>
+  );
+}
+
+const App = () => {
+  return (
+    <section id="Home" className="min-h-screen w-full flex flex-col relative">
+      <div className="w-full h-full absolute inset-0">
+        <Canvas camera={{ position: [0, 0, 15] }}>
+          <Scene />
+        </Canvas>
+      </div>
+    </section>
   );
 };
 
-export default Cube;
+export default App;

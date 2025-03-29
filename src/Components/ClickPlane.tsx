@@ -8,18 +8,24 @@ interface Props {
   onPointerOut: (e: Event) => void;
 }
 
-const ClickPlane = ({ position, rotation }: Props) => {
+const ClickPlane = ({
+  position,
+  rotation,
+  onPointerEnter,
+  onPointerOut,
+}: Props) => {
   const ref = useRef(new Object3D());
 
   return (
-    <mesh ref={ref} position={position} rotation={rotation}>
+    <mesh
+      ref={ref}
+      position={position}
+      rotation={rotation}
+      onPointerEnter={onPointerEnter}
+      onPointerOut={onPointerOut}
+    >
       <planeGeometry args={[9, 9]} />
-      <meshBasicMaterial
-        color="red"
-        side={DoubleSide}
-        transparent
-        visible={false}
-      />
+      <meshBasicMaterial color="red" transparent visible={false} />
     </mesh>
   );
 };

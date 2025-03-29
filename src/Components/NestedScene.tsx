@@ -17,25 +17,27 @@ const NestedScene = ({
 }: Props) => {
   const pi = Math.PI;
   let test = useControls({
-    px: { value: 1, min: 0.01, max: 10 },
-    rX: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
-    rY: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
-    rZ: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
+    nestedPosX: { value: 0, min: -100, max: 100, step: 0.5 },
+    nestedPosY: { value: 0, min: -100, max: 100, step: 0.5 },
+    nestedPosZ: { value: 0, min: -100, max: 100, step: 0.5 },
+    nestedRotX: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
+    nestedRotY: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
+    nestedRotZ: { value: 0, min: -pi / 2, max: pi / 2, step: pi / 16 },
   });
-
+  //[test.rX, test.rY, test.rZ]
   return (
-    <group rotation={rotation} position={[test.rX, test.rY, test.rZ]}>
+    <group position={position} rotation={rotation}>
       {children}
       <mesh>
-        <cylinderGeometry args={[4, 4, 30, 32, 1, true]} />
+        <cylinderGeometry args={[4, 4, 30, 64, 1, true]} />
         <meshToonMaterial
           side={DoubleSide}
           emissive={bgColor}
           color={bgColor}
         />
       </mesh>
-      <mesh position={[0, -40, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[4, 32]} />
+      <mesh position={[0, -1.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[4, 64]} />
         <meshToonMaterial
           side={DoubleSide}
           emissive={bgColor}

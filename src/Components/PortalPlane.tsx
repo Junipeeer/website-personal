@@ -1,4 +1,4 @@
-import { MeshPortalMaterial } from "@react-three/drei";
+import { Environment, MeshPortalMaterial } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { ReactElement, useRef } from "react";
@@ -19,14 +19,11 @@ const PortalPlane = ({
 }: Props) => {
   const portal = useRef<any>(null);
   const mesh = useRef(new Mesh());
-  const target = useRef(new Group());
-  const circleGeometry = useRef(new CircleGeometry(4, 64));
+  const circleGeometry = useRef(new CircleGeometry(0.01, 64));
 
   useFrame((_, delta) => {
-    const targetRadius = active ? 4 : 4;
+    const targetRadius = active ? 4 : 0.01;
     const currentRadius = circleGeometry.current.parameters.radius;
-    const targetPos = active ? new Vector3(0, 0, 0) : new Vector3(0, -1, 0);
-    easing.damp3(target.current.position, targetPos, 0.25, delta);
 
     easing.damp(
       circleGeometry.current.parameters,
@@ -51,16 +48,16 @@ const PortalPlane = ({
 
   return (
     <mesh ref={mesh} position={position} rotation={rotation}>
-      <primitive object={circleGeometry.current} />
+      <circleGeometry ref={circleGeometry} args={[4, 64]} />
       <MeshPortalMaterial
         ref={portal}
         side={DoubleSide}
-        worldUnits
         resolution={0}
         blur={0}
       >
+        <Environment preset="city" />
         <ambientLight />
-        <group ref={target}>{children}</group>
+        {children}
       </MeshPortalMaterial>
     </mesh>
   );

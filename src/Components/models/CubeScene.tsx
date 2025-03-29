@@ -7,12 +7,10 @@ import Cube from "./Cube";
 
 interface Props {
   isMouseInWindow: boolean;
-  props?: any;
 }
 
-export function CubeScene({ isMouseInWindow, ...props }: Props) {
+export function CubeScene({ isMouseInWindow }: Props) {
   const { nodes, materials } = useGLTF("/models/cube_scene.glb");
-  const groupRef = useRef(new Group());
   const pedestalLowerRef = useRef(new Object3D());
   const pedestalUpperRef = useRef(new Object3D());
 
@@ -42,15 +40,7 @@ export function CubeScene({ isMouseInWindow, ...props }: Props) {
   });
 
   return (
-    <group {...props} ref={groupRef} dispose={null}>
-      <PerspectiveCamera
-        makeDefault={true}
-        far={2000}
-        near={0.1}
-        fov={28}
-        position={[0, 0, 88.424]}
-        rotation={[0, 0, 0]}
-      />
+    <group>
       <pointLight
         intensity={10000}
         decay={2}
