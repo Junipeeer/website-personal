@@ -1,9 +1,8 @@
-import { useGLTF, PerspectiveCamera } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useRef } from "react";
-import { Group, Object3D } from "three";
-import Cube from "./Cube";
+import { Mesh, Object3D } from "three";
 
 interface Props {
   isMouseInWindow: boolean;
@@ -58,7 +57,7 @@ export function CubeScene({ isMouseInWindow }: Props) {
         scale={1}
       />
       <mesh
-        geometry={nodes.ground_plane.geometry}
+        geometry={(nodes.ground_plane as Mesh).geometry}
         material={materials.plane_material}
         position={[0, -17.5, 0]}
         castShadow
@@ -68,7 +67,7 @@ export function CubeScene({ isMouseInWindow }: Props) {
         ref={pedestalLowerRef}
         castShadow
         receiveShadow
-        geometry={nodes.Pedestal_bottom.geometry}
+        geometry={(nodes.Pedestal_bottom as Mesh).geometry}
         material={materials.outer_pedestal}
         position={[0, -14, 0]}
       />
@@ -76,14 +75,14 @@ export function CubeScene({ isMouseInWindow }: Props) {
         ref={pedestalUpperRef}
         castShadow
         receiveShadow
-        geometry={nodes.Pedestal_top.geometry}
+        geometry={(nodes.Pedestal_top as Mesh).geometry}
         material={materials.inner_pedestal}
         position={[0, -14, 0]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Pedestal_base.geometry}
+        geometry={(nodes.Pedestal_base as Mesh).geometry}
         material={materials.pedestal_ring}
         position={[0, -14, 0]}
       />

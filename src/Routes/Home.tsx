@@ -1,12 +1,9 @@
-// Implements landing page
-// has 3js scene and implements cube
-// working with cube changes scene, colors, and camera
-// needs 3d import, and create scripts
 import { Canvas } from "@react-three/fiber";
 import CubeScene from "../Components/models/CubeScene";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { Suspense, use, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Cube from "../Components/models/Cube";
+import { Mesh } from "three";
 
 const Home = () => {
   const [isMouseInWindow, setIsMouseInWindow] = useState(true);
@@ -48,7 +45,7 @@ const Home = () => {
             <Cube
               isMouseInWindow={isMouseInWindow}
               material={materials.glass}
-              geometry={nodes.Cube.geometry}
+              geometry={(nodes.Cube as Mesh).geometry}
             />
             <CubeScene isMouseInWindow={isMouseInWindow} />
           </Suspense>
