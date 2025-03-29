@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Text } from "@react-three/drei";
-import { Euler, Object3D, PerspectiveCamera, Vector3 } from "three";
+import { Text, useGLTF } from "@react-three/drei";
+import { Euler, Mesh, Object3D, PerspectiveCamera, Vector3 } from "three";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
 import ClickPlane from "../ClickPlane";
@@ -9,16 +9,15 @@ import PortalPlane from "../PortalPlane";
 import NestedScene from "../NestedScene";
 
 interface Props {
-  geometry: any;
-  material: any;
   isMouseInWindow: boolean;
 }
 
-const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
+const Cube = ({ isMouseInWindow }: Props) => {
   const cubeRef = useRef(new Object3D());
   const clickPlaneRefs = useRef<Object3D[]>([]);
   const [activeFace, setActiveFace] = useState(-1);
   const [showCube, setShowCube] = useState(false);
+  const { nodes, materials } = useGLTF("/models/cube_scene.glb");
 
   // Handle cube appearance after mount
   useEffect(() => {
@@ -202,8 +201,8 @@ const Cube = ({ geometry, material, isMouseInWindow }: Props) => {
       </PortalPlane>
 
       <mesh
-        geometry={geometry}
-        material={material}
+        geometry={(nodes.Cube as Mesh).geometry}
+        material={materials.glass}
         castShadow={true}
         receiveShadow={true}
       ></mesh>
