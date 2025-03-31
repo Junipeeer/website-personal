@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Text, useGLTF } from "@react-three/drei";
-import { Euler, Mesh, Object3D, PerspectiveCamera, Vector3 } from "three";
+import { Mesh, Object3D, PerspectiveCamera } from "three";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
 import ClickPlane from "../ClickPlane";
 import { clickPlanes, emojis, mainCam, pi } from "../../constants/components";
 import PortalPlane from "../PortalPlane";
-import NestedScene from "../NestedScene";
 
 interface Props {
   isMouseInWindow: boolean;
@@ -84,12 +83,12 @@ const Cube = ({ isMouseInWindow }: Props) => {
     }
 
     // Apply rotation with easing
-    easing.dampE(
-      cubeRef.current.rotation,
-      [rotX + idleCubeRotX, rotY + idleCubeRotY, idleCubeRotZ],
-      0.25,
-      delta
-    );
+    // easing.dampE(
+    //   cubeRef.current.rotation,
+    //   [rotX + idleCubeRotX, rotY + idleCubeRotY, idleCubeRotZ],
+    //   0.25,
+    //   delta
+    // );
 
     // Handle cube appearance animation
     if (showCube) {
@@ -108,6 +107,32 @@ const Cube = ({ isMouseInWindow }: Props) => {
 
   return (
     <group ref={cubeRef} position={[0, -25, 0]}>
+      {/* ----Cube---- */}
+      <mesh
+        geometry={(nodes.Cube as Mesh).geometry}
+        material={materials.glass}
+        castShadow={true}
+        receiveShadow={true}
+      ></mesh>
+      <pointLight
+        intensity={5000}
+        decay={2}
+        color="#7c8dff"
+        rotation={[-2.752, -0.324, -2.15]}
+        scale={12}
+      />
+      {emojis.map((emoji, index) => (
+        <Text
+          key={index}
+          fontSize={7}
+          position={[emoji.pos.x, emoji.pos.y, emoji.pos.z]}
+          rotation={[emoji.rot.x, emoji.rot.y, emoji.rot.z]}
+          color="#ffffff"
+        >
+          {emoji.emoji}
+        </Text>
+      ))}
+      {/* ----ClickPlanes---- */}
       {clickPlanes.map((plane) => (
         <ClickPlane
           key={plane.label}
@@ -129,92 +154,54 @@ const Cube = ({ isMouseInWindow }: Props) => {
         />
       ))}
 
-      {emojis.map((emoji, index) => (
-        <Text
-          key={index}
-          fontSize={7}
-          position={[emoji.pos.x, emoji.pos.y, emoji.pos.z]}
-          rotation={[emoji.rot.x, emoji.rot.y, emoji.rot.z]}
-          color="#ffffff"
-        >
-          {emoji.emoji}
-        </Text>
-      ))}
-
+      {/* ----Portals---- */}
       <PortalPlane
         active={activeFace === 0}
-        position={new Vector3(0, 5.01, 0)}
-        rotation={new Euler(pi / 2, 0, 0)}
+        position={[0, 5.01, 0]}
+        rotation={[pi / 2, 0, 0]}
+        sceneRotation={[-pi / 2, 0, 0]}
+        sceneBG="white"
       >
-        <NestedScene
-          bgColor="white"
-          position={[0, 0, 15]}
-          rotation={[-pi / 2, 0, 0]}
-        >
-          <mesh castShadow receiveShadow position={[0, 10, 0]}>
-            <boxGeometry args={[5, 5, 5]} />
-            <meshToonMaterial color="maroon" emissive={"maroon"} />
-          </mesh>
-        </NestedScene>
+        <mesh castShadow receiveShadow position={[0, -5, 0]}>
+          <boxGeometry args={[5, 5, 5]} />
+          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        </mesh>
       </PortalPlane>
       <PortalPlane
         active={activeFace === 1}
-        position={new Vector3(0, -5.01, 0)}
-        rotation={new Euler(pi / 2, 0, 0)}
+        position={[0, -5.01, 0]}
+        rotation={[pi / 2, 0, 0]}
+        sceneRotation={[pi / 2, 0, 0]}
+        sceneBG="aqua"
       >
-        <NestedScene
-          bgColor="aqua"
-          position={[0, 0, -15]}
-          rotation={[pi / 2, 0, 0]}
-        >
-          <mesh castShadow receiveShadow position={[0, 10, 0]}>
-            <boxGeometry args={[5, 5, 5]} />
-            <meshToonMaterial color="maroon" emissive={"maroon"} />
-          </mesh>
-        </NestedScene>
+        <mesh castShadow receiveShadow position={[0, -5, 0]}>
+          <boxGeometry args={[5, 5, 5]} />
+          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        </mesh>
       </PortalPlane>
       <PortalPlane
         active={activeFace === 2}
-        position={new Vector3(5.01, 0, 0)}
-        rotation={new Euler(0, pi / 2, 0)}
+        position={[5.01, 0, 0]}
+        rotation={[0, pi / 2, 0]}
+        sceneRotation={[pi / 2, 0, 0]}
+        sceneBG="orange"
       >
-        <NestedScene
-          bgColor="orange"
-          position={[0, 0, -15]}
-          rotation={[pi / 2, 0, 0]}
-        >
-          <mesh castShadow receiveShadow position={[0, 10, 0]}>
-            <boxGeometry args={[5, 5, 5]} />
-            <meshToonMaterial color="maroon" emissive={"maroon"} />
-          </mesh>
-        </NestedScene>
+        <mesh castShadow receiveShadow position={[0, -5, 0]}>
+          <boxGeometry args={[5, 5, 5]} />
+          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        </mesh>
       </PortalPlane>
       <PortalPlane
         active={activeFace === 3}
-        position={new Vector3(-5.01, 0, 0)}
-        rotation={new Euler(0, pi / 2, 0)}
+        position={[-5.01, 0, 0]}
+        rotation={[0, pi / 2, 0]}
+        sceneRotation={[-pi / 2, 0, 0]}
       >
-        <NestedScene position={[0, 0, 15]} rotation={[-pi / 2, 0, 0]}>
-          <mesh castShadow receiveShadow position={[0, 10, 0]}>
-            <boxGeometry args={[5, 5, 5]} />
-            <meshToonMaterial color="maroon" emissive={"maroon"} />
-          </mesh>
-        </NestedScene>
+        <mesh castShadow receiveShadow position={[0, -5, 0]}>
+          <boxGeometry args={[5, 5, 5]} />
+          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        </mesh>
       </PortalPlane>
-
-      <mesh
-        geometry={(nodes.Cube as Mesh).geometry}
-        material={materials.glass}
-        castShadow={true}
-        receiveShadow={true}
-      ></mesh>
-      <pointLight
-        intensity={5000}
-        decay={2}
-        color="#7c8dff"
-        rotation={[-2.752, -0.324, -2.15]}
-        scale={12}
-      />
     </group>
   );
 };
