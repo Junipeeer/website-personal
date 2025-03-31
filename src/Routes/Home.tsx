@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <section id="Home" className="min-h-screen w-full flex flex-col relative">
       <div className="w-full h-full absolute inset-0">
-        <Canvas shadows camera={mainCam}>
+        <Canvas shadows camera={mainCam} gl={{ localClippingEnabled: true }}>
           <Suspense fallback={`<h1 className="text-white">loading</h1>`}>
             <Environment preset="night" />
 

@@ -44,37 +44,3 @@ export const clickPlanes = [
     label: "left",
   },
 ];
-
-export interface NestedSceneConfig {
-  bgColor: string;
-  position: [number, number, number];
-  rotation: [number, number, number];
-  content: string; 
-}
-
-export const portalScenes: Record<number, NestedSceneConfig> = {
-  0: {
-    bgColor: "white",
-    position: [0, 0, 15],
-    rotation: [-pi / 2, 0, 0],
-    content: "sphere"
-  },
-  1: {
-    bgColor: "aqua",
-    position: [0, 0, -15], 
-    rotation: [pi / 2, 0, 0],
-    content: "torus"
-  },
-  2: {
-    bgColor: "orange",
-    position: [0, 0, -15],
-    rotation: [pi / 2, 0, 0],
-    content: "icosahedron"
-  },
-  3: {
-    bgColor: "hotpink",
-    position: [0, 0, 15],
-    rotation: [-pi / 2, 0, 0],
-    content: "octahedron"
-  }
-};

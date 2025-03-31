@@ -4,7 +4,7 @@ import { OrbitControls, CameraControls } from "@react-three/drei";
 import * as THREE from "three";
 import ClickPlane from "./ClickPlane";
 import NestedScene from "./NestedScene";
-import PortalPlane from "./PortalPlane";
+import PortalPlane from "./PortalScene";
 import { clickPlanes } from "../constants/components";
 import { easing } from "maath";
 

@@ -7,26 +7,26 @@ import { CircleGeometry, DoubleSide, Euler, Mesh, Vector3 } from "three";
 interface Props {
   active?: boolean;
   position?: [number, number, number] | Vector3;
-  rotation?: [number, number, number] | Euler;
-  sceneRotation?: [number, number, number] | Euler;
+  planeRot?: [number, number, number] | Euler;
+  sceneRot?: [number, number, number] | Euler;
   sceneBG?: string;
   children: ReactElement;
 }
 
-const PortalPlane = ({
+const PortalScene = ({
   active = false,
   position = new Vector3(0, 0, 0),
-  rotation = new Euler(0, 0, 0),
-  sceneRotation = new Euler(0, 0, 0),
+  planeRot = new Euler(0, 0, 0),
+  sceneRot = new Euler(0, 0, 0),
   sceneBG = "hotpink",
   children,
 }: Props) => {
   const portal = useRef<any>(null);
   const mesh = useRef(new Mesh());
-  const circleGeometry = useRef(new CircleGeometry(0.01, 64));
+  const circleGeometry = useRef(new CircleGeometry(0.001, 64));
 
   useFrame((_, delta) => {
-    const targetRadius = active ? 4 : 0.01;
+    const targetRadius = active ? 4 : 0.001;
     const currentRadius = circleGeometry.current.parameters.radius;
 
     easing.damp(
@@ -51,15 +51,10 @@ const PortalPlane = ({
   });
 
   return (
-    <mesh ref={mesh} position={position} rotation={rotation}>
+    <mesh ref={mesh} position={position} rotation={planeRot}>
       <circleGeometry ref={circleGeometry} args={[4, 64]} />
-      <MeshPortalMaterial
-        ref={portal}
-        side={DoubleSide}
-        resolution={0}
-        blur={0}
-      >
-        <group castShadow receiveShadow rotation={sceneRotation}>
+      <MeshPortalMaterial ref={portal} resolution={0} blur={0}>
+        <group castShadow receiveShadow rotation={sceneRot}>
           <mesh castShadow receiveShadow position={[0, -15, 0]}>
             <cylinderGeometry args={[4, 4, 30, 64, 1, true]} />
             <meshStandardMaterial
@@ -71,7 +66,7 @@ const PortalPlane = ({
           <mesh
             castShadow
             receiveShadow
-            position={[0, -30, 0]}
+            position={[0, -15, 0]}
             rotation={[Math.PI / 2, 0, 0]}
           >
             <circleGeometry args={[4, 64]} />
@@ -81,12 +76,21 @@ const PortalPlane = ({
               emissive={sceneBG}
             />
           </mesh>
-          <ambientLight intensity={1} />
-          {children}
+          <group position={[0, -5.01, 0]}>
+            <pointLight
+              position={[0, -10, 0]}
+              intensity={10000}
+              decay={2}
+              color="#7c8dff"
+              scale={1}
+            />
+
+            {children}
+          </group>
         </group>
       </MeshPortalMaterial>
     </mesh>
   );
 };
 
-export default PortalPlane;
+export default PortalScene;

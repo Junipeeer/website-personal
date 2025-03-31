@@ -5,7 +5,8 @@ import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
 import ClickPlane from "../ClickPlane";
 import { clickPlanes, emojis, mainCam, pi } from "../../constants/components";
-import PortalPlane from "../PortalPlane";
+import PortalScene from "../PortalScene";
+import SceneObject from "../SceneObject";
 
 interface Props {
   isMouseInWindow: boolean;
@@ -83,12 +84,12 @@ const Cube = ({ isMouseInWindow }: Props) => {
     }
 
     // Apply rotation with easing
-    // easing.dampE(
-    //   cubeRef.current.rotation,
-    //   [rotX + idleCubeRotX, rotY + idleCubeRotY, idleCubeRotZ],
-    //   0.25,
-    //   delta
-    // );
+    easing.dampE(
+      cubeRef.current.rotation,
+      [rotX + idleCubeRotX, rotY + idleCubeRotY, idleCubeRotZ],
+      0.25,
+      delta
+    );
 
     // Handle cube appearance animation
     if (showCube) {
@@ -121,7 +122,7 @@ const Cube = ({ isMouseInWindow }: Props) => {
         rotation={[-2.752, -0.324, -2.15]}
         scale={12}
       />
-      {emojis.map((emoji, index) => (
+      {/* {emojis.map((emoji, index) => (
         <Text
           key={index}
           fontSize={7}
@@ -131,7 +132,7 @@ const Cube = ({ isMouseInWindow }: Props) => {
         >
           {emoji.emoji}
         </Text>
-      ))}
+      ))} */}
       {/* ----ClickPlanes---- */}
       {clickPlanes.map((plane) => (
         <ClickPlane
@@ -154,54 +155,131 @@ const Cube = ({ isMouseInWindow }: Props) => {
         />
       ))}
 
-      {/* ----Portals---- */}
-      <PortalPlane
+      {/* ----Portal top---- */}
+      <PortalScene
         active={activeFace === 0}
         position={[0, 5.01, 0]}
-        rotation={[pi / 2, 0, 0]}
-        sceneRotation={[-pi / 2, 0, 0]}
+        planeRot={[-pi / 2, 0, 0]}
+        sceneRot={[pi / 2, 0, 0]}
         sceneBG="white"
       >
-        <mesh castShadow receiveShadow position={[0, -5, 0]}>
-          <boxGeometry args={[5, 5, 5]} />
-          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        <SceneObject
+          targetPos={[0, 5, 0]}
+          targetRot={[pi / 4, pi / 4, 0]}
+          targetScale={2}
+          active={activeFace === 0}
+          duration={0.2}
+        >
+          <mesh castShadow receiveShadow>
+            <boxGeometry args={[2, 2, 2]} />
+            <meshToonMaterial color="maroon" emissive="maroon" />
+          </mesh>
+        </SceneObject>
+      </PortalScene>
+      <SceneObject
+        targetPos={[0, 5, 0]}
+        targetRot={[pi / 4, pi / 4, 0]}
+        targetScale={2}
+        active={activeFace === 0}
+        duration={0.2}
+      >
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[2, 2, 2]} />
+          <meshToonMaterial color="maroon" emissive="maroon" />
         </mesh>
-      </PortalPlane>
-      <PortalPlane
+      </SceneObject>
+      {/* ----Portal bottom---- */}
+      <PortalScene
         active={activeFace === 1}
         position={[0, -5.01, 0]}
-        rotation={[pi / 2, 0, 0]}
-        sceneRotation={[pi / 2, 0, 0]}
+        planeRot={[pi / 2, 0, 0]}
+        sceneRot={[pi / 2, 0, 0]}
         sceneBG="aqua"
       >
-        <mesh castShadow receiveShadow position={[0, -5, 0]}>
-          <boxGeometry args={[5, 5, 5]} />
-          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        <SceneObject
+          targetPos={[0, 5, 1]}
+          targetRot={[0, 0, 0]}
+          targetScale={1}
+          active={activeFace === 1}
+        >
+          <mesh castShadow receiveShadow>
+            <boxGeometry args={[3, 3, 3]} />
+            <meshToonMaterial color="maroon" emissive="maroon" />
+          </mesh>
+        </SceneObject>
+      </PortalScene>
+      <SceneObject
+        targetPos={[0, -5, -1]}
+        targetRot={[0, 0, 0]}
+        targetScale={1}
+        active={activeFace === 1}
+      >
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[3, 3, 3]} />
+          <meshToonMaterial color="maroon" emissive="maroon" />
         </mesh>
-      </PortalPlane>
-      <PortalPlane
+      </SceneObject>
+      {/* ----Portal right---- */}
+      <PortalScene
         active={activeFace === 2}
         position={[5.01, 0, 0]}
-        rotation={[0, pi / 2, 0]}
-        sceneRotation={[pi / 2, 0, 0]}
+        planeRot={[0, pi / 2, 0]}
+        sceneRot={[pi / 2, 0, 0]}
         sceneBG="orange"
       >
-        <mesh castShadow receiveShadow position={[0, -5, 0]}>
-          <boxGeometry args={[5, 5, 5]} />
-          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        <SceneObject
+          targetPos={[0, 10, 0]}
+          targetRot={[0, 0, -pi / 3]}
+          targetScale={2}
+          active={activeFace === 2}
+        >
+          <mesh castShadow receiveShadow>
+            <boxGeometry args={[2, 2, 2]} />
+            <meshToonMaterial color="maroon" emissive="maroon" />
+          </mesh>
+        </SceneObject>
+      </PortalScene>
+      <SceneObject
+        targetPos={[10, 0, 0]}
+        targetRot={[0, pi / 3, 0]}
+        targetScale={2}
+        active={activeFace === 2}
+      >
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[2, 2, 2]} />
+          <meshToonMaterial color="maroon" emissive="maroon" />
         </mesh>
-      </PortalPlane>
-      <PortalPlane
+      </SceneObject>
+      {/* ----Portal right---- */}
+      <PortalScene
         active={activeFace === 3}
         position={[-5.01, 0, 0]}
-        rotation={[0, pi / 2, 0]}
-        sceneRotation={[-pi / 2, 0, 0]}
+        planeRot={[0, -pi / 2, 0]}
+        sceneRot={[pi / 2, 0, 0]}
       >
-        <mesh castShadow receiveShadow position={[0, -5, 0]}>
-          <boxGeometry args={[5, 5, 5]} />
-          <meshToonMaterial color="maroon" emissive={"maroon"} />
+        <SceneObject
+          targetPos={[0, 10, 0]}
+          targetRot={[0, 0, -pi / 3]}
+          targetScale={2}
+          active={activeFace === 3}
+        >
+          <mesh castShadow receiveShadow>
+            <boxGeometry args={[2, 2, 2]} />
+            <meshToonMaterial color="maroon" emissive="maroon" />
+          </mesh>
+        </SceneObject>
+      </PortalScene>
+      <SceneObject
+        targetPos={[-10, 0, 0]}
+        targetRot={[0, pi / 3, 0]}
+        targetScale={2}
+        active={activeFace === 3}
+      >
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[2, 2, 2]} />
+          <meshToonMaterial color="maroon" emissive="maroon" />
         </mesh>
-      </PortalPlane>
+      </SceneObject>
     </group>
   );
 };
