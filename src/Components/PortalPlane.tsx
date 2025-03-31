@@ -22,7 +22,7 @@ const PortalPlane = ({
   const circleGeometry = useRef(new CircleGeometry(0.01, 64));
 
   useFrame((_, delta) => {
-    const targetRadius = active ? 4 : 0.01;
+    const targetRadius = active ? 4 : 4;
     const currentRadius = circleGeometry.current.parameters.radius;
 
     easing.damp(
@@ -55,8 +55,6 @@ const PortalPlane = ({
         resolution={0}
         blur={0}
       >
-        <Environment preset="city" />
-        <ambientLight />
         {children}
       </MeshPortalMaterial>
     </mesh>

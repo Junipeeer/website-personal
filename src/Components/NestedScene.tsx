@@ -26,25 +26,30 @@ const NestedScene = ({
   });
   //[test.rX, test.rY, test.rZ]
   return (
-    <group position={position} rotation={rotation}>
-      <group>{children}</group>
-
-      <mesh>
+    <group castShadow receiveShadow position={position} rotation={rotation}>
+      <mesh castShadow receiveShadow>
         <cylinderGeometry args={[4, 4, 30, 64, 1, true]} />
-        <meshToonMaterial
+        <meshStandardMaterial
           side={DoubleSide}
-          emissive={bgColor}
           color={bgColor}
+          emissive={bgColor}
         />
       </mesh>
-      <mesh position={[0, -1.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
+      <mesh
+        castShadow
+        receiveShadow
+        position={[0, -15, 0]}
+        rotation={[Math.PI / 2, 0, 0]}
+      >
         <circleGeometry args={[4, 64]} />
         <meshToonMaterial
           side={DoubleSide}
-          emissive={bgColor}
           color={bgColor}
+          emissive={bgColor}
         />
       </mesh>
+      <ambientLight intensity={1} />
+      {children}
     </group>
   );
 };

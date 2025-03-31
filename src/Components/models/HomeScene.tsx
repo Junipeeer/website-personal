@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { Edges, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useRef } from "react";
@@ -49,13 +49,13 @@ export function HomeScene({ isMouseInWindow }: Props) {
         scale={1}
       />
       <pointLight
-        intensity={20000}
+        intensity={5000}
         decay={2}
         color="#ff9aef"
-        position={[0, -35.01, 0]}
+        position={[0, -17, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={1}
-      />
+      ></pointLight>
       <mesh
         geometry={(nodes.ground_plane as Mesh).geometry}
         material={materials.Rock}
@@ -90,6 +90,6 @@ export function HomeScene({ isMouseInWindow }: Props) {
   );
 }
 
-useGLTF.preload("/models/cube_scene.glb");
+useGLTF.preload("/models/home_scene.glb");
 
 export default HomeScene;

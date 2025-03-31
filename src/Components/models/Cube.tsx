@@ -151,9 +151,9 @@ const Cube = ({ isMouseInWindow }: Props) => {
           position={[0, 0, 15]}
           rotation={[-pi / 2, 0, 0]}
         >
-          <mesh position={[0, 12.5, 0]}>
+          <mesh castShadow receiveShadow position={[0, 10, 0]}>
             <boxGeometry args={[5, 5, 5]} />
-            <meshStandardMaterial color="maroon" />
+            <meshToonMaterial color="maroon" emissive={"maroon"} />
           </mesh>
         </NestedScene>
       </PortalPlane>
@@ -167,9 +167,9 @@ const Cube = ({ isMouseInWindow }: Props) => {
           position={[0, 0, -15]}
           rotation={[pi / 2, 0, 0]}
         >
-          <mesh position={[0, 12.5, 0]}>
+          <mesh castShadow receiveShadow position={[0, 10, 0]}>
             <boxGeometry args={[5, 5, 5]} />
-            <meshStandardMaterial color="maroon" />
+            <meshToonMaterial color="maroon" emissive={"maroon"} />
           </mesh>
         </NestedScene>
       </PortalPlane>
@@ -183,9 +183,9 @@ const Cube = ({ isMouseInWindow }: Props) => {
           position={[0, 0, -15]}
           rotation={[pi / 2, 0, 0]}
         >
-          <mesh position={[0, 12.5, 0]}>
+          <mesh castShadow receiveShadow position={[0, 10, 0]}>
             <boxGeometry args={[5, 5, 5]} />
-            <meshStandardMaterial color="maroon" />
+            <meshToonMaterial color="maroon" emissive={"maroon"} />
           </mesh>
         </NestedScene>
       </PortalPlane>
@@ -195,9 +195,9 @@ const Cube = ({ isMouseInWindow }: Props) => {
         rotation={new Euler(0, pi / 2, 0)}
       >
         <NestedScene position={[0, 0, 15]} rotation={[-pi / 2, 0, 0]}>
-          <mesh position={[0, 12.5, 0]}>
+          <mesh castShadow receiveShadow position={[0, 10, 0]}>
             <boxGeometry args={[5, 5, 5]} />
-            <meshStandardMaterial color="maroon" />
+            <meshToonMaterial color="maroon" emissive={"maroon"} />
           </mesh>
         </NestedScene>
       </PortalPlane>

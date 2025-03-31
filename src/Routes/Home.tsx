@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import CubeScene from "../Components/models/HomeScene";
-import { OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import Cube from "../Components/models/Cube";
 import { mainCam } from "../constants/components";
@@ -30,7 +30,8 @@ const Home = () => {
       <div className="w-full h-full absolute inset-0">
         <Canvas shadows camera={mainCam}>
           <Suspense fallback={`<h1 className="text-white">loading</h1>`}>
-            <ambientLight intensity={1} />
+            <Environment preset="night" />
+
             <OrbitControls />
             <Cube isMouseInWindow={isMouseInWindow} />
             <CubeScene isMouseInWindow={isMouseInWindow} />
