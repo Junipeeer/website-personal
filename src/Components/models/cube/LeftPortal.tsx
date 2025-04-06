@@ -1,4 +1,4 @@
-import { Billboard, Text } from "@react-three/drei";
+import { Billboard, Edges, Text } from "@react-three/drei";
 import PortalScene from "../../PortalScene";
 import SceneObject from "../../SceneObject";
 import { pi } from "../../../constants/components";
@@ -6,6 +6,76 @@ import { pi } from "../../../constants/components";
 interface Props {
   active: boolean;
 }
+
+const SceneObjects = ({ active }: Props) => {
+  return (
+    <group>
+      {/* ---- Lime Sphere ---- */}
+      <SceneObject
+        startPos={[0, -1, 0]}
+        targetPos={[-10, 0, 0]}
+        targetRot={[0, pi / 3, 0]}
+        targetScale={2.5}
+        active={active}
+      >
+        <group>
+          <mesh>
+            <sphereGeometry args={[1, 32, 32]} />
+            <meshToonMaterial color="#00a220" />
+          </mesh>
+          <mesh>
+            <sphereGeometry args={[1.1, 8, 8]} />
+            <meshBasicMaterial color="white" wireframe />
+          </mesh>
+        </group>
+      </SceneObject>
+      {/* ---- Billboard Icon ---- */}
+      <SceneObject
+        startPos={[0, -3, 0]}
+        startRot={[0, 0, pi / 2]}
+        targetPos={[-7, 3, -1]}
+        targetRot={[0, -pi / 4, 0]}
+        targetScale={1}
+        active={active}
+      >
+        <Text
+          castShadow={false}
+          receiveShadow={false}
+          fontSize={5}
+          color="#cc7084"
+          outlineWidth={0.1}
+          outlineColor="white"
+        >
+          🎨
+        </Text>
+      </SceneObject>
+      {/* ---- Main Text ---- */}
+      <SceneObject
+        startPos={[0, 3, 0]}
+        startRot={[0, 0, pi / 2]}
+        targetPos={[-11.7, 0, 2.5]}
+        targetRot={[0, -pi / 8, -pi / 24]}
+        targetScale={1}
+        active={active}
+        duration={0.2}
+      >
+        <Text
+          font={"/fonts/Exo2-VariableFont_wght.ttf"}
+          fontWeight={400}
+          fontSize={2}
+          color="hotpink"
+          castShadow={false}
+          receiveShadow={false}
+          outlineWidth={0.05}
+          outlineColor="white"
+          glyphGeometryDetail={8}
+        >
+          Portfolio
+        </Text>
+      </SceneObject>
+    </group>
+  );
+};
 
 const LeftPortal = ({ active }: Props) => {
   return (
@@ -16,36 +86,14 @@ const LeftPortal = ({ active }: Props) => {
         planeRot={[0, -pi / 2, 0]}
         sceneRot={[pi / 2, 0, 0]}
       >
-        {/* Lime Box */}
-        <SceneObject
-          targetPos={[-10, 0, 0]}
-          targetRot={[0, pi / 3, 0]}
-          targetScale={2}
-          active={active}
-        >
-          <mesh>
-            <boxGeometry args={[2, 2, 2]} />
-            <meshToonMaterial color="green" />
-          </mesh>
-        </SceneObject>
+        <SceneObjects active={active} />
       </PortalScene>
       {/*
         ------------------------------
         ------- Outside Portal -------
         ------------------------------
       */}
-      {/* Lime Box */}
-      <SceneObject
-        targetPos={[-10, 0, 0]}
-        targetRot={[0, pi / 3, 0]}
-        targetScale={2}
-        active={active}
-      >
-        <mesh>
-          <boxGeometry args={[2, 2, 2]} />
-          <meshToonMaterial color="green" />
-        </mesh>
-      </SceneObject>
+      <SceneObjects active={active} />
     </group>
   );
 };

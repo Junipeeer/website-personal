@@ -4,6 +4,24 @@
   scroll-behavior: smooth;
 }
 
+@font-face {
+  font-family: "Exo 2";
+  src: url("/fonts/Exo2-VariableFont_wght.ttf") format("truetype");
+}
+
+h1 {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 700;
+}
+
+span {
+  transition: transform 0.3s ease-in-out;
+}
+
+.rotate {
+  transform: rotate(45deg);
+}
+
 @layer utilities {
   #root {
     @apply w-full h-full bg-black text-white;
@@ -27,6 +45,6 @@ body,
   padding: 0;
 }
 
-body, #home {
-  background: #f0f0f0;
+html, body, #home {
+  background: #212121;
 }

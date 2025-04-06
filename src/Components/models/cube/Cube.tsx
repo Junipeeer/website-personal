@@ -1,23 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Billboard, FontData, Text, useGLTF } from "@react-three/drei";
-import {
-  AlwaysStencilFunc,
-  DoubleSide,
-  Mesh,
-  Object3D,
-  PerspectiveCamera,
-} from "three";
+import { useGLTF } from "@react-three/drei";
+import { Mesh, Object3D, PerspectiveCamera } from "three";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
 import ClickPlane from "../../ClickPlane";
-import {
-  clickPlanes,
-  emojis,
-  mainCam,
-  pi,
-} from "../../../constants/components";
-import PortalScene from "../../PortalScene";
-import SceneObject from "../../SceneObject";
+import { clickPlanes, mainCam, pi } from "../../../constants/components";
 import TopPortal from "./TopPortal";
 import BottomPortal from "./BottomPortal";
 import RightPortal from "./RightPortal";
@@ -157,14 +144,10 @@ const Cube = ({ isMouseInWindow }: Props) => {
           }}
         />
       ))}
-
-      {/* ----Portal top---- */}
+      {/* ---- Instances of Portal Planes and Children ---- */}
       <TopPortal active={activeFace === 0} />
-      {/* ----Portal bottom---- */}
       <BottomPortal active={activeFace === 1} />
-      {/* ----Portal right---- */}
       <RightPortal active={activeFace === 2} />
-      {/* ----Portal right---- */}
       <LeftPortal active={activeFace === 3} />
     </group>
   );

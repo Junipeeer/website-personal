@@ -10,33 +10,6 @@ interface Props {
 
 export function HomeScene({ isMouseInWindow }: Props) {
   const { nodes, materials } = useGLTF("/models/home_scene.glb");
-  const pedestalLowerRef = useRef(new Object3D());
-  const pedestalUpperRef = useRef(new Object3D());
-
-  useFrame((state, delta) => {
-    //lower pedestal rotation based on mouse position
-    easing.dampE(
-      pedestalLowerRef.current.rotation,
-      [
-        0,
-        isMouseInWindow ? Math.sin(state.pointer.y + state.pointer.x) * 2 : 0,
-        0,
-      ],
-      0.25,
-      delta
-    );
-    //lower pedestal rotation based on mouse position
-    easing.dampE(
-      pedestalUpperRef.current.rotation,
-      [
-        0,
-        isMouseInWindow ? Math.cos(state.pointer.y + state.pointer.x) * 4 : 0,
-        0,
-      ],
-      0.25,
-      delta
-    );
-  });
 
   return (
     <group>
@@ -44,7 +17,7 @@ export function HomeScene({ isMouseInWindow }: Props) {
         intensity={10000}
         decay={2}
         color="#67fcff"
-        position={[-25.788, 24.857, -29.49]}
+        position={[-25.788, 28.857, -29.49]}
         rotation={[-2.752, -0.324, -2.15]}
         scale={1}
       />
@@ -59,32 +32,30 @@ export function HomeScene({ isMouseInWindow }: Props) {
       <mesh
         geometry={(nodes.ground_plane as Mesh).geometry}
         material={materials.Rock}
-        position={[0, -19.1, -219.025]}
+        position={[0, -23.1, -219.025]}
         castShadow
         receiveShadow
       />
       <mesh
-        ref={pedestalLowerRef}
         castShadow
         receiveShadow
         geometry={(nodes.Pedestal_bottom as Mesh).geometry}
         material={materials.Rock}
-        position={[0, -16, 0]}
+        position={[0, -20, 0]}
       />
       <mesh
-        ref={pedestalUpperRef}
         castShadow
         receiveShadow
         geometry={(nodes.Pedestal_top as Mesh).geometry}
         material={materials.Rock}
-        position={[0, -16, 0]}
+        position={[0, -20, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={(nodes.Pedestal_base as Mesh).geometry}
         material={materials.Rock}
-        position={[0, -16, 0]}
+        position={[0, -20, 0]}
       />
     </group>
   );
