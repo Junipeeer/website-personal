@@ -1,7 +1,7 @@
 import { Billboard, Edges, Text } from "@react-three/drei";
-import PortalScene from "../../PortalScene";
-import SceneObject from "../../SceneObject";
-import { pi } from "../../../constants/components";
+import PortalScene from "../helpers/PortalScene";
+import SceneObject from "../helpers/SceneObject";
+import { pi } from "../../constants/components";
 
 interface Props {
   active: boolean;
@@ -27,6 +27,7 @@ const SceneObjects = ({ active }: Props) => {
       </SceneObject>
       {/* ---- Main Text ---- */}
       <SceneObject
+        startPos={[0, 1, -3]}
         startRot={[0, 0, pi]}
         targetPos={[0, 6.7, 2.5]}
         targetRot={[-pi / 6, 0, 0]}
@@ -37,12 +38,12 @@ const SceneObjects = ({ active }: Props) => {
         <Text
           font={"/fonts/Exo2-VariableFont_wght.ttf"}
           fontWeight={400}
-          fontSize={3}
+          fontSize={2}
           color="lime"
           outlineWidth={0.1}
           outlineColor="white"
         >
-          Info
+          About
         </Text>
       </SceneObject>
     </group>

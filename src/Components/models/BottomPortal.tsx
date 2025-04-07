@@ -1,7 +1,7 @@
 import { Billboard, Edges, Text } from "@react-three/drei";
-import PortalScene from "../../PortalScene";
-import SceneObject from "../../SceneObject";
-import { pi } from "../../../constants/components";
+import PortalScene from "../helpers/PortalScene";
+import SceneObject from "../helpers/SceneObject";
+import { pi } from "../../constants/components";
 
 interface Props {
   active: boolean;
@@ -53,19 +53,36 @@ const SceneObjects = ({ active }: Props) => {
         active={active}
         duration={0.2}
       >
-        <Text
-          font={"/fonts/Exo2-VariableFont_wght.ttf"}
-          fontWeight={400}
-          fontSize={3}
-          color="aqua"
-          castShadow={false}
-          receiveShadow={false}
-          outlineWidth={0.05}
-          outlineColor="white"
-          glyphGeometryDetail={8}
-        >
-          Blog
-        </Text>
+        <group>
+          <Text
+            font={"/fonts/Exo2-VariableFont_wght.ttf"}
+            fontWeight={400}
+            fontSize={3}
+            color="aqua"
+            castShadow={false}
+            receiveShadow={false}
+            outlineWidth={0.05}
+            outlineColor="white"
+            glyphGeometryDetail={8}
+          >
+            Blog
+          </Text>
+          <Text
+            position={[0, 0, 1]}
+            rotation={[0, 0, pi / 24]}
+            font={"/fonts/Exo2-VariableFont_wght.ttf"}
+            fontWeight={400}
+            fontSize={1}
+            color="#212121"
+            castShadow={false}
+            receiveShadow={false}
+            outlineWidth={0.05}
+            outlineColor="white"
+            glyphGeometryDetail={8}
+          >
+            Under Construction
+          </Text>
+        </group>
       </SceneObject>
     </group>
   );
