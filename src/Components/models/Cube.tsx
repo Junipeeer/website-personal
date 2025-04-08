@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { Mesh, Object3D, PerspectiveCamera } from "three";
+import { Mesh, Object3D } from "three";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
-import ClickPlane from "../helpers/ClickPlane";
-import { clickPlanes, mainCam, pi } from "../../constants/components";
+import { mainCam, pi } from "../../constants/components3D";
 import TopPortal from "./TopPortal";
 import BottomPortal from "./BottomPortal";
 import RightPortal from "./RightPortal";
@@ -12,12 +11,11 @@ import LeftPortal from "./LeftPortal";
 
 interface Props {
   isMouseInWindow: boolean;
+  activeFace: number;
 }
 
-const Cube = ({ isMouseInWindow }: Props) => {
+const Cube = ({ isMouseInWindow, activeFace }: Props) => {
   const cubeRef = useRef(new Object3D());
-  const clickPlaneRefs = useRef<Object3D[]>([]);
-  const [activeFace, setActiveFace] = useState(-1);
   const [showCube, setShowCube] = useState(false);
   const { nodes, materials } = useGLTF("/models/cube.glb");
 
@@ -39,11 +37,8 @@ const Cube = ({ isMouseInWindow }: Props) => {
       let rotY = 0;
 
       if (isMouseInWindow) {
-        const { camera, size } = state;
-        const fov =
-          camera instanceof PerspectiveCamera
-            ? (camera.fov * pi) / 180
-            : pi / 2;
+        const { size } = state;
+        const fov = mainCam.fov * (Math.PI / 180);
         const cubeSize = 10;
         const distance = mainCam.position[2];
         // Calculate projected size in pixels
@@ -58,10 +53,8 @@ const Cube = ({ isMouseInWindow }: Props) => {
         const relativeX = mouseX / (projectedSize / 1.5);
         const relativeY = mouseY / (projectedSize / 1.5);
 
-        // Calculate the maximum rotation in radians (80% of PI)
         const maxRotation = (pi / 2) * 0.5;
 
-        // Apply exponential easing with size-aware boundaries
         const exponent = 2;
         rotX =
           Math.sign(relativeY) *
@@ -71,23 +64,6 @@ const Cube = ({ isMouseInWindow }: Props) => {
           -Math.sign(relativeX) *
           maxRotation *
           Math.min(Math.pow(Math.abs(relativeX), exponent), 1);
-
-        const intersects = state.raycaster.intersectObjects(
-          clickPlaneRefs.current.filter(Boolean),
-          false
-        );
-
-        if (intersects.length > 0) {
-          const hitPlane = intersects[0].object;
-          const planeIndex = clickPlaneRefs.current.indexOf(
-            hitPlane as Object3D
-          );
-          if (planeIndex !== -1) {
-            setActiveFace(planeIndex);
-          }
-        } else {
-          setActiveFace(-1);
-        }
       }
 
       // Apply rotation with easing
@@ -129,31 +105,12 @@ const Cube = ({ isMouseInWindow }: Props) => {
         scale={12}
       />
       {/* ----ClickPlanes---- */}
-      {clickPlanes.map((plane) => (
-        <ClickPlane
-          key={plane.label}
-          ref={(el) => {
-            if (el) {
-              clickPlaneRefs.current[plane.index] = el;
-            }
-          }}
-          position={plane.position}
-          rotation={plane.rotation}
-          onPointerEnter={(e: Event) => {
-            e.stopPropagation();
-            setActiveFace(plane.index);
-          }}
-          onPointerOut={(e: Event) => {
-            e.stopPropagation();
-            setActiveFace(-1);
-          }}
-        />
-      ))}
+
       {/* ---- Instances of Portal Planes and Children ---- */}
-      <TopPortal active={activeFace === 0} />
-      <BottomPortal active={activeFace === 1} />
-      <RightPortal active={activeFace === 2} />
-      <LeftPortal active={activeFace === 3} />
+      <TopPortal active={activeFace === 0 && showCube} />
+      <BottomPortal active={activeFace === 1 && showCube} />
+      <RightPortal active={activeFace === 2 && showCube} />
+      <LeftPortal active={activeFace === 3 && showCube} />
     </group>
   );
 };

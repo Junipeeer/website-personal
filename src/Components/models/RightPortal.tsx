@@ -1,7 +1,7 @@
-import { Billboard, Edges, Text } from "@react-three/drei";
-import PortalScene from "../helpers/PortalScene";
-import SceneObject from "../helpers/SceneObject";
-import { pi } from "../../constants/components";
+import { Edges, Text } from "@react-three/drei";
+import PortalScene from "../helpers3D/PortalScene";
+import SceneObject from "../helpers3D/SceneObject";
+import { pi } from "../../constants/components3D";
 
 interface Props {
   active: boolean;
@@ -29,7 +29,7 @@ const SceneObjects = ({ active }: Props) => {
       <SceneObject
         startPos={[0, -4, 2]}
         startRot={[0, 0, -pi / 2]}
-        targetPos={[8.1, 5, -1.6]}
+        targetPos={[9.2, 5, -1.7]}
         targetRot={[pi / 10, pi / 4, 0]}
         targetScale={1}
         active={active}
@@ -42,7 +42,7 @@ const SceneObjects = ({ active }: Props) => {
           outlineWidth={0.1}
           outlineColor="white"
         >
-          🛠️
+          🧪
         </Text>
       </SceneObject>
       {/* ---- Main Text ---- */}
@@ -66,7 +66,7 @@ const SceneObjects = ({ active }: Props) => {
           outlineColor="white"
           glyphGeometryDetail={8}
         >
-          Projects
+          Lab
         </Text>
       </SceneObject>
     </group>

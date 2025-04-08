@@ -1,7 +1,7 @@
 import { Billboard, Edges, Text } from "@react-three/drei";
-import PortalScene from "../helpers/PortalScene";
-import SceneObject from "../helpers/SceneObject";
-import { pi } from "../../constants/components";
+import PortalScene from "../helpers3D/PortalScene";
+import SceneObject from "../helpers3D/SceneObject";
+import { pi } from "../../constants/components3D";
 
 interface Props {
   active: boolean;

@@ -24,9 +24,6 @@ const PortalScene = ({
   const portal = useRef<any>(null);
   const mesh = useRef(new Mesh());
   const circleGeometry = useRef(new CircleGeometry(0.001, 64));
-  const [rotX, rotY, rotZ] = Array.isArray(sceneRot)
-    ? sceneRot
-    : [sceneRot.x, sceneRot.y, sceneRot.z];
 
   useFrame((_, delta) => {
     const targetRadius = active ? 4 : 0.001;
@@ -68,7 +65,7 @@ const PortalScene = ({
       <MeshPortalMaterial ref={portal} resolution={0} blur={0}>
         <group castShadow receiveShadow rotation={sceneRot}>
           <mesh castShadow receiveShadow position={[0, -15, 0]}>
-            <cylinderGeometry args={[5, 5, 30, 64, 1, true]} />
+            <cylinderGeometry args={[7, 7, 30, 64, 1, true]} />
             <meshStandardMaterial
               side={DoubleSide}
               color={sceneBG}
@@ -81,7 +78,7 @@ const PortalScene = ({
             position={[0, -15, 0]}
             rotation={[Math.PI / 2, 0, 0]}
           >
-            <circleGeometry args={[5, 64]} />
+            <circleGeometry args={[7, 64]} />
             <meshToonMaterial
               side={DoubleSide}
               color={sceneBG}

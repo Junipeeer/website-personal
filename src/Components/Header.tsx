@@ -1,16 +1,68 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { navLinks } from "../constants";
+
+const NavItems = () => {
+  return (
+    <ul className="nav-ul">
+      {navLinks.map(({ id, href, name }) => (
+        <a key={id} href={href} className="nav-li_a">
+          <li className="nav-li">{name}</li>
+        </a>
+      ))}
+    </ul>
+  );
+};
 
 const Header = () => {
-  const winke = useRef<HTMLSpanElement>(null);
+  const logo = useRef<HTMLImageElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (logo.current) {
+        logo.current.classList.toggle("rotate");
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  });
+
   return (
-    <section className="fixed w-full h-10 z-10">
-      <div className="w-full flex items-center p-2 ">
-        <img src="/img/logo.svg" className="h-[40px]" />
-        <h1 className="text-white text-2xl font-bold ml-2">
-          Julian Schalon <span ref={winke}>👋</span>
-        </h1>
+    <header className="fixed top-0 left-0 right-0 z-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center py-5 mx-auto c-space">
+          <a
+            href="/"
+            className="text-neutral-400 font-bold text-xl hover:text-white transition-colors"
+          >
+            <img ref={logo} src="/img/logo.svg" className="h-[40px]" />
+          </a>
+          <button
+            onClick={toggleMenu}
+            className="text-neutral-400 hover:text-white focus:outline-none sm:hidden flex"
+            aria-label="Toggle Menu"
+          >
+            <img
+              src={isOpen ? "/assets/close.svg" : "/assets/menu.svg"}
+              alt="toggle"
+              className="w-6 h-6"
+            />
+          </button>
+          <nav className="sm:flex hidden">
+            <NavItems />
+          </nav>
+        </div>
       </div>
-    </section>
+      <div className={`nav-sidebar ${isOpen ? "max-h-screen" : "max-h-0"}`}>
+        <nav className="p-5">
+          <NavItems />
+        </nav>
+      </div>
+    </header>
   );
 };
 
