@@ -1,14 +1,15 @@
 import { Canvas, useThree } from "@react-three/fiber";
-import CubeScene from "../Components/models/HomeScene";
-import { Environment, OrbitControls, Stars } from "@react-three/drei";
+import CubeScene from "../components/models/HomeScene";
+import { Environment, Stars } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
-import Cube from "../Components/models/Cube";
+import Cube from "../components/models/Cube";
 import {
   calculateHoleSize,
   clickPlanes,
   mainCam,
 } from "../constants/components3D";
-import ClickPlane from "../Components/helpers3D/ClickPlane";
+import ClickPlane from "../components/helpers3D/ClickPlane";
+import CanvasLoader from "../components/helpers3D/CanvasLoader";
 
 interface CPGProps {
   setActiveFace: (index: number) => void;
@@ -17,6 +18,13 @@ interface CPGProps {
 const ClickPlaneGenerator = ({ setActiveFace }: CPGProps) => {
   const { viewport } = useThree();
   const holeSize = calculateHoleSize(viewport, mainCam);
+  const [planesActive, setPlanesActive] = useState(false);
+
+  // Handle cube appearance after mount
+  useEffect(() => {
+    const timer = setTimeout(() => setPlanesActive(true), 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <group>
@@ -24,7 +32,9 @@ const ClickPlaneGenerator = ({ setActiveFace }: CPGProps) => {
         <ClickPlane
           key={plane.id}
           points={plane.getPoints(viewport, holeSize)}
-          onPointerEnter={() => setActiveFace(plane.id)}
+          onPointerEnter={() => {
+            if (planesActive) setActiveFace(plane.id);
+          }}
           onPointerOut={() => setActiveFace(-1)}
           onClick={() => console.log(plane.id)}
         />
@@ -38,6 +48,7 @@ const Home = () => {
   const [activeFace, setActiveFace] = useState(-1);
 
   useEffect(() => {
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const handleMouseLeave = () => {
       setIsMouseInWindow(false);
       setActiveFace(-1);
@@ -46,22 +57,25 @@ const Home = () => {
       setIsMouseInWindow(true);
     };
 
-    document.body.addEventListener("mouseenter", handleMouseEnter);
-    document.body.addEventListener("mouseleave", handleMouseLeave);
+    canvas.addEventListener("mouseenter", handleMouseEnter);
+    canvas.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      document.body.removeEventListener("mouseenter", handleMouseEnter);
-      document.body.removeEventListener("mouseleave", handleMouseLeave);
+      canvas.removeEventListener("mouseenter", handleMouseEnter);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
   return (
     <section id="Home" className="h-full w-full flex flex-col relative">
       <div className="w-full h-full inset-0">
-        <Canvas camera={mainCam} gl={{ localClippingEnabled: true }}>
-          <Suspense fallback={`<h1 className="text-white">loading</h1>`}>
+        <Canvas
+          id="canvas"
+          camera={mainCam}
+          gl={{ localClippingEnabled: true }}
+        >
+          <Suspense fallback={<CanvasLoader />}>
             <Environment preset="night" />
-            <OrbitControls></OrbitControls>
             <Stars radius={300} count={25000} />
             <Cube isMouseInWindow={isMouseInWindow} activeFace={activeFace} />
             <CubeScene isMouseInWindow={isMouseInWindow} />

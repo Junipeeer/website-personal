@@ -36,7 +36,7 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
       let rotX = 0;
       let rotY = 0;
 
-      if (isMouseInWindow) {
+      if (isMouseInWindow && showCube) {
         const { size } = state;
         const fov = mainCam.fov * (Math.PI / 180);
         const cubeSize = 10;

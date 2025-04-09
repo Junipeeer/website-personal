@@ -2,6 +2,7 @@ export const navLinks = [
   {
     id: 0,
     name: "Home",
+    emoji: "🏠",
     href: "/",
   },
   {
@@ -13,8 +14,8 @@ export const navLinks = [
   {
     id: 2,
     name: "Portfolio",
-    emoji: "🛠️",
-    href: "/",
+    emoji: "🎨",
+    href: "/portfolio",
   },
   {
     id: 3,
@@ -22,10 +23,5 @@ export const navLinks = [
     emoji: "🧪",
     href: "/lab",
   },
-  {
-    id: 4,
-    name: "Blog (under construction)",
-    emoji: "💡",
-    href: "/",
-  },
+  
 ];
