@@ -1,4 +1,4 @@
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ContactForm from "../components/ContactForm";
 
 const About = () => {
@@ -106,7 +106,7 @@ const About = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
               >
-                <BsLinkedin className="text-2xl" />
+                <FaLinkedin className="text-2xl" />
                 <span>Julian Schalon</span>
               </a>
               <a
@@ -115,7 +115,7 @@ const About = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
               >
-                <BsGithub className="text-2xl" />
+                <FaGithub className="text-2xl" />
                 <span>JSchalon</span>
               </a>
               <a
@@ -124,7 +124,7 @@ const About = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
               >
-                <BsGithub className="text-2xl" />
+                <FaGithub className="text-2xl" />
                 <span>Junipeeer (Private)</span>
               </a>
             </div>
