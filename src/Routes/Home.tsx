@@ -1,6 +1,6 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import CubeScene from "../components/models/HomeScene";
-import { Environment, Stars } from "@react-three/drei";
+import { Environment, Preload, Stars } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import Cube from "../components/models/Cube";
 import {
@@ -67,22 +67,17 @@ const Home = () => {
   }, []);
 
   return (
-    <section id="Home" className="h-full w-full flex flex-col relative">
-      <div className="w-full h-full inset-0">
-        <Canvas
-          id="canvas"
-          camera={mainCam}
-          gl={{ localClippingEnabled: true }}
-        >
-          <Suspense fallback={<CanvasLoader />}>
-            <Environment preset="night" />
-            <Stars radius={300} count={25000} />
-            <Cube isMouseInWindow={isMouseInWindow} activeFace={activeFace} />
-            <CubeScene isMouseInWindow={isMouseInWindow} />
-            <ClickPlaneGenerator setActiveFace={setActiveFace} />
-          </Suspense>
-        </Canvas>
-      </div>
+    <section id="Home" className="page-wrapper h-full flex">
+      <Canvas id="canvas" camera={mainCam} gl={{ localClippingEnabled: true }}>
+        <Suspense fallback={<CanvasLoader />}>
+          <Preload all />
+          <Environment preset="night" />
+          <Stars radius={300} count={25000} />
+          <Cube isMouseInWindow={isMouseInWindow} activeFace={activeFace} />
+          <CubeScene isMouseInWindow={isMouseInWindow} />
+          <ClickPlaneGenerator setActiveFace={setActiveFace} />
+        </Suspense>
+      </Canvas>
     </section>
   );
 };

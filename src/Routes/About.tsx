@@ -3,8 +3,8 @@ import ContactForm from "../components/ContactForm";
 
 const About = () => {
   return (
-    <section className="w-full min-h-screen bg-neutral-900 text-neutral-400">
-      <div className="c-space py-20 max-w-7xl mx-auto">
+    <section className="page-wrapper">
+      <div className="content-wrapper">
         {/* Bio Section */}
         <div className="mb-16">
           <h1 className="text-4xl font-bold text-white mb-6">About Me</h1>
@@ -85,7 +85,7 @@ const About = () => {
               </div>
               <div className="border-l-2 border-neutral-700 pl-4">
                 <p className="text-white">Swedish</p>
-                <p className="text-sm">Basic</p>
+                <p className="text-sm">Solid and improving</p>
               </div>
               <div className="border-l-2 border-neutral-700 pl-4">
                 <p className="text-white">French</p>

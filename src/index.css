@@ -85,6 +85,13 @@
 .nav-li_a:nth-child(3) { transition-delay: 0.3s; }
 .nav-li_a:nth-child(4) { transition-delay: 0.35s; }
 
+.hero-blend {
+  background: var(--color-neutral-900);
+  background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, var(--color-neutral-900) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(100%, var(--color-neutral-900)));
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--color-neutral-900) 100%);
+}
+
 
 @layer utilities {
   #root {
@@ -103,6 +110,10 @@
     @apply text-neutral-400 hover:text-white max-sm:w-full  py-0 max-sm:px-5;
   }
 
+  .nav-emoji {
+    @apply sm:hidden inline-block p-1;
+  }
+
   .nav-li_a:hover .nav-emoji{
     @apply rotate-9;
   }
@@ -116,7 +127,7 @@
   }
 
   .nav-bg {
-    @apply absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-neutral-900 max-sm:rounded-full;
+    @apply absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-neutral-900 backdrop-blur-md  max-sm:rounded-full;
   }
 
   .nav-bg.open {
@@ -129,6 +140,30 @@
 
   .pattie, .pattie:before, .pattie:after {
     @apply bg-neutral-400 relative transition-all duration-100 ease-in-out;
+  }
+
+  .contact-input {
+    @apply w-full px-4 py-2 bg-neutral-900 border border-neutral-700 rounded-lg focus:ring-2 focus:ring-neutral-600 focus:border-transparent text-white placeholder-neutral-400;
+  }
+
+  .project-card {
+    @apply bg-neutral-800/50 rounded-lg backdrop-blur-lg overflow-hidden shadow-xl transition-all hover:shadow-2xl box-border border-2 border-neutral-800;
+  }
+
+  .project-link {
+    @apply flex items-center gap-2 text-neutral-400 hover:text-white transition-colors;
+  }
+
+  .project-tech {
+    @apply px-3 py-1 bg-neutral-700 rounded-full text-sm flex items-center gap-2;
+  }
+
+  .page-wrapper {
+    @apply w-full min-h-screen bg-neutral-900 text-neutral-400;
+  }
+
+  .content-wrapper {
+    @apply sm:px-10 px-5 py-20 max-w-7xl mx-auto;
   }
 }
 

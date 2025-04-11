@@ -1,7 +1,7 @@
 import { MeshPortalMaterial } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
-import { ReactElement, useRef } from "react";
+import { ReactElement, useEffect, useMemo, useRef } from "react";
 import { CircleGeometry, DoubleSide, Euler, Mesh, Vector3 } from "three";
 
 interface Props {
@@ -23,9 +23,11 @@ const PortalScene = ({
 }: Props) => {
   const portal = useRef<any>(null);
   const mesh = useRef(new Mesh());
-  const circleGeometry = useRef(new CircleGeometry(0.001, 64));
+  const initialGeometry = useMemo(() => new CircleGeometry(0.001, 32), []);
+  const circleGeometry = useRef(initialGeometry);
 
   useFrame((_, delta) => {
+    if (!active && circleGeometry.current.parameters.radius <= 0.002) return;
     const targetRadius = active ? 4 : 0.001;
     const currentRadius = circleGeometry.current.parameters.radius;
 
@@ -51,7 +53,7 @@ const PortalScene = ({
     ) {
       const newGeometry = new CircleGeometry(
         circleGeometry.current.parameters.radius,
-        64
+        32
       );
       mesh.current.geometry.dispose();
       mesh.current.geometry = newGeometry;
@@ -59,13 +61,22 @@ const PortalScene = ({
     }
   });
 
+  useEffect(() => {
+    return () => {
+      if (circleGeometry.current) {
+        circleGeometry.current.dispose();
+        mesh.current.geometry.dispose();
+      }
+    };
+  }, []);
+
   return (
     <mesh ref={mesh} position={position} rotation={planeRot}>
-      <circleGeometry ref={circleGeometry} args={[4, 64]} />
+      <circleGeometry ref={circleGeometry} args={[4, 32]} />
       <MeshPortalMaterial ref={portal} resolution={0} blur={0}>
         <group castShadow receiveShadow rotation={sceneRot}>
           <mesh castShadow receiveShadow position={[0, -15, 0]}>
-            <cylinderGeometry args={[7, 7, 30, 64, 1, true]} />
+            <cylinderGeometry args={[7, 7, 30, 32, 1, true]} />
             <meshStandardMaterial
               side={DoubleSide}
               color={sceneBG}
@@ -78,7 +89,7 @@ const PortalScene = ({
             position={[0, -15, 0]}
             rotation={[Math.PI / 2, 0, 0]}
           >
-            <circleGeometry args={[7, 64]} />
+            <circleGeometry args={[7, 32]} />
             <meshToonMaterial
               side={DoubleSide}
               color={sceneBG}

@@ -9,7 +9,6 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
     console.log("Form submitted:", formData);
   };
 
@@ -24,9 +23,7 @@ const ContactForm = () => {
           id="name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-2 bg-neutral-800 border border-neutral-700 rounded-lg 
-                   focus:ring-2 focus:ring-neutral-600 focus:border-transparent 
-                   text-white placeholder-neutral-400"
+          className="contact-input"
           placeholder="Your name"
           required
         />
@@ -41,9 +38,7 @@ const ContactForm = () => {
           id="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-2 bg-neutral-800 border border-neutral-700 rounded-lg 
-                   focus:ring-2 focus:ring-neutral-600 focus:border-transparent 
-                   text-white placeholder-neutral-400"
+          className="contact-input"
           placeholder="your@email.com"
           required
         />
@@ -59,9 +54,7 @@ const ContactForm = () => {
           onChange={(e) =>
             setFormData({ ...formData, message: e.target.value })
           }
-          className="w-full px-4 py-2 bg-neutral-800 border border-neutral-700 rounded-lg 
-                   focus:ring-2 focus:ring-neutral-600 focus:border-transparent 
-                   text-white placeholder-neutral-400 min-h-[150px]"
+          className="contact-input min-h-[150px]"
           placeholder="Your message..."
           required
         />
