@@ -8,6 +8,7 @@ import PersonalWebsite from "./routes/project pages/PersonalWebsite";
 import SimpleProtogenFace from "./routes/project pages/SimpleProtogenFace";
 import SCFacilitatorBot from "./routes/project pages/SCFacilitatorBot";
 import InteractionEditor from "./routes/project pages/InteractionEditor";
+import JavaChess from "./routes/project pages/JavaChess";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             path="portfolio/interaction-editor"
             element={<InteractionEditor />}
           ></Route>
+          <Route path="portfolio/chess-dot" element={<JavaChess />}></Route>
         </Routes>
       </main>
     </Router>

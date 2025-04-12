@@ -4,8 +4,8 @@ import ProjectHero, {
   ProjectHeader,
 } from "../../components/project helpers/ProjectArticleSections";
 
-const SCFacilitatorBot = () => {
-  const project = projects.find((p) => p.id === "pro-facilitator-bot");
+const JavaChess = () => {
+  const project = projects.find((p) => p.id === "pro-java-chess");
   if (!project) {
     return <div>Project not found</div>;
   }
@@ -31,4 +31,4 @@ const SCFacilitatorBot = () => {
   );
 };
 
-export default SCFacilitatorBot;
+export default JavaChess;

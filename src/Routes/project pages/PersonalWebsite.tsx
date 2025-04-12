@@ -1,8 +1,8 @@
 import { projects } from "../../constants";
 import ProjectHero, {
-  ProjectArticleSection,
+  ProjectSection,
   ProjectHeader,
-} from "../../components/project helpers/ProjectSections";
+} from "../../components/project helpers/ProjectArticleSections";
 
 const PersonalWebsite = () => {
   const project = projects.find((p) => p.id === "pro-pers-web");
@@ -15,16 +15,16 @@ const PersonalWebsite = () => {
       <ProjectHero image={project.image} alt={project.title} />
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 -mt-32 relative">
+      <div className="content-wrapper -mt-50">
         <ProjectHeader project={project} />
 
-        <div className="mt-12 space-y-12 mb-20">
-          <ProjectArticleSection title="Project Overview">
+        <div className="mt-12 space-y-12">
+          <ProjectSection title="Project Overview">
             <div>TODO</div>
-          </ProjectArticleSection>
-          <ProjectArticleSection title="Technical Implementation">
+          </ProjectSection>
+          <ProjectSection title="Technical Implementation">
             <div>TODO</div>
-          </ProjectArticleSection>
+          </ProjectSection>
         </div>
       </div>
     </article>

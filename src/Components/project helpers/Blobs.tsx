@@ -23,7 +23,7 @@ export const TechnologyBlobs = ({ technologies }: TechBlobProps) => {
 };
 
 interface LinkBlobProps {
-  icon: "Github" | "externalLink";
+  icon: "Github" | "externalLink" | "Linkedin";
   link: string;
   text: string;
 }
@@ -36,8 +36,8 @@ export const LinkBlob = ({ icon, link, text }: LinkBlobProps) => {
       rel="noopener noreferrer"
       className="project-link"
     >
-      <span className="text-lg">{techIcons[icon]}</span>
-      <span>{text}</span>
+      <span className="text-2xl">{techIcons[icon]}</span>
+      <span className="text-md">{text}</span>
     </a>
   );
 };

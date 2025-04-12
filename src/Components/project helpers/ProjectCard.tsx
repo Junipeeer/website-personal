@@ -8,13 +8,14 @@ interface CardProps {
 
 const ProjectCard = ({ project }: CardProps) => {
   return (
-    <div
-      style={{ "--hover-border": project.border } as React.CSSProperties}
-      className="project-card hover:border-[var(--hover-border)]"
-    >
-      <div className="grid md:grid-cols-2 grid-cols-1 h-full">
-        {/* Image Section */}
-        <Link to={project.route} aria-label={project.title}>
+    <Link to={project.route} aria-label={project.title}>
+      <div
+        style={{ "--hover-border": project.border } as React.CSSProperties}
+        className="project-card  hover:border-[var(--hover-border)]"
+      >
+        <div className="grid md:grid-cols-2 grid-cols-1 h-full">
+          {/* Image Section */}
+
           <div className="relative cursor-pointer w-full h-full min-h-[370px] overflow-hidden col-span-1">
             <img
               src={project.image}
@@ -22,30 +23,33 @@ const ProjectCard = ({ project }: CardProps) => {
               className="hover:scale-105 transition-transform absolute w-full h-full object-cover object-center"
             />
           </div>
-        </Link>
-        {/* Content Section */}
-        <div className="p-6 flex flex-col justify-between col-span-1">
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-2">
-              {project.title}
-            </h2>
 
-            <p className="text-sm text-neutral-500 mb-4">{project.timeframe}</p>
-            <p className="text-neutral-300 mb-6 text-justify">
-              {project.description}
-            </p>
+          {/* Content Section */}
+          <div className="p-6 flex flex-col justify-between col-span-1">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">
+                {project.title}
+              </h2>
 
-            {project.role && (
-              <p className="text-sm text-neutral-400 mb-4">
-                <span className="font-semibold">Role:</span> {project.role}
+              <p className="text-sm text-neutral-500 mb-4">
+                {project.timeframe}
               </p>
-            )}
+              <p className="text-neutral-300 mb-6 text-justify">
+                {project.description}
+              </p>
 
-            <TechnologyBlobs technologies={project.technologies} />
+              {project.role && (
+                <p className="text-sm text-neutral-400 mb-4">
+                  <span className="font-semibold">Role:</span> {project.role}
+                </p>
+              )}
+
+              <TechnologyBlobs technologies={project.technologies} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

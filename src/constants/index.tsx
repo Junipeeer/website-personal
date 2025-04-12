@@ -6,6 +6,7 @@ import {
   FaPython,
   FaExternalLinkAlt,
   FaGithub,
+  FaLinkedin,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -23,7 +24,7 @@ export const navLinks = [
   },
   {
     id: 1,
-    name: "About",
+    name: "About Me",
     emoji: "🌐",
     href: "/about",
   },
@@ -51,13 +52,14 @@ export const techIcons: { [key: string]: JSX.Element } = {
   Python: <FaPython />,
   Flask: <SiFlask />,
   Github: <FaGithub />,
+  Linkedin: <FaLinkedin />,
   externalLink: <FaExternalLinkAlt />,
 };
 
 export interface Project {
   id: string;
   title: string;
-  description: JSX.Element;
+  description: string;
   timeframe: string;
   technologies: string[];
   image: string;
@@ -73,13 +75,8 @@ export const projects: Project[] = [
     id: "pro-pers-web",
     title: "Personal Website",
     route: "personal-website",
-    description: (
-      <>
-        A responsive portfolio website built to showcase my projects and skills.
-        Features dark mode design, 3d elements, responsive layouts, and smooth
-        animations.
-      </>
-    ),
+    description:
+      "A responsive portfolio website built to showcase my projects and skills. Features dark mode design, 3d elements, responsive layouts, and smooth animations.",
     timeframe: "March 2025 - April 2025",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Three.js"],
     image: "/img/website-thumbnail.png",
@@ -91,13 +88,8 @@ export const projects: Project[] = [
     id: "pro-spf",
     title: "SPF - Simple Protogen Face",
     route: "simple-protogen-face",
-    description: (
-      <>
-        A python-based program to run a simple protogen face on Raspberry Pi
-        using Hub75 Matrices and auxillary hardware support for buttons,
-        additional LEDs and proximity sensors.
-      </>
-    ),
+    description:
+      "A python-based program to run a simple protogen face on Raspberry Pi using Hub75 Matrices and auxillary hardware support for buttons, additional LEDs and proximity sensors.",
     timeframe: "August 2024 - January 2025",
     technologies: ["Python", "Raspberry Pi"],
     image: "/img/spf-thumbnail.jpg",
@@ -109,23 +101,8 @@ export const projects: Project[] = [
     id: "pro-facilitator-bot",
     title: "Språkcafé Facilitator Bot",
     route: "facilitator-bot",
-    description: (
-      <>
-        A simple app to have verbal conversations with OpenAi's GPT models,
-        using Elevenlabs and MS Azure speech to text. For use in the context of
-        Swedish language cafés as part of my Master Thesis in Media
-        Technologies, modified from{" "}
-        <a
-          className=" hover:text-white transition-colors underline"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/DougDougGithub/Babagaboosh"
-        >
-          Babagaboosh
-        </a>{" "}
-        by DougDoug.
-      </>
-    ),
+    description:
+      "A simple app to have verbal conversations with OpenAi's GPT models, using Elevenlabs and MS Azure speech to text. For use in the context of Swedish language cafés as part of my Master Thesis in Media Technologies, modified from Babagaboosh by DougDoug",
     timeframe: "March 2024 - April 2024",
     technologies: ["Python", "Flask"],
     image: "/img/scfacilitatorbot-thumbnail.png",
@@ -137,18 +114,27 @@ export const projects: Project[] = [
     id: "pro-interaction-editor",
     title: "Interaction Editor",
     route: "interaction-editor",
-    description: (
-      <>
-        A Vue.js and Interact.js based editor for creating laban notation scores
-        for the recording of interactions. Created in the context of my Bachelor
-        Thesis.
-      </>
-    ),
+    description:
+      "A Vue.js and Interact.js based editor for creating laban notation scores for the recording of interactions. Created in the context of my Bachelor Thesis.",
     timeframe: "February 2022 - May 2022",
     technologies: ["Vue.js", "Interact.js"],
     image: "/img/laban-thumbnail.png",
     githubLink: "https://github.com/JSchalon/bachelor-thesis",
     liveLink: "",
     border: "#c40399",
+  },
+  {
+    id: "pro-java-chess",
+    title: "Chess.",
+    route: "chess-dot",
+    description:
+      "A Java based chess game created in a collaborative project as part of a software engineering course. Collaborative project. Includes A JavaFX based interface, and unit testing.",
+    timeframe: "March 2020 - May July 2020",
+    technologies: ["Java", "JavaFX"],
+    image: "/img/chess-thumbnail.png",
+    githubLink: "",
+    liveLink: "",
+    border: "#f0f30a",
+    role: "Main programmer and software architect",
   },
 ];

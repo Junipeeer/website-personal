@@ -9,13 +9,13 @@ interface HeroProps {
 
 const ProjectHero = ({ image, alt }: HeroProps) => {
   return (
-    <div className="relative h-[50vh] w-full overflow-hidden">
+    <div className="relative h-[50vh] sm:h-[60vh] lg:h-[80vh] w-full overflow-hidden">
       <img
         src={image}
         alt={alt}
-        className="absolute w-full h-full object-cover object-center"
+        className="absolute w-full h-full object-cover"
       />
-      <div className="hero-blend absolute h-4/12 w-full bottom-0" />
+      <div className="hero-blend absolute h-2/12 sm:h-4/12 lg:h-5/12 w-full bottom-0" />
     </div>
   );
 };
@@ -36,9 +36,7 @@ export const ProjectHeader = ({ project }: HeaderProps) => {
           <span className="font-semibold">Role:</span> {project.role}
         </p>
       )}
-      <div className="prose prose-invert max-w-none mb-6">
-        {project.description}
-      </div>
+      <p className="mb-6 text-justify">{project.description}</p>
 
       {/* Technologies */}
       <TechnologyBlobs technologies={project.technologies} />
@@ -64,11 +62,11 @@ interface SectionProps {
   children: ReactNode;
   title: string;
 }
-export const ProjectArticleSection = ({ children, title }: SectionProps) => {
+export const ProjectSection = ({ children, title }: SectionProps) => {
   return (
     <section className="project-card p-8">
       <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
-      <div className="prose prose-invert max-w-none">{children}</div>
+      <div>{children}</div>
     </section>
   );
 };

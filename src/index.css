@@ -15,16 +15,6 @@
   cursor: pointer;
 }
 
-.hamburger {
-  width: 25px;
-  height: 40px;
-}
-
-.pattie {
-  height: 2px;
-  width: 25px;
-}
-
 .hamburger:hover .pattie, .hamburger:hover .pattie:after, .hamburger:hover .pattie:before {
   background: white;
 }
@@ -47,6 +37,7 @@
   left: 0;
   width: 25px;
   height: 2px;
+  will-change: transform;
   transform: translateY(-10px);
   transition: transform 0.3s ease-in-out;
 }
@@ -56,22 +47,8 @@
 }
 
 .rotate:not(:hover) {
+  will-change: transform;
   transform: rotate(9deg);
-}
-
-.nav-bg {
-  width: 0px;
-  height: 0px;
-  transition: all 0.5s ease;
-}
-
-.nav-emoji {
-  transition: rotate 0.3s ease-in-out;
-}
-
-.nav-bg.open {
-  width: 250vh;
-  height: 250vh;
 }
 
 .nav-sidebar.open .nav-li_a {
@@ -90,8 +67,7 @@
   background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, var(--color-neutral-900) 100%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(100%, var(--color-neutral-900)));
   background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--color-neutral-900) 100%);
-}
-
+} 
 
 @layer utilities {
   #root {
@@ -112,34 +88,44 @@
 
   .nav-emoji {
     @apply sm:hidden inline-block p-1;
+    transition: rotate 0.3s ease-in-out;
   }
 
   .nav-li_a:hover .nav-emoji{
-    @apply rotate-9;
+    @apply rotate-9 will-change-transform;
   }
 
   .nav-li_a {
-    @apply text-4xl sm:text-xl max-sm:my-10 max-sm:opacity-0 max-sm:translate-x-1/2 transition-all;
+    @apply text-4xl sm:text-xl max-sm:my-10 max-sm:opacity-0 max-sm:translate-x-1/2;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   }
 
   .nav-sidebar {
-    @apply fixed flex justify-center items-center top-0 left-0 right-0 overflow-hidden z-10 sm:hidden;
+    @apply fixed flex justify-center items-center top-0 left-0 right-0 overflow-hidden z-10 sm:hidden will-change-transform;
   }
 
   .nav-bg {
-    @apply absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-neutral-900 backdrop-blur-md  max-sm:rounded-full;
+    @apply w-0 top-0 right-0 h-screen opacity-0 absolute bg-neutral-950;
+    transition: opacity 0.3s ease, width 0.4s ease;
+    transition-delay: 300ms;
   }
 
   .nav-bg.open {
-    @apply w-full h-full rounded-full;
+    @apply w-full opacity-100;
+    transition-delay: 0ms;
   }
 
   .hamburger {
     @apply relative flex flex-col col-auto justify-center items-center cursor-pointer z-20;
+    width: 25px;
+    height: 40px;
   }
 
   .pattie, .pattie:before, .pattie:after {
-    @apply bg-neutral-400 relative transition-all duration-100 ease-in-out;
+    @apply bg-neutral-400 relative duration-100 ease-in-out;
+    will-change: transform;
+    height: 2px;
+    width: 25px;
   }
 
   .contact-input {
@@ -147,7 +133,8 @@
   }
 
   .project-card {
-    @apply bg-neutral-800/50 rounded-lg backdrop-blur-lg overflow-hidden shadow-xl transition-all hover:shadow-2xl box-border border-2 border-neutral-800;
+    @apply bg-neutral-800/50 transition-colors duration-300 rounded-lg sm:backdrop-blur-lg overflow-hidden shadow-xl hover:shadow-2xl box-border border-2 border-neutral-800;
+    transform: translateZ(0);
   }
 
   .project-link {
@@ -159,12 +146,18 @@
   }
 
   .page-wrapper {
-    @apply w-full min-h-screen bg-neutral-900 text-neutral-400;
+    @apply w-full h-screen bg-neutral-900 text-neutral-400 backface-hidden perspective-distant;
+    transform: translateZ(0);
   }
 
   .content-wrapper {
-    @apply sm:px-10 px-5 py-20 max-w-7xl mx-auto;
+    @apply sm:px-10 px-5 pt-20 pb-30 max-w-7xl mx-auto;
   }
+
+  .skill-paragraph {
+    @apply text-base text-justify text-neutral-300 leading-relaxed;
+  }
+  
 }
 
 body {
@@ -185,6 +178,22 @@ body,
   padding: 0;
 }
 
-html, body, #home {
-  background: #212121;
+::-webkit-scrollbar {
+    background-color: #171717;
+  }
+
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: #323232;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Optional: Make the thumb darker on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555555;
 }
