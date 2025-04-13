@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { Project } from "../../constants";
+import { Project, techIcons } from "../../constants";
 import { LinkBlob, TechnologyBlobs } from "./Blobs";
+import { useNavigate } from "react-router-dom";
 
 interface HeroProps {
   image: string;
@@ -21,6 +22,28 @@ const ProjectHero = ({ image, alt }: HeroProps) => {
 };
 
 export default ProjectHero;
+
+export const ProjectBackLink = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="flex justify-start mb-6 ">
+      <button
+        onClick={() => navigate(-1)}
+        className="group cursor-pointer flex items-center gap-2 px-3 py-2 bg-neutral-700/50 hover:bg-neutral-600/50 
+        rounded-lg text-neutral-300 hover:text-white transition-all backdrop-blur-sm"
+        aria-label="Go back to previous page"
+      >
+        <span
+          className=" transition-transform group-hover:-translate-x-1"
+          aria-hidden="true"
+        >
+          {techIcons.back}
+        </span>
+        <span className="text-lg">Back</span>
+      </button>
+    </div>
+  );
+};
 
 interface HeaderProps {
   project: Project;
@@ -47,11 +70,7 @@ export const ProjectHeader = ({ project }: HeaderProps) => {
           <LinkBlob icon="Github" link={project.githubLink} text="View Code" />
         )}
         {project.liveLink && (
-          <LinkBlob
-            icon="externalLink"
-            link={project.liveLink}
-            text="Live Demo"
-          />
+          <LinkBlob icon="external" link={project.liveLink} text="Live Demo" />
         )}
       </div>
     </div>

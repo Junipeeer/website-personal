@@ -49,25 +49,42 @@ const SceneObjects = ({ active }: Props) => {
       <SceneObject
         startPos={[0, -1, 0]}
         startRot={[0, 0, pi / 2]}
-        targetPos={[10, 0, 2]}
+        targetPos={[11, 0, 2]}
         targetRot={[0, pi / 8, -pi / 16]}
         targetScale={1}
         active={active}
         duration={0.2}
       >
-        <Text
-          font={"/fonts/Exo2-VariableFont_wght.ttf"}
-          fontWeight={400}
-          fontSize={2}
-          color="#ffcc30"
-          castShadow={false}
-          receiveShadow={false}
-          outlineWidth={0.05}
-          outlineColor="white"
-          glyphGeometryDetail={8}
-        >
-          Lab
-        </Text>
+        <group>
+          <Text
+            font={"/fonts/Exo2-VariableFont_wght.ttf"}
+            fontWeight={400}
+            fontSize={2}
+            color="#ffcc30"
+            castShadow={false}
+            receiveShadow={false}
+            outlineWidth={0.05}
+            outlineColor="white"
+            glyphGeometryDetail={8}
+          >
+            Lab
+          </Text>
+          <Text
+            position={[0, 0, 1]}
+            rotation={[0, 0, pi / 24]}
+            font={"/fonts/Exo2-VariableFont_wght.ttf"}
+            fontWeight={400}
+            fontSize={1}
+            color="#212121"
+            castShadow={false}
+            receiveShadow={false}
+            outlineWidth={0.05}
+            outlineColor="white"
+            glyphGeometryDetail={8}
+          >
+            Under Construction
+          </Text>
+        </group>
       </SceneObject>
     </group>
   );

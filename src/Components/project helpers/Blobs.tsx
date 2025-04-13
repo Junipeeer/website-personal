@@ -23,7 +23,7 @@ export const TechnologyBlobs = ({ technologies }: TechBlobProps) => {
 };
 
 interface LinkBlobProps {
-  icon: "Github" | "externalLink" | "Linkedin";
+  icon: "Github" | "external" | "Linkedin";
   link: string;
   text: string;
 }

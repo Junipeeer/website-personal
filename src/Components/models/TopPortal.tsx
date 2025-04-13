@@ -43,7 +43,7 @@ const SceneObjects = ({ active }: Props) => {
           outlineWidth={0.1}
           outlineColor="white"
         >
-          About Me
+          About
         </Text>
       </SceneObject>
     </group>

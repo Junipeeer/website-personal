@@ -8,7 +8,7 @@ const About = () => {
       <div className="content-wrapper max-w-4xl">
         {/* Bio Section */}
         <div className="space-y-16">
-          <div className="space-y-6 project-card p-6">
+          <div className="space-y-6 border-b-2 border-lime-200 p-6">
             <h1 className="text-4xl font-bold text-white">About Me</h1>
             <p className="text-lg leading-relaxed text-neutral-300 text-justify">
               I am a recent M.Sc. graduate in the field of media technologies. I
@@ -32,11 +32,6 @@ const About = () => {
                   icon="Github"
                   text="JSchalon"
                   link="https://github.com/JSchalon/"
-                ></LinkBlob>
-                <LinkBlob
-                  icon="Github"
-                  text="Junipeeer (Private)"
-                  link="https://github.com/Junipeeer/"
                 ></LinkBlob>
               </div>
             </div>
@@ -72,7 +67,7 @@ const About = () => {
                   during my Bachelor thesis which I developed an{" "}
                   <Link
                     to={
-                      "/portfolio/" +
+                      "/project/" +
                       (projects.find((p) => p.id === "pro-interaction-editor")
                         ?.route || "#")
                     }
@@ -135,7 +130,7 @@ const About = () => {
                   my master thesis to prototype a language learning
                   <Link
                     to={
-                      "/portfolio/" +
+                      "/project/" +
                       (projects.find((p) => p.id === "pro-facilitator-bot")
                         ?.route || "#")
                     }
@@ -146,7 +141,7 @@ const About = () => {
                   using Flask. I have also developed a larger project, namely a
                   <Link
                     to={
-                      "/portfolio/" +
+                      "/project/" +
                       (projects.find((p) => p.id === "pro-spf")?.route || "#")
                     }
                   >
@@ -165,7 +160,7 @@ const About = () => {
                   team project we created a fully functional
                   <Link
                     to={
-                      "/portfolio/" +
+                      "/project/" +
                       (projects.find((p) => p.id === "pro-java-chess")?.route ||
                         "#")
                     }

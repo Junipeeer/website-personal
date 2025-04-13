@@ -7,6 +7,7 @@ import {
   FaExternalLinkAlt,
   FaGithub,
   FaLinkedin,
+  FaArrowLeft,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -34,12 +35,18 @@ export const navLinks = [
     emoji: "🎨",
     href: "/portfolio",
   },
-  {
-    id: 3,
-    name: "Lab",
-    emoji: "🧪",
-    href: "/lab",
-  },
+  // {
+  //   id: 3,
+  //   name: "Lab",
+  //   emoji: "🧪",
+  //   href: "/lab",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Blog",
+  //   emoji: "💡",
+  //   href: "/blog",
+  // },
 ];
 
 export const techIcons: { [key: string]: JSX.Element } = {
@@ -53,7 +60,8 @@ export const techIcons: { [key: string]: JSX.Element } = {
   Flask: <SiFlask />,
   Github: <FaGithub />,
   Linkedin: <FaLinkedin />,
-  externalLink: <FaExternalLinkAlt />,
+  external: <FaExternalLinkAlt />,
+  back: <FaArrowLeft />,
 };
 
 export interface Project {
@@ -102,7 +110,7 @@ export const projects: Project[] = [
     title: "Språkcafé Facilitator Bot",
     route: "facilitator-bot",
     description:
-      "A simple app to have verbal conversations with OpenAi's GPT models, using Elevenlabs and MS Azure speech to text. For use in the context of Swedish language cafés as part of my Master Thesis in Media Technologies, modified from Babagaboosh by DougDoug",
+      "A simple app to have verbal conversations with OpenAi's GPT models, using Elevenlabs and MS Azure speech to text. For use in the context of Swedish language cafés as part of my Master Thesis in Media Technologies, modified from Babagaboosh by DougDoug.",
     timeframe: "March 2024 - April 2024",
     technologies: ["Python", "Flask"],
     image: "/img/scfacilitatorbot-thumbnail.png",

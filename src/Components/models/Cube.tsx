@@ -42,50 +42,50 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
       let rotY = 0;
 
       if (isMouseInWindow && interactable) {
-        const { size } = state;
-        const fov = mainCam.fov * (Math.PI / 180);
-        const cubeSize = 10;
-        const distance = mainCam.position[2];
-        // Calculate projected size in pixels
-        const projectedSize =
-          (cubeSize * size.height) / (3 * distance * Math.tan(fov / 2));
+        // const { size } = state;
+        // const fov = mainCam.fov * (Math.PI / 180);
+        // const cubeSize = 10;
+        // const distance = mainCam.position[2];
+        // // Calculate projected size in pixels
+        // const projectedSize =
+        //   (cubeSize * size.height) / (3 * distance * Math.tan(fov / 2));
 
-        // Get mouse position in pixels from center
-        const mouseX = (state.pointer.x * size.width) / 2;
-        const mouseY = (state.pointer.y * size.height) / 2;
+        // // Get mouse position in pixels from center
+        // const mouseX = (state.pointer.x * size.width) / 2;
+        // const mouseY = (state.pointer.y * size.height) / 2;
 
-        // Calculate rotation based on distance from cube center relative to its size
-        const relativeX = mouseX / (projectedSize / 1.5);
-        const relativeY = mouseY / (projectedSize / 1.5);
+        // // Calculate rotation based on distance from cube center relative to its size
+        // const relativeX = mouseX / (projectedSize / 1.5);
+        // const relativeY = mouseY / (projectedSize / 1.5);
 
         const maxRotation = pi / 4;
 
-        const exponent = 2;
-        rotX =
-          Math.sign(relativeY) *
-          maxRotation *
-          Math.min(Math.pow(Math.abs(relativeY), exponent), 1);
-        rotY =
-          -Math.sign(relativeX) *
-          maxRotation *
-          Math.min(Math.pow(Math.abs(relativeX), exponent), 1);
+        // const exponent = 2;
+        // rotX =
+        //   Math.sign(relativeY) *
+        //   maxRotation *
+        //   Math.min(Math.pow(Math.abs(relativeY), exponent), 1);
+        // rotY =
+        //   -Math.sign(relativeX) *
+        //   maxRotation *
+        //   Math.min(Math.pow(Math.abs(relativeX), exponent), 1);
 
-        // switch (activeFace) {
-        //   case 0:
-        //     rotX = maxRotation;
-        //     break;
-        //   case 1:
-        //     rotX = -maxRotation;
-        //     break;
-        //   case 2:
-        //     rotY = -maxRotation;
-        //     break;
-        //   case 3:
-        //     rotY = maxRotation;
-        //     break;
-        //   default:
-        //     break;
-        // }
+        switch (activeFace) {
+          case 0:
+            rotX = maxRotation;
+            break;
+          case 1:
+            rotX = -maxRotation;
+            break;
+          case 2:
+            rotY = -maxRotation;
+            break;
+          case 3:
+            rotY = maxRotation;
+            break;
+          default:
+            break;
+        }
       }
 
       // Apply rotation with easing

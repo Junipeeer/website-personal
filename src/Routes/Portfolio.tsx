@@ -1,11 +1,39 @@
 import { projects } from "../constants/index";
 import ProjectCard from "../components/project helpers/ProjectCard";
+import { LinkBlob } from "../components/project helpers/Blobs";
 
 const Portfolio = () => {
   return (
     <section className="page-wrapper bg-cover">
       <div className="content-wrapper">
-        <h1 className="text-4xl font-bold text-white mb-12">Portfolio</h1>
+        <div className="mb-15 border-b-2 border-pink-300">
+          <div className="space-y-6  p-6 ">
+            <h1 className="text-4xl font-bold text-white">Portfolio</h1>
+            <p className="text-lg leading-relaxed text-neutral-300 text-justify">
+              Here are a few of my larger projects so far. These projects
+              demonstrate my skills in various aspects of software development
+              across different languages and areas of programming.
+            </p>
+            {/* Social Links */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold text-white">
+                See my projects on Github:
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
+                <LinkBlob
+                  icon="Github"
+                  text="JSchalon"
+                  link="https://github.com/JSchalon/"
+                ></LinkBlob>
+                <LinkBlob
+                  icon="Github"
+                  text="Junipeeer (Private)"
+                  link="https://github.com/Junipeeer/"
+                ></LinkBlob>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 gap-12">
           {projects.map((project, index) => (

@@ -52,12 +52,12 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto ">
-        <div className="flex justify-between items-center py-3 mx-auto c-space">
+        <div className="flex justify-between items-center sm:py-3 max-sm:py-2 mx-auto c-space">
           <Link to="/" className="cursor-pointer">
             <img
               ref={logo}
               src="/img/logo.svg"
-              className="h-[40px] logo"
+              className="sm:h-[40px] max-sm:h-[30px] logo"
               alt="logo"
             />
           </Link>

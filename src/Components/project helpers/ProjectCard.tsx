@@ -8,10 +8,10 @@ interface CardProps {
 
 const ProjectCard = ({ project }: CardProps) => {
   return (
-    <Link to={project.route} aria-label={project.title}>
+    <Link to={"/project/" + project.route} aria-label={project.title}>
       <div
         style={{ "--hover-border": project.border } as React.CSSProperties}
-        className="project-card  hover:border-[var(--hover-border)]"
+        className="project-card active:border-[var(--hover-border)] hover:border-[var(--hover-border)]"
       >
         <div className="grid md:grid-cols-2 grid-cols-1 h-full">
           {/* Image Section */}
