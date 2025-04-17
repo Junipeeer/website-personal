@@ -68,10 +68,10 @@ export const TransitionFromHome = ({
           transition={{ duration: 0.5, ease: "easeInOut", delay: 0.4 }}
           style={{
             position: "fixed",
-            top: "-50vh",
-            left: "calc(50vw - 100vh)",
-            width: "200vh",
-            height: "200vh",
+            top: "-75vh",
+            left: "calc(50vw - 125vh)",
+            width: "250vh",
+            height: "250vh",
             background: portalBgColor,
             borderRadius: "50%",
             zIndex: 9999,
@@ -88,23 +88,36 @@ interface IntroProps {
 }
 
 export const IntroAnimation = ({ children, className }: IntroProps) => {
+  const container = {
+    show: {
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.33, 1, 0.68, 1],
+      },
+    },
+  };
+
   return (
-    <div className={className}>
+    <motion.div
+      className={className}
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
       {React.Children.map(children, (child, index) => (
-        <motion.div
-          key={index}
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.8,
-            ease: "easeOut",
-            delay: index * 0.1, // Stagger delay based on child index
-          }}
-        >
+        <motion.div key={index} variants={item}>
           {child}
         </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };

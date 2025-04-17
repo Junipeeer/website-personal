@@ -18,7 +18,7 @@ const ProjectCard = ({ project }: CardProps) => {
           <div className="grid md:grid-cols-2 grid-cols-1 h-full">
             {/* Image Section */}
 
-            <div className="relative cursor-pointer w-full h-full min-h-[370px] overflow-hidden col-span-1">
+            <div className="relative cursor-pointer w-full h-full overflow-hidden col-span-1">
               <img
                 src={project.image}
                 alt={project.title}

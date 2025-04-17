@@ -35,18 +35,18 @@ export const navLinks = [
     emoji: "🎨",
     href: "/portfolio",
   },
-  // {
-  //   id: 3,
-  //   name: "Lab",
-  //   emoji: "🧪",
-  //   href: "/lab",
-  // },
-  // {
-  //   id: 4,
-  //   name: "Blog",
-  //   emoji: "💡",
-  //   href: "/blog",
-  // },
+  {
+    id: 3,
+    name: "Lab",
+    emoji: "🧪",
+    href: "/lab",
+  },
+  {
+    id: 4,
+    name: "Blog",
+    emoji: "💡",
+    href: "/blog",
+  },
 ];
 
 export const techIcons: { [key: string]: JSX.Element } = {
@@ -134,7 +134,7 @@ export const projects: Project[] = [
   {
     id: "pro-java-chess",
     title: "Chess.",
-    route: "chess-dot",
+    route: "java-chess",
     description:
       "A Java based chess game created in a collaborative project as part of a software engineering course. Collaborative project. Includes A JavaFX based interface, and unit testing.",
     timeframe: "March 2020 - May July 2020",

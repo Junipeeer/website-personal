@@ -9,6 +9,12 @@
   src: url("/fonts/Exo2-VariableFont_wght.ttf") format("truetype");
 }
 
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-VariableFont_wght.ttf") format("truetype");
+}
+
 .logo {
   transform: rotate(-9deg);
   transition: transform 0.3s ease-in-out;
@@ -65,6 +71,7 @@
 .nav-li_a:nth-child(2) { transition-delay: 0.25s; }
 .nav-li_a:nth-child(3) { transition-delay: 0.3s; }
 .nav-li_a:nth-child(4) { transition-delay: 0.35s; }
+.nav-li_a:nth-child(5) { transition-delay: 0.4s; }
 
 .hero-blend {
   background: var(--color-neutral-900);
@@ -75,7 +82,11 @@
 
 @layer utilities {
   #root {
-    @apply w-full h-full bg-black text-white;
+    @apply w-full h-full bg-neutral-900 text-white;
+  }
+
+  p, li {
+    @apply text-neutral-300 tracking-wide;
   }
 
   .c-space {
@@ -87,7 +98,7 @@
   }
 
   .nav-li {
-    @apply text-neutral-400 hover:text-white max-sm:w-full  py-0 max-sm:px-5;
+    @apply text-neutral-400 hover:text-white max-sm:w-full py-0 max-sm:px-5;
   }
 
   .nav-emoji {
@@ -100,7 +111,7 @@
   }
 
   .nav-li_a {
-    @apply text-4xl sm:text-xl max-sm:my-10 max-sm:opacity-0 max-sm:translate-x-1/2;
+    @apply text-4xl sm:text-xl max-sm:py-5 max-sm:opacity-0 max-sm:translate-x-1/2 ;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   }
 
@@ -111,12 +122,10 @@
   .nav-bg {
     @apply fixed w-0 top-0 right-0 h-screen opacity-0 bg-neutral-950;
     transition: opacity 0.3s ease, width 0.4s ease;
-    transition-delay: 300ms;
   }
 
   .nav-bg.open {
     @apply w-full opacity-100;
-    transition-delay: 0ms;
   }
 
   .hamburger {
@@ -156,31 +165,38 @@
   }
 
   .content-wrapper {
-    @apply sm:px-10 px-5 pt-20 pb-30 max-w-7xl mx-auto;
+    @apply sm:px-10 px-5 pt-20 pb-30 max-w-5xl mx-auto bg-neutral-900;
   }
 
   .skill-paragraph {
-    @apply text-base text-justify text-neutral-300 leading-relaxed;
+    @apply text-base text-neutral-300 leading-relaxed;
   }
   
+  .project-content p {
+    @apply text-lg;
+  }
 }
 
 body {
   color: beige;
+  overflow-y: scroll;
 }
 
 * {
   box-sizing: border-box;
 }
 
+
 html,
 body,
 #root {
   font-family: "Exo 2", sans-serif;
-  width: 100%;
-  height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0
+}
+
+span, p {
+  font-family: "Outfit", sans-serif;
 }
 
 ::-webkit-scrollbar {

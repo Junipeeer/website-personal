@@ -83,7 +83,7 @@ interface SectionProps {
 }
 export const ProjectSection = ({ children, title }: SectionProps) => {
   return (
-    <section className="project-card p-8">
+    <section className="p-8">
       <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
       <div>{children}</div>
     </section>

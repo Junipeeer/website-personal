@@ -10,24 +10,25 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Portfolio from "./routes/Portfolio";
-import PersonalWebsite from "./routes/project pages/PersonalWebsite";
-import SimpleProtogenFace from "./routes/project pages/SimpleProtogenFace";
-import SCFacilitatorBot from "./routes/project pages/SCFacilitatorBot";
-import InteractionEditor from "./routes/project pages/InteractionEditor";
-import JavaChess from "./routes/project pages/JavaChess";
+
 import { useEffect, useState } from "react";
 import Lab from "./routes/Lab";
 import Blog from "./routes/Blog";
-import { motion, AnimatePresence } from "framer-motion";
 import { getTransitionColor } from "./constants/components3D";
 import LoadingOverlay, {
   TransitionFromHome,
 } from "./components/TransitionsOverlays";
+import PersonalWebsite from "./constants/projects/PersonalWebsite";
+import SimpleProtogenFace from "./constants/projects/SimpleProtogenFace";
+import SCFacilitatorBot from "./constants/projects/SCFacilitatorBot";
+import InteractionEditor from "./constants/projects/InteractionEditor";
+import JavaChess from "./constants/projects/JavaChess";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.body.scrollTo({ top: 50, left: 0, behavior: "instant" });
+    document.body.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname]);
   return null;
 }
@@ -83,10 +84,7 @@ function App() {
       <Header />
       {/* Overlay for transitioning from home */}
       <TransitionFromHome portalBgColor={portalBgColor} />
-      <main
-        className="w-full h-full"
-        style={{ backgroundColor: "var(--portal-bg-color, #111)" }}
-      >
+      <main>
         <Routes>
           <Route
             index
@@ -112,7 +110,7 @@ function App() {
             path="project/interaction-editor"
             element={<InteractionEditor />}
           />
-          <Route path="project/chess-dot" element={<JavaChess />} />
+          <Route path="project/java-chess" element={<JavaChess />} />
         </Routes>
       </main>
     </>

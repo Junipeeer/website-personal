@@ -86,12 +86,13 @@ const About = () => {
                 <h3 className="text-white text-xl">React & TypeScript</h3>
                 <p className="skill-paragraph mt-2">
                   I am newer to React and TS with my biggest projects being this
-                  portfolio website. During this project I have learned modern
-                  standards and best practices for React, including component
-                  reusability, type safety, hooks and context. While I am still
-                  learning the details of React specifically, my existing
-                  experience with Vue.js, as well as standard HTML, CSS and JS
-                  means I am quite comfortable with the underlying concepts.
+                  portfolio website. During this project I have learned a lot
+                  about modern standards and best practices for React, including
+                  component reusability, type safety, hooks and context. While I
+                  am still learning the details of React specifically, my
+                  existing experience with Vue.js, as well as standard HTML, CSS
+                  and JS means I am quite comfortable with the underlying
+                  concepts.
                 </p>
               </div>
 
@@ -209,19 +210,19 @@ const About = () => {
             <h2 className="text-2xl font-semibold text-white">Languages</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
               <div className="border-l-2 border-neutral-700 pl-4">
-                <p className="text-white text-lg">German</p>
+                <h3 className="text-white text-lg">German</h3>
                 <p className="">Native</p>
               </div>
               <div className="border-l-2 border-neutral-700 pl-4">
-                <p className="text-white text-lg">English</p>
+                <h3 className="text-white text-lg">English</h3>
                 <p className="">C2 Certified</p>
               </div>
               <div className="border-l-2 border-neutral-700 pl-4">
-                <p className="text-white text-lg">Swedish</p>
+                <h3 className="text-white text-lg">Swedish</h3>
                 <p className="">Basic but improving</p>
               </div>
               <div className="border-l-2 border-neutral-700 pl-4">
-                <p className="text-white text-lg">French</p>
+                <h3 className="text-white text-lg">French</h3>
                 <p className="">Basic</p>
               </div>
             </div>
