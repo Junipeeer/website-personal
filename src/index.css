@@ -151,7 +151,7 @@
   }
 
   .page-wrapper {
-    @apply w-full h-screen bg-neutral-900 text-neutral-400 backface-hidden perspective-distant;
+    @apply w-full h-screen text-neutral-400 backface-hidden perspective-distant;
     transform: translateZ(0);
   }
 

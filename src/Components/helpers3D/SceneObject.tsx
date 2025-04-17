@@ -34,7 +34,6 @@ const SceneObject = ({
     const newPosTarget = active ? targetPos : startPos;
     const newRotTarget = active ? targetRot : startRot;
     const newScaleTarget = active ? targetScale : startScale;
-    //
     if (!groupRef.current.position.equals(new Vector3(...newPosTarget))) {
       easing.damp3(groupRef.current.position, newPosTarget, duration, delta);
     }

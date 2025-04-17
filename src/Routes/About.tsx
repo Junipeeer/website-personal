@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { LinkBlob } from "../components/project helpers/Blobs";
 import { projects } from "../constants";
+import { IntroAnimation } from "../components/TransitionsOverlays";
 
 const About = () => {
   return (
     <section className="page-wrapper">
       <div className="content-wrapper max-w-4xl">
         {/* Bio Section */}
-        <div className="space-y-16">
+        <IntroAnimation className="space-y-16">
           <div className="space-y-6 border-b-2 border-lime-200 p-6">
             <h1 className="text-4xl font-bold text-white">About Me</h1>
             <p className="text-lg leading-relaxed text-neutral-300 text-justify">
@@ -225,7 +226,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </IntroAnimation>
       </div>
     </section>
   );

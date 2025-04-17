@@ -21,7 +21,7 @@ const SceneObjects = ({ active }: Props) => {
         <group>
           <mesh>
             <sphereGeometry args={[1, 32, 32]} />
-            <meshToonMaterial color="#00a220" />
+            <meshMatcapMaterial color="#22ff99" />
           </mesh>
           <mesh>
             <sphereGeometry args={[1.1, 8, 8]} />
@@ -39,8 +39,6 @@ const SceneObjects = ({ active }: Props) => {
         active={active}
       >
         <Text
-          castShadow={false}
-          receiveShadow={false}
           fontSize={5}
           color="#cc7084"
           outlineWidth={0.1}
@@ -64,8 +62,6 @@ const SceneObjects = ({ active }: Props) => {
           fontWeight={400}
           fontSize={2}
           color="hotpink"
-          castShadow={false}
-          receiveShadow={false}
           outlineWidth={0.05}
           outlineColor="white"
           glyphGeometryDetail={8}
@@ -82,7 +78,7 @@ const LeftPortal = ({ active }: Props) => {
     <group>
       <PortalScene
         active={active}
-        position={[-5.01, 0, 0]}
+        position={[-5.1, 0, 0]}
         planeRot={[0, -pi / 2, 0]}
         sceneRot={[pi / 2, 0, 0]}
       >

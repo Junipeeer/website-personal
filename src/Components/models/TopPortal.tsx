@@ -1,4 +1,9 @@
-import { Billboard, Edges, Text } from "@react-three/drei";
+import {
+  Billboard,
+  Edges,
+  MeshTransmissionMaterial,
+  Text,
+} from "@react-three/drei";
 import PortalScene from "../helpers3D/PortalScene";
 import SceneObject from "../helpers3D/SceneObject";
 import { pi } from "../../constants/components3D";
@@ -22,7 +27,7 @@ const SceneObjects = ({ active }: Props) => {
         <mesh>
           <Edges linewidth={4} scale={1.01} color="#ff2222" />
           <boxGeometry args={[2, 2, 2]} />
-          <meshToonMaterial color="maroon" />
+          <meshMatcapMaterial color="#ff2222" />
         </mesh>
       </SceneObject>
       {/* ---- Main Text ---- */}
@@ -46,6 +51,24 @@ const SceneObjects = ({ active }: Props) => {
           About
         </Text>
       </SceneObject>
+      <SceneObject
+        startPos={[3, 0, 0]}
+        startRot={[0, 0, -pi / 2]}
+        targetPos={[-4, 9, -2]}
+        targetRot={[-pi / 4, 0, 0.3]}
+        targetScale={1}
+        active={active}
+        duration={0.2}
+      >
+        <Text
+          fontSize={5}
+          color="limegreen"
+          outlineWidth={0.1}
+          outlineColor="white"
+        >
+          🌐
+        </Text>
+      </SceneObject>
     </group>
   );
 };
@@ -55,10 +78,10 @@ const TopPortal = ({ active }: Props) => {
     <group>
       <PortalScene
         active={active}
-        position={[0, 5.01, 0]}
+        position={[0, 5.1, 0]}
         planeRot={[-pi / 2, 0, 0]}
         sceneRot={[pi / 2, 0, 0]}
-        sceneBG="lime"
+        sceneBG="#12ff30"
       >
         <SceneObjects active={active} />
       </PortalScene>
@@ -69,28 +92,6 @@ const TopPortal = ({ active }: Props) => {
       */}
       <SceneObjects active={active} />
       {/* ---- Billboard Icon ---- */}
-      <SceneObject
-        startPos={[3, 0, 0]}
-        startRot={[0, 0, -pi / 2]}
-        targetPos={[-4, 9, -2]}
-        targetRot={[0, 0, 0.3]}
-        targetScale={1}
-        active={active}
-        duration={0.2}
-      >
-        <Billboard lockZ>
-          <Text
-            fontSize={5}
-            color="limegreen"
-            castShadow={false}
-            receiveShadow={false}
-            outlineWidth={0.1}
-            outlineColor="white"
-          >
-            🌐
-          </Text>
-        </Billboard>
-      </SceneObject>
     </group>
   );
 };

@@ -22,7 +22,7 @@ const SceneObjects = ({ active }: Props) => {
         <mesh>
           <Edges linewidth={4} scale={1.1} color="white" />
           <coneGeometry args={[2, 2, 4, 3]} />
-          <meshToonMaterial color="blue" />
+          <meshMatcapMaterial color="#bb50ff" />
         </mesh>
       </SceneObject>
       {/* ---- Icon ---- */}
@@ -35,8 +35,6 @@ const SceneObjects = ({ active }: Props) => {
         active={active}
       >
         <Text
-          castShadow={false}
-          receiveShadow={false}
           fontSize={5}
           color="orange"
           outlineWidth={0.1}
@@ -59,10 +57,8 @@ const SceneObjects = ({ active }: Props) => {
           <Text
             font={"/fonts/Exo2-VariableFont_wght.ttf"}
             fontWeight={400}
-            fontSize={2}
+            fontSize={3}
             color="#ffcc30"
-            castShadow={false}
-            receiveShadow={false}
             outlineWidth={0.05}
             outlineColor="white"
             glyphGeometryDetail={8}
@@ -76,8 +72,6 @@ const SceneObjects = ({ active }: Props) => {
             fontWeight={400}
             fontSize={1}
             color="#212121"
-            castShadow={false}
-            receiveShadow={false}
             outlineWidth={0.05}
             outlineColor="white"
             glyphGeometryDetail={8}
@@ -95,10 +89,10 @@ const RightPortal = ({ active }: Props) => {
     <group>
       <PortalScene
         active={active}
-        position={[5.01, 0, 0]}
+        position={[5.1, 0, 0]}
         planeRot={[0, pi / 2, 0]}
         sceneRot={[pi / 2, 0, 0]}
-        sceneBG="orange"
+        sceneBG="#ffcc50"
       >
         <SceneObjects active={active} />
       </PortalScene>

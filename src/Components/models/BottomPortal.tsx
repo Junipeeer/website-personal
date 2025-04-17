@@ -21,7 +21,7 @@ const SceneObjects = ({ active }: Props) => {
         <mesh>
           <torusGeometry args={[2.5, 1, 32]} />
           <Edges linewidth={4} scale={1.1} color="white" />
-          <meshToonMaterial color="red" />
+          <meshToonMaterial color="#ff8810" emissive="#ff8810" />
         </mesh>
       </SceneObject>
       {/* ---- Icon ---- */}
@@ -33,8 +33,6 @@ const SceneObjects = ({ active }: Props) => {
         active={active}
       >
         <Text
-          castShadow={false}
-          receiveShadow={false}
           fontSize={5}
           color="lightblue"
           outlineWidth={0.1}
@@ -59,8 +57,6 @@ const SceneObjects = ({ active }: Props) => {
             fontWeight={400}
             fontSize={3}
             color="aqua"
-            castShadow={false}
-            receiveShadow={false}
             outlineWidth={0.05}
             outlineColor="white"
             glyphGeometryDetail={8}
@@ -74,8 +70,6 @@ const SceneObjects = ({ active }: Props) => {
             fontWeight={400}
             fontSize={1}
             color="#212121"
-            castShadow={false}
-            receiveShadow={false}
             outlineWidth={0.05}
             outlineColor="white"
             glyphGeometryDetail={8}
@@ -93,7 +87,7 @@ const BottomPortal = ({ active }: Props) => {
     <group>
       <PortalScene
         active={active}
-        position={[0, -5.01, 0]}
+        position={[0, -5.1, 0]}
         planeRot={[pi / 2, 0, 0]}
         sceneRot={[pi / 2, 0, 0]}
         sceneBG="aqua"

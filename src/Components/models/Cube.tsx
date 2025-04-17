@@ -1,9 +1,9 @@
-import { Suspense, useEffect, useRef, useState } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { MeshDistortMaterial, Outlines, useGLTF } from "@react-three/drei";
 import { Group, Mesh } from "three";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
-import { mainCam, pi } from "../../constants/components3D";
+import { getPortalColor, pi } from "../../constants/components3D";
 import TopPortal from "./TopPortal";
 import BottomPortal from "./BottomPortal";
 import RightPortal from "./RightPortal";
@@ -16,28 +16,30 @@ interface Props {
 }
 
 const Cube = ({ isMouseInWindow, activeFace }: Props) => {
+  const hasVisited = sessionStorage.getItem("hasVisitedBefore") === "true";
   const cubeRef = useRef<Group | null>(null);
   const [showCube, setShowCube] = useState(false);
   const [interactable, setInteractable] = useState(false);
-  const { nodes, materials } = useGLTF("/models/cube.glb");
+  const { nodes } = useGLTF("/models/cube.glb");
+  const outlineColor = useMemo(() => getPortalColor(activeFace), [activeFace]);
 
   // Handle cube appearance after mount
   useEffect(() => {
-    const showCubeTimer = setTimeout(() => setShowCube(true), 1500);
-    const interactionStartTimer = setTimeout(() => setInteractable(true), 3000);
-    return () => {
-      clearTimeout(showCubeTimer);
-      clearTimeout(interactionStartTimer);
-    };
-  }, []);
+    if (!hasVisited) {
+      const showTimer = setTimeout(() => setShowCube(true), 1500);
+      const interactTimer = setTimeout(() => setInteractable(true), 3000);
+      return () => {
+        clearTimeout(showTimer);
+        clearTimeout(interactTimer);
+      };
+    } else {
+      setShowCube(true);
+      setInteractable(true);
+    }
+  }, [hasVisited]);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (cubeRef.current != null && showCube) {
-      const elapsed = state.clock.getElapsedTime();
-      const idleCubeRotX = Math.sin(elapsed * 0.5) * 0.1;
-      const idleCubeRotY = Math.cos(elapsed * 0.3) * 0.1;
-      const idleCubeRotZ = Math.sin(elapsed * 0.7) * 0.04;
-
       let rotX = 0;
       let rotY = 0;
 
@@ -87,42 +89,25 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
             break;
         }
       }
+      // Handle cube appearance animation
+      easing.damp3(cubeRef.current.position, [0, 0, 0], 0.25, delta);
 
       // Apply rotation with easing
-      easing.dampE(
-        cubeRef.current.rotation,
-        [rotX + idleCubeRotX, rotY + idleCubeRotY, idleCubeRotZ],
-        0.25,
-        delta
-      );
+      easing.dampE(cubeRef.current.rotation, [rotX, rotY, 0], 0.25, delta);
 
-      // Handle cube appearance animation
-      const cubeTranslateY = Math.sin(elapsed) * 0.1;
-      easing.damp3(
-        cubeRef.current.position,
-        [0, cubeTranslateY, 0],
-        0.25,
-        delta
-      );
       if (interactable) easing.damp3(cubeRef.current.scale, 1.5, 0.25, delta);
     }
   });
 
   return (
-    <group ref={cubeRef} position={[0, -30, 0]} scale={1} frustumCulled>
+    <group
+      ref={cubeRef}
+      position={[0, hasVisited ? 0 : 40, 0]}
+      scale={1}
+      frustumCulled
+    >
       {/* ----Cube---- */}
-      <mesh
-        geometry={(nodes.Cube as Mesh).geometry}
-        material={materials.glass}
-        renderOrder={1}
-      ></mesh>
-      <pointLight
-        intensity={5000}
-        decay={2}
-        color="#7c8dff"
-        rotation={[-2.752, -0.324, -2.15]}
-        scale={12}
-      />
+
       {/* ---- Instances of Portal Planes and Children ---- */}
       <DelayedUnmount active={activeFace === 0} delay={500}>
         <TopPortal active={activeFace === 0} />
@@ -133,10 +118,13 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
       <DelayedUnmount active={activeFace === 2} delay={500}>
         <RightPortal active={activeFace === 2} />
       </DelayedUnmount>
-
       <DelayedUnmount active={activeFace === 3} delay={500}>
         <LeftPortal active={activeFace === 3} />
       </DelayedUnmount>
+      <mesh geometry={(nodes.Cube as Mesh).geometry}>
+        <MeshDistortMaterial distort={0.1} speed={5} color={"black"} />
+        <Outlines thickness={5} color={outlineColor} />
+      </mesh>
     </group>
   );
 };

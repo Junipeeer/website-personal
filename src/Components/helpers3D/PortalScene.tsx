@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { ReactElement, useEffect, useMemo, useRef } from "react";
 import { CircleGeometry, DoubleSide, Euler, Mesh, Vector3 } from "three";
+import { pi } from "../../constants/components3D";
 
 interface Props {
   active?: boolean;
@@ -18,10 +19,9 @@ const PortalScene = ({
   position = new Vector3(0, 0, 0),
   planeRot = new Euler(0, 0, 0),
   sceneRot = new Euler(0, 0, 0),
-  sceneBG = "hotpink",
+  sceneBG = "#ff79e4",
   children,
 }: Props) => {
-  const portal = useRef<any>(null);
   const mesh = useRef(new Mesh());
   const initialGeometry = useMemo(() => new CircleGeometry(0.001, 32), []);
   const circleGeometry = useRef(initialGeometry);
@@ -73,22 +73,18 @@ const PortalScene = ({
   return (
     <mesh ref={mesh} position={position} rotation={planeRot}>
       <circleGeometry ref={circleGeometry} args={[4, 32]} />
-      <MeshPortalMaterial ref={portal} resolution={0} blur={0}>
-        <group castShadow receiveShadow rotation={sceneRot}>
-          <mesh castShadow receiveShadow position={[0, -15, 0]}>
+
+      <MeshPortalMaterial blend={0} resolution={0} blur={0}>
+        <group rotation={sceneRot}>
+          <mesh position={[0, -15, 0]}>
             <cylinderGeometry args={[7, 7, 30, 32, 1, true]} />
-            <meshStandardMaterial
+            <meshToonMaterial
               side={DoubleSide}
               color={sceneBG}
               emissive={sceneBG}
             />
           </mesh>
-          <mesh
-            castShadow
-            receiveShadow
-            position={[0, -15, 0]}
-            rotation={[Math.PI / 2, 0, 0]}
-          >
+          <mesh position={[0, -15, 0]} rotation={[pi / 2, 0, 0]}>
             <circleGeometry args={[7, 32]} />
             <meshToonMaterial
               side={DoubleSide}
@@ -96,8 +92,9 @@ const PortalScene = ({
               emissive={sceneBG}
             />
           </mesh>
+
           <group
-            position={[0, -5.01, 0]}
+            position={[0, -5.1, 0]}
             rotation={[
               -(Array.isArray(planeRot) ? planeRot[0] : planeRot.x) -
                 (Array.isArray(sceneRot) ? sceneRot[0] : sceneRot.x),
@@ -105,14 +102,6 @@ const PortalScene = ({
               -(Array.isArray(planeRot) ? planeRot[2] : planeRot.z),
             ]}
           >
-            <pointLight
-              position={[0, 0, 0]}
-              intensity={1000}
-              decay={2}
-              color="white"
-              scale={1}
-            />
-
             {children}
           </group>
         </group>
