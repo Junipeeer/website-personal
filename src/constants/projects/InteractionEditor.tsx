@@ -30,7 +30,7 @@ const InteractionEditor = () => {
     {
       title: "Key Features",
       content: (
-        <ul className="list-disc list-inside space-y-2 text-neutral-300">
+        <ul className="list-disc list-inside space-y-2">
           <li>
             Intuitive drag-and-drop interface for creating Labanotation scores
           </li>

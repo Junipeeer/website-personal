@@ -35,7 +35,7 @@ const InteractionEditor = () => {
             for this purpose. Comprehensive unit testing was implemented to
             ensure game rule compliance and proper functionality.
           </p>
-          <ul className="list-disc list-inside space-y-2 text-neutral-300">
+          <ul className="list-disc list-inside space-y-2">
             <li>Model-View-Controller (MVC) architecture</li>
             <li>Comprehensive unit test coverage</li>
             <li>JavaFX-based graphical user interface</li>

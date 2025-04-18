@@ -8,10 +8,10 @@ const Portfolio = () => {
     <section className="page-wrapper bg-cover">
       <div className="content-wrapper">
         <IntroAnimation>
-          <div className="mb-15 border-b-2 border-pink-300 backdrop-blur-2xl ">
+          <div className="mb-15 border-b-2 border-[#ed93d9] backdrop-blur-2xl ">
             <div className="space-y-6  p-6 ">
               <h1 className="text-4xl font-bold text-white">Portfolio</h1>
-              <p className="text-lg leading-relaxed text-neutral-300 text-justify">
+              <p className="text-lg leading-relaxed text-justify">
                 Here are a few of my larger projects so far. These projects
                 demonstrate my skills in various aspects of software development
                 across different languages and areas of programming.

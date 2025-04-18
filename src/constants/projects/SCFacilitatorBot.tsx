@@ -38,7 +38,7 @@ const InteractionEditor = () => {
       title: "Key Features",
       content: (
         <>
-          <ul className="list-disc list-inside space-y-2 text-neutral-300">
+          <ul className="list-disc list-inside space-y-2">
             <li>Real-time verbal conversations using GPT-4</li>
             <li>Natural speech synthesis through Elevenlabs</li>
             <li>Speech recognition via Microsoft Azure</li>

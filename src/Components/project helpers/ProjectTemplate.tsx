@@ -29,19 +29,19 @@ const ProjectTemplate = ({ projectId, sections }: ProjectTemplateProps) => {
       <ProjectHero image={project.image} alt={project.title} />
 
       {/* Content */}
-      <div className="content-wrapper -mt-65">
+      <IntroAnimation className="content-wrapper -mt-65">
         <ProjectBackLink />
 
         <ProjectHeader project={project} />
 
-        <IntroAnimation className=" mt-12 project-card">
+        <div className=" mt-12 project-card">
           {sections.map((section, index) => (
             <ProjectSection key={index} title={section.title}>
               <div className="project-content space-y-4">{section.content}</div>
             </ProjectSection>
           ))}
-        </IntroAnimation>
-      </div>
+        </div>
+      </IntroAnimation>
     </article>
   );
 };

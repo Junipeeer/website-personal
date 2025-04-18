@@ -62,15 +62,21 @@ export const ProjectHeader = ({ project }: HeaderProps) => {
       <p className="mb-6 text-justify">{project.description}</p>
 
       {/* Technologies */}
+      <h3 className="text-lg font-semibold text-white mb-2">Technologies</h3>
       <TechnologyBlobs technologies={project.technologies} />
 
       {/* Links */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-6">
         {project.githubLink && (
           <LinkBlob icon="Github" link={project.githubLink} text="View Code" />
         )}
         {project.liveLink && (
-          <LinkBlob icon="external" link={project.liveLink} text="Live Demo" />
+          <LinkBlob
+            icon="external"
+            link={project.liveLink.link}
+            external={project.liveLink.external}
+            text="Live Demo"
+          />
         )}
       </div>
     </div>

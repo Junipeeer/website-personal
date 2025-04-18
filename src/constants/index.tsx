@@ -8,6 +8,7 @@ import {
   FaGithub,
   FaLinkedin,
   FaArrowLeft,
+  FaArrowRight,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -62,7 +63,23 @@ export const techIcons: { [key: string]: JSX.Element } = {
   Linkedin: <FaLinkedin />,
   external: <FaExternalLinkAlt />,
   back: <FaArrowLeft />,
+  Arrow: <FaArrowRight />,
 };
+
+interface DemoProject {
+  id: string;
+  url: string;
+  tags: string[];
+}
+
+export const demoProjects: DemoProject[] = [
+  {
+    id: "pro-interaction-editor",
+
+    url: "https://jschalon.github.io/bachelor-thesis/",
+    tags: ["Vue.js", "Interactive", "Demo"],
+  },
+];
 
 export interface Project {
   id: string;
@@ -74,7 +91,7 @@ export interface Project {
   border: string;
   route: string;
   githubLink?: string;
-  liveLink?: string;
+  liveLink?: { link: string; external: boolean };
   role?: string;
 }
 
@@ -89,7 +106,6 @@ export const projects: Project[] = [
     technologies: ["React", "TypeScript", "Tailwind CSS", "Three.js"],
     image: "/img/website-thumbnail.png",
     githubLink: "https://github.com/Junipeeer/website-personal",
-    liveLink: "",
     border: "#ef4444",
   },
   {
@@ -102,7 +118,6 @@ export const projects: Project[] = [
     technologies: ["Python", "Raspberry Pi"],
     image: "/img/spf-thumbnail.jpg",
     githubLink: "https://github.com/Junipeeer/Simple-Protogen-Face",
-    liveLink: "",
     border: "#3bc260",
   },
   {
@@ -115,7 +130,6 @@ export const projects: Project[] = [
     technologies: ["Python", "Flask"],
     image: "/img/scfacilitatorbot-thumbnail.png",
     githubLink: "https://github.com/JSchalon/SCFacilitatorBot",
-    liveLink: "",
     border: "#3baff3",
   },
   {
@@ -128,7 +142,7 @@ export const projects: Project[] = [
     technologies: ["Vue.js", "Interact.js"],
     image: "/img/laban-thumbnail.png",
     githubLink: "https://github.com/JSchalon/bachelor-thesis",
-    liveLink: "",
+    liveLink: { link: "/demo/interaction-editor", external: false },
     border: "#c40399",
   },
   {
@@ -141,7 +155,6 @@ export const projects: Project[] = [
     technologies: ["Java", "JavaFX"],
     image: "/img/chess-thumbnail.png",
     githubLink: "",
-    liveLink: "",
     border: "#f0f30a",
     role: "Main programmer and software architect",
   },

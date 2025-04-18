@@ -22,7 +22,7 @@ const ProjectCard = ({ project }: CardProps) => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="hover:scale-105 transition-transform absolute w-full h-full object-cover object-center"
+                className="absolute w-full h-full object-cover object-center"
               />
             </div>
 
@@ -36,9 +36,7 @@ const ProjectCard = ({ project }: CardProps) => {
                 <p className="text-sm text-neutral-500 mb-4">
                   {project.timeframe}
                 </p>
-                <p className="text-neutral-300 mb-6 text-justify">
-                  {project.description}
-                </p>
+                <p className="mb-6 text-justify">{project.description}</p>
 
                 {project.role && (
                   <p className="text-sm text-neutral-400 mb-4">
@@ -46,6 +44,9 @@ const ProjectCard = ({ project }: CardProps) => {
                   </p>
                 )}
 
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  Technologies
+                </h3>
                 <TechnologyBlobs technologies={project.technologies} />
               </div>
             </div>

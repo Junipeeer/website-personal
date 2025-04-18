@@ -12,8 +12,8 @@ import {
 import Portfolio from "./routes/Portfolio";
 
 import { useEffect, useState } from "react";
-import Lab from "./routes/Lab";
 import Blog from "./routes/Blog";
+import Lab from "./routes/Lab";
 import { getTransitionColor } from "./constants/components3D";
 import LoadingOverlay, {
   TransitionFromHome,
@@ -23,6 +23,7 @@ import SimpleProtogenFace from "./constants/projects/SimpleProtogenFace";
 import SCFacilitatorBot from "./constants/projects/SCFacilitatorBot";
 import InteractionEditor from "./constants/projects/InteractionEditor";
 import JavaChess from "./constants/projects/JavaChess";
+import InteractionEditorDemo from "./constants/demos/InteractionEditorDemo";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -93,6 +94,10 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="lab" element={<Lab />} />
+          <Route
+            path="demo/interaction-editor"
+            element={<InteractionEditorDemo />}
+          />
           <Route path="blog" element={<Blog />} />
           <Route
             path="project/personal-Website"

@@ -9,9 +9,9 @@ const About = () => {
       <div className="content-wrapper max-w-4xl">
         {/* Bio Section */}
         <IntroAnimation className="space-y-16">
-          <div className="space-y-6 border-b-2 border-lime-200 p-6">
+          <div className="space-y-6 border-b-2 border-[#95e468] p-6">
             <h1 className="text-4xl font-bold text-white">About Me</h1>
-            <p className="text-lg leading-relaxed text-neutral-300 text-justify">
+            <p className="text-lg leading-relaxed text-justify">
               I am a recent M.Sc. graduate in the field of media technologies. I
               enjoy solving problems creatively and working on interesting
               projects, with a passion for usability and accessibility. I seek

@@ -53,7 +53,7 @@ const InteractionEditor = () => {
       title: "Key Features",
       content: (
         <>
-          <ul className="list-disc list-inside space-y-2 text-neutral-300">
+          <ul className="list-disc list-inside space-y-2">
             <li>
               Support for pre-created or custom face animations using GIFs or
               image sequences
@@ -95,14 +95,14 @@ const InteractionEditor = () => {
           <h3 className="text-xl font-semibold text-white mt-6 mb-2">
             Minimum Hardware Integration
           </h3>
-          <ul className="list-disc list-inside space-y-2 text-neutral-300">
+          <ul className="list-disc list-inside space-y-2">
             <li>Two 64x32 HUB75 LED matrices for display output</li>
             <li>Raspberry Pi Zero W (or better) as the main controller</li>
           </ul>
           <h3 className="text-xl font-semibold text-white mt-6 mb-2">
             Additional Hardware support
           </h3>
-          <ul className="list-disc list-inside space-y-2 text-neutral-300">
+          <ul className="list-disc list-inside space-y-2">
             <li>APDS9960 proximity sensor for "boop" detection</li>
             <li>Optional button inputs for additional interactions</li>
             <li>Additional ws2811 or ws2812 LEDS</li>
