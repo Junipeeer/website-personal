@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Project, techIcons } from "../../constants";
 import { LinkBlob, TechnologyBlobs } from "./Blobs";
 import { useNavigate } from "react-router-dom";
+import { IntroAnimation } from "../TransitionsOverlays";
 
 interface HeroProps {
   image: string;
@@ -10,14 +11,16 @@ interface HeroProps {
 
 const ProjectHero = ({ image, alt }: HeroProps) => {
   return (
-    <div className="relative h-[50vh] sm:h-[60vh] lg:h-[80vh] w-full overflow-hidden">
-      <img
-        src={image}
-        alt={alt}
-        className="absolute w-full h-full object-cover"
-      />
-      <div className="hero-blend absolute h-2/12 sm:h-4/12 lg:h-5/12 w-full bottom-0" />
-    </div>
+    <IntroAnimation>
+      <div className="relative h-[50vh] sm:h-[60vh] lg:h-[80vh] w-full overflow-hidden">
+        <img
+          src={image}
+          alt={alt}
+          className="absolute w-full h-full object-cover"
+        />
+        <div className="hero-blend absolute h-2/12 sm:h-4/12 lg:h-5/12 w-full bottom-0" />
+      </div>
+    </IntroAnimation>
   );
 };
 
@@ -30,7 +33,7 @@ export const ProjectBackLink = () => {
       <button
         onClick={() => navigate(-1)}
         className="group cursor-pointer flex items-center gap-2 px-3 py-2 bg-neutral-700/50 hover:bg-neutral-600/50 
-        rounded-lg text-neutral-300 hover:text-white transition-all backdrop-blur-sm"
+        rounded-lg text-neutral-300 hover:text-white transition-all z-10"
         aria-label="Go back to previous page"
       >
         <span
@@ -51,7 +54,7 @@ interface HeaderProps {
 
 export const ProjectHeader = ({ project }: HeaderProps) => {
   return (
-    <div className="project-card backdrop-blur-lg p-8">
+    <div className="project-card p-8">
       <h1 className="text-4xl font-bold text-white mb-4">{project.title}</h1>
       <p className="text-sm text-neutral-500 mb-4">{project.timeframe}</p>
       {project.role && (
