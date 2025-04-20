@@ -1,1 +1,2 @@
-# My page :)
+# My Personal Website & Portfolio
+Created using React with TypeScript, Three.js, Tailwind and Framer Motion, built using Vite. Currently hosted on github pages, will later move on to dynamic hosting and adding content dynamically.
