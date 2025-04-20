@@ -63,7 +63,7 @@ const Header = () => {
           <Link to="/" className="cursor-pointer">
             <img
               ref={logo}
-              src="/img/logo.svg"
+              src="./img/logo.svg"
               className="sm:h-[40px] max-sm:h-[30px] logo"
               alt="logo"
             />
