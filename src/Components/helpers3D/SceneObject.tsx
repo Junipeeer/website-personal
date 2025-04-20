@@ -30,7 +30,7 @@ const SceneObject = ({
 }: Props) => {
   const groupRef = useRef(new Group());
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     const newPosTarget = active ? targetPos : startPos;
     const newRotTarget = active ? targetRot : startRot;
     const newScaleTarget = active ? targetScale : startScale;

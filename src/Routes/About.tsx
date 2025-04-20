@@ -9,19 +9,20 @@ const About = () => {
       <div className="content-wrapper max-w-4xl">
         {/* Bio Section */}
         <IntroAnimation className="space-y-16">
-          <div className="space-y-6 border-b-2 border-[#95e468] p-6">
+          <div className="space-y-6 border-b-2 border-[#95e468] sm:p-6 p-2">
             <h1 className="text-4xl font-bold text-white">About Me</h1>
             <p className="text-lg leading-relaxed text-justify">
-              I am a recent M.Sc. graduate in the field of media technologies. I
-              enjoy solving problems creatively and working on interesting
-              projects, with a passion for usability and accessibility. I seek
-              to apply my skills to better facilitate users' interaction with
-              media systems and create solutions to real world problems.
+              Hi, I'm Julian 👋 I am a recent M.Sc. graduate in the field of
+              media technologies. I enjoy solving problems creatively and
+              working on engaging projects, with a passion for usability and
+              accessibility. I try to apply my skills to better facilitate
+              users' interaction with media systems and create solutions to
+              real-world problems.
             </p>
             {/* Social Links - Moved up and redesigned */}
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-white">
-                Connect with me
+                Connect with me:
               </h2>
               <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
                 <LinkBlob
@@ -58,14 +59,15 @@ const About = () => {
           {/* Frontend Development Section */}
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-white">
-              Frontend Development
+              Front-end Development
             </h2>
             <div className="border-l-2 border-neutral-700 pl-6 space-y-8">
               <div>
                 <h3 className="text-white text-xl">Vue.js</h3>
                 <p className="skill-paragraph mt-2">
                   I have used Vue.js for several projects since 2022, including
-                  during my Bachelor thesis which I developed an{" "}
+                  for my bachelor thesis, during which I developed a functional
+                  prototype for an{" "}
                   <Link
                     to={
                       "/project/" +
@@ -76,44 +78,46 @@ const About = () => {
                     {" "}
                     <span className="underline">interaction editor</span>
                   </Link>{" "}
-                  using Interact.js, implementing drag-and-drop functionality,
-                  complex state management and DropBox uploads/downloads using
-                  their API at the time.
+                  using Interact.js. In this project I implemented drag-and-drop
+                  functionality, complex state management, and Dropbox
+                  uploads/downloads using their API at the time.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-white text-xl">React & TypeScript</h3>
                 <p className="skill-paragraph mt-2">
-                  I am newer to React and TS with my biggest projects being this
-                  portfolio website. During this project I have learned a lot
-                  about modern standards and best practices for React, including
-                  component reusability, type safety, hooks and context. While I
-                  am still learning the details of React specifically, my
-                  existing experience with Vue.js, as well as standard HTML, CSS
-                  and JS means I am quite comfortable with the underlying
-                  concepts.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-white text-xl">Three.js</h3>
-                <p className="skill-paragraph mt-2">
-                  I have some experience using Three.js, specifically
-                  React-three-fiber and react three Drei to create and program
-                  interactive 3D elements and animations for web applications.
-                  All 3d models and scenes used on this site were created and
-                  animated by me, using Blender.
+                  This portfolio website is my biggest React and TS project so
+                  far. During this project I have learned a lot about modern
+                  standards and best practices for React, including component
+                  reusability, type safety, hooks, and context. While I am still
+                  learning the deeper details of React, my existing experience
+                  with Vue.js, as well as standard HTML, CSS, and JS, means that
+                  I am quite comfortable with the underlying concepts already.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-white text-xl">Tailwind</h3>
                 <p className="skill-paragraph mt-2">
-                  I have worked with Tailwind in a few projects, and used it for
-                  this website. While I am not an expert designer, I am capable
-                  of creating responsive layouts using as needed. I also know my
-                  way around standard CSS and a bit of SCSS as well.
+                  This website is my first larger project using Tailwind. I have
+                  some prior experience using it in smaller projects and tests,
+                  though it has been a while. Of course I also know my way
+                  around standard CSS as well, as I have been interested in web
+                  development since 2018. While I am not an expert designer, I
+                  am capable of designing and implementing responsive layouts as
+                  needed.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-white text-xl">Three.js</h3>
+                <p className="skill-paragraph mt-2">
+                  Through creating this website, I now have some experience
+                  using Three.js, specifically React Three Fiber and React Three
+                  Drei, to create and program interactive 3D elements and
+                  animations for web applications. All 3D models and scenes used
+                  on this site were created and animated by me.
                 </p>
               </div>
             </div>
@@ -129,7 +133,7 @@ const About = () => {
                 <h3 className="text-white text-xl">Python</h3>
                 <p className="skill-paragraph mt-2">
                   I have used Python in quite a few projects, including during
-                  my master thesis to prototype a language learning
+                  my master's thesis to prototype a language learning
                   <Link
                     to={
                       "/project/" +
@@ -140,7 +144,8 @@ const About = () => {
                     {" "}
                     <span className="underline">facilitator bot</span>
                   </Link>{" "}
-                  using Flask. I have also developed a larger project, namely a
+                  using Flask. I have also developed a larger Python-based
+                  project, namely a program to display
                   <Link
                     to={
                       "/project/" +
@@ -148,18 +153,19 @@ const About = () => {
                     }
                   >
                     {" "}
-                    <span className="underline">protogen face display</span>
+                    <span className="underline">protogen faces</span>
                   </Link>{" "}
-                  program using matrix displays on Raspberry Pi.
+                  using matrix displays on Raspberry Pi.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-white text-xl">Java</h3>
                 <p className="skill-paragraph mt-2">
-                  I learned Java during my Bachelor and have used it for smaller
-                  and larger projects during uinversity courses. During a larger
-                  team project we created a fully functional
+                  I learned Java during my bachelor's degree, as I have used it
+                  for both smaller and larger projects during university
+                  courses. During a larger team project, we created a fully
+                  functional
                   <Link
                     to={
                       "/project/" +
@@ -171,7 +177,7 @@ const About = () => {
                     <span className="underline">chess game</span>{" "}
                   </Link>
                   with JavaFX GUI and comprehensive unit testing, with a focus
-                  on on clean architecture and test-driven development.
+                  on clean architecture and test-driven development.
                 </p>
               </div>
             </div>
@@ -186,9 +192,9 @@ const About = () => {
               <div>
                 <h3 className="text-white text-xl">Usability & Design</h3>
                 <p className="skill-paragraph mt-2">
-                  As I have a background in media technologies, I am familiar
-                  with base concepts around usability, accessibility and UI/UX
-                  design. I have worked with wireframes and prototypes, and
+                  Because of my background in media technologies, I am familiar
+                  with base concepts around usability, accessibility, and UI/UX
+                  design. I have worked with wireframes and prototypes and
                   performed usability testing before. I try to put a strong
                   focus on accessibility and inclusive design principles.
                 </p>
@@ -197,7 +203,7 @@ const About = () => {
               <div>
                 <h3 className="text-white text-xl">Tools & Methods</h3>
                 <p className="skill-paragraph mt-2">
-                  I have a bit of experience in Figma, Miro, Notion and Trello
+                  I have a bit of experience in Figma, Miro, Notion, and Trello
                   for design and collaboration. I have experience with data
                   visualization and analysis using Tableau and network analysis
                   with Gephi.

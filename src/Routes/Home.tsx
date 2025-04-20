@@ -13,6 +13,7 @@ import { mainCam } from "../constants/components3D";
 import CanvasLoader from "../components/helpers3D/CanvasLoader";
 import CameraController from "../components/helpers3D/CameraController";
 import ClickPlaneGenerator from "../components/helpers3D/ClickPlane";
+import InteractionIndicator from "../components/InteractionIndicator";
 
 interface HomeProps {
   triggerTransition: (route: string, face: number) => void;
@@ -48,8 +49,11 @@ const Home = ({ triggerTransition }: HomeProps) => {
       if (!isMobile || (isMobile && activeFace === planeId)) {
         if (activeFace !== -1) {
           setTransitionActive(true);
+          setIsInteractionAllowed(false);
           triggerTransition(route, activeFace);
         } else {
+          setTransitionActive(true);
+          setIsInteractionAllowed(false);
           triggerTransition(route, activeFace);
         }
       }
@@ -154,13 +158,11 @@ const Home = ({ triggerTransition }: HomeProps) => {
           <group position={[0, 0, -800]}>
             <Stars radius={1000} count={30000} />
           </group>
-          {isInteractionAllowed && (
-            <CameraController
-              activeFace={activeFace}
-              isMobile={isMobile}
-              transitioning={transitionActive}
-            />
-          )}
+          <CameraController
+            activeFace={activeFace}
+            isMobile={isMobile}
+            transitioning={transitionActive}
+          />
 
           <HomeScene activeFace={activeFace} />
           <ClickPlaneGenerator
@@ -173,6 +175,7 @@ const Home = ({ triggerTransition }: HomeProps) => {
           <Cube isMouseInWindow={isMouseInWindow} activeFace={activeFace} />
         </Suspense>
       </Canvas>
+      <InteractionIndicator isMobile={isMobile} />
     </section>
   );
 };

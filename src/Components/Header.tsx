@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { navLinks } from "../constants/index";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface NavItemProps {
   onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
@@ -9,7 +9,7 @@ interface NavItemProps {
 const NavItems = ({ onClick }: NavItemProps) => {
   return (
     <ul className="nav-ul">
-      {navLinks.map(({ id, href, emoji, name }) => (
+      {navLinks.map(({ id, href, emoji, name, color }) => (
         <Link
           key={id}
           to={href}
@@ -17,7 +17,10 @@ const NavItems = ({ onClick }: NavItemProps) => {
           aria-label={name}
           onClick={onClick}
         >
-          <li className="nav-li">
+          <li
+            style={{ "--hover-color": color } as React.CSSProperties}
+            className="nav-li drop-shadow-2xl hover:text-[var(--hover-color)]"
+          >
             <span className="nav-emoji">{emoji}</span>
             {name}
           </li>
@@ -30,7 +33,6 @@ const NavItems = ({ onClick }: NavItemProps) => {
 const Header = () => {
   const logo = useRef<HTMLImageElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
   const toggleMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
@@ -52,9 +54,9 @@ const Header = () => {
 
   return (
     <header
-      className={`absolute top-0 left-0 right-0 z-10 ${
-        location.pathname === "/" ? "" : "bg-neutral-950/80"
-      }`}
+      className={
+        "absolute top-0 left-0 right-0 z-10 transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-b before:from-black/60 before:to-transparent before:-z-10"
+      }
     >
       <div className="max-w-7xl mx-auto ">
         <div className="flex justify-between items-center sm:py-3 max-sm:py-2 mx-auto c-space">

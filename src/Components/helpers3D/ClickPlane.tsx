@@ -132,7 +132,7 @@ const ClickPlaneGenerator = ({
             if (isInteractionAllowed && !isMobile) setActiveFace(plane.id);
           }}
           onPointerOut={() => {
-            if (!isMobile) setActiveFace(-1);
+            if (isInteractionAllowed && !isMobile) setActiveFace(-1);
           }}
           onClick={() => {
             if (!isMobile) {

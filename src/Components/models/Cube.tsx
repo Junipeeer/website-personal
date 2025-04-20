@@ -1,5 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { MeshDistortMaterial, Outlines, useGLTF } from "@react-three/drei";
+import {
+  Billboard,
+  Center,
+  MeshDistortMaterial,
+  Outlines,
+  Text,
+  Text3D,
+  useGLTF,
+} from "@react-three/drei";
 import { Group, Mesh } from "three";
 import { easing } from "maath";
 import { useFrame } from "@react-three/fiber";
@@ -107,6 +115,49 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
       frustumCulled
     >
       {/* ----Cube---- */}
+      <mesh geometry={(nodes.Cube as Mesh).geometry}>
+        <MeshDistortMaterial distort={0.1} speed={5} color={"black"} />
+        <Outlines thickness={5} color={outlineColor} />
+      </mesh>
+
+      {/* Front Text */}
+      <Center position={[-1.9, 2, 5.5]} scale={[1, 1, 0.5]}>
+        <Text3D
+          font={"/fonts/Exo 2_Regular.json"}
+          curveSegments={32}
+          bevelEnabled
+          bevelSize={0.04}
+          bevelThickness={0.1}
+          height={0.5}
+          lineHeight={0.7}
+          letterSpacing={-0.06}
+          size={1.2}
+        >
+          <meshNormalMaterial />
+          {"Hi, I'm\nJulian\n\n"}
+        </Text3D>
+      </Center>
+      <Center position={[0.8, -2.5, 5.5]} scale={[1, 1, 0.3]}>
+        <Text3D
+          font={"/fonts/Exo 2_Regular.json"}
+          curveSegments={32}
+          bevelEnabled
+          bevelSize={0.04}
+          bevelThickness={0.1}
+          height={0.5}
+          lineHeight={0.7}
+          letterSpacing={0}
+          size={0.8}
+        >
+          <meshNormalMaterial />
+          {"This is\nmy portfolio"}
+        </Text3D>
+      </Center>
+      <Billboard position={[2.5, 0.3, 5.8]}>
+        <Text fontSize={2} fontWeight={800} fillOpacity={1}>
+          👋
+        </Text>
+      </Billboard>
 
       {/* ---- Instances of Portal Planes and Children ---- */}
       <DelayedUnmount active={activeFace === 0} delay={500}>
@@ -121,10 +172,6 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
       <DelayedUnmount active={activeFace === 3} delay={500}>
         <LeftPortal active={activeFace === 3} />
       </DelayedUnmount>
-      <mesh geometry={(nodes.Cube as Mesh).geometry}>
-        <MeshDistortMaterial distort={0.1} speed={5} color={"black"} />
-        <Outlines thickness={5} color={outlineColor} />
-      </mesh>
     </group>
   );
 };

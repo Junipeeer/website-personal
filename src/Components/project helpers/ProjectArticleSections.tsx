@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Project, techIcons } from "../../constants";
 import { LinkBlob, TechnologyBlobs } from "./Blobs";
 import { useNavigate } from "react-router-dom";
-import { IntroAnimation } from "../TransitionsOverlays";
+import { OpactityAnimation } from "../TransitionsOverlays";
 
 interface HeroProps {
   image: string;
@@ -11,7 +11,7 @@ interface HeroProps {
 
 const ProjectHero = ({ image, alt }: HeroProps) => {
   return (
-    <IntroAnimation>
+    <OpactityAnimation>
       <div className="relative h-[50vh] sm:h-[60vh] lg:h-[80vh] w-full overflow-hidden">
         <img
           src={image}
@@ -20,7 +20,7 @@ const ProjectHero = ({ image, alt }: HeroProps) => {
         />
         <div className="hero-blend absolute h-2/12 sm:h-4/12 lg:h-5/12 w-full bottom-0" />
       </div>
-    </IntroAnimation>
+    </OpactityAnimation>
   );
 };
 
@@ -54,7 +54,7 @@ interface HeaderProps {
 
 export const ProjectHeader = ({ project }: HeaderProps) => {
   return (
-    <div className="project-card p-8">
+    <div className="project-card p-4 sm:p-8">
       <h1 className="text-4xl font-bold text-white mb-4">{project.title}</h1>
       <p className="text-sm text-neutral-500 mb-4">{project.timeframe}</p>
       {project.role && (
@@ -92,7 +92,7 @@ interface SectionProps {
 }
 export const ProjectSection = ({ children, title }: SectionProps) => {
   return (
-    <section className="p-8">
+    <section className="sm:p-8 p-4">
       <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
       <div>{children}</div>
     </section>

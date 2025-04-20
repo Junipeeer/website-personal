@@ -65,19 +65,6 @@ const SceneObjects = ({ active }: Props) => {
           >
             Lab
           </Text>
-          <Text
-            position={[0, 0, 1]}
-            rotation={[0, 0, pi / 24]}
-            font={"/fonts/Exo2-VariableFont_wght.ttf"}
-            fontWeight={400}
-            fontSize={1}
-            color="#212121"
-            outlineWidth={0.05}
-            outlineColor="white"
-            glyphGeometryDetail={8}
-          >
-            Under Construction
-          </Text>
         </group>
       </SceneObject>
     </group>

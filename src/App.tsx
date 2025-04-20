@@ -24,6 +24,7 @@ import SCFacilitatorBot from "./constants/projects/SCFacilitatorBot";
 import InteractionEditor from "./constants/projects/InteractionEditor";
 import JavaChess from "./constants/projects/JavaChess";
 import InteractionEditorDemo from "./constants/demos/InteractionEditorDemo";
+import WebsiteAlpha from "./constants/demos/WebsiteAlpha";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -92,13 +93,16 @@ function App() {
             element={<Home triggerTransition={triggerCubeTransition} />}
           />
           <Route path="about" element={<About />} />
-          <Route path="portfolio" element={<Portfolio />} />
+          {/* Lab and demos */}
           <Route path="lab" element={<Lab />} />
           <Route
             path="demo/interaction-editor"
             element={<InteractionEditorDemo />}
           />
+          <Route path="demo/website-ps2" element={<WebsiteAlpha />} />
           <Route path="blog" element={<Blog />} />
+          {/* Portfolio Projects */}
+          <Route path="portfolio" element={<Portfolio />} />
           <Route
             path="project/personal-Website"
             element={<PersonalWebsite />}

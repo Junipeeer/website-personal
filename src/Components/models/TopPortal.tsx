@@ -1,9 +1,4 @@
-import {
-  Billboard,
-  Edges,
-  MeshTransmissionMaterial,
-  Text,
-} from "@react-three/drei";
+import { Edges, Text } from "@react-three/drei";
 import PortalScene from "../helpers3D/PortalScene";
 import SceneObject from "../helpers3D/SceneObject";
 import { pi } from "../../constants/components3D";

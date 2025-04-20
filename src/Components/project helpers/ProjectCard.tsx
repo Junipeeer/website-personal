@@ -27,7 +27,7 @@ const ProjectCard = ({ project }: CardProps) => {
             </div>
 
             {/* Content Section */}
-            <div className="p-6 flex flex-col justify-between col-span-1">
+            <div className="p-4 sm:p-6 flex flex-col justify-between col-span-1">
               <div>
                 <h2 className="text-2xl font-bold text-white mb-2">
                   {project.title}

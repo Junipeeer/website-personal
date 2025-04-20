@@ -87,6 +87,7 @@ interface IntroProps {
   className?: string;
 }
 
+// Standard slide-in intro animation
 export const IntroAnimation = ({ children, className }: IntroProps) => {
   const container = {
     show: {
@@ -95,9 +96,45 @@ export const IntroAnimation = ({ children, className }: IntroProps) => {
   };
 
   const item = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     show: {
       y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.33, 1, 0.68, 1],
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className={className}
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
+      {React.Children.map(children, (child, index) => (
+        <motion.div key={index} variants={item}>
+          {child}
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+};
+
+// Alternative Fade-in intro animation for project headers.
+export const OpactityAnimation = ({ children, className }: IntroProps) => {
+  const container = {
+    show: {
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, scale: 1.1 },
+    show: {
+      scale: 1,
       opacity: 1,
       transition: {
         duration: 0.5,

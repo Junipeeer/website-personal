@@ -6,7 +6,6 @@ import {
   Mesh,
   Shape,
 } from "three";
-import { Edges } from "@react-three/drei";
 
 const MountainRange = () => {
   const meshRef = useRef<Mesh>(null);

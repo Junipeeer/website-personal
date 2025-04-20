@@ -12,13 +12,12 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     title: "Placeholder",
-    date: "18. April 2025",
+    date: "20 April 2025",
     summary:
-      "My blog is currently a work in progress. I will be writing about my experiences and sharing insights from my projects. My firsts posts will be about this website and a few smaller projects I am working on or planning. Currently I am hosting this page on github pages, which means that adding blog pages manually is a bit tedious, so I plan to use WordPress or a similar service",
-    tags: ["WIP", "Getting there", "Placeholder"],
+      "This blog is currently a work in progress. The first posts will be about this website and a few smaller projects I am working on or planning. For example, I am preparing to work on a half-automated plant management system - beyond just automated watering - and a small, more philosophical exploration of returning to and embracing 'dumb' technology. Currently I am hosting this page on GitHub Pages, which means that I would have to add blog pages manually, and that is a bit tedious, so I plan to use WordPress or a similar service soon, though I have not decided on anything concrete yet.",
+    tags: ["WIP", "Placeholder"],
     slug: "placeholder-and-wip",
   },
-  // Add more blog posts here
 ];
 
 const Blog = () => {
@@ -27,11 +26,13 @@ const Blog = () => {
       <div className="content-wrapper">
         <IntroAnimation className="space-y-8">
           {/* Header Section */}
-          <div className="space-y-6 border-b-2 border-[#74e6e6] p-6">
+          <div className="page-header border-[#74e6e6]">
             <h1 className="text-4xl font-bold text-white">Blog</h1>
             <p className="text-lg leading-relaxed text-neutral-300">
-              Here I write about my experiences with different technologies and
-              share insights from my projects.
+              On this blog I am going to write about my project, the
+              technologies I used, and insights gained. I aim to create less of
+              an organized blog and more of a collection of thoughts and ideas
+              in a micro-blogging and digital garden style.
             </p>
           </div>
 
@@ -40,7 +41,7 @@ const Blog = () => {
             {blogPosts.map((post, index) => (
               <article
                 key={index}
-                className="p-6 border-l-2 border-neutral-700 hover:bg-neutral-800/30 transition-colors rounded"
+                className="p-4 border-l-2 border-neutral-700 hover:bg-neutral-800/30 transition-colors rounded mx-2 sm:mx-12"
               >
                 <h2 className="text-2xl font-bold text-white mb-2">
                   {post.title}

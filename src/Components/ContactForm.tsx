@@ -19,6 +19,7 @@ const ContactForm = () => {
           Name
         </label>
         <input
+          aria-label={"name"}
           type="text"
           id="name"
           value={formData.name}
@@ -34,6 +35,7 @@ const ContactForm = () => {
           Email
         </label>
         <input
+          aria-label={"email"}
           type="email"
           id="email"
           value={formData.email}
@@ -49,6 +51,7 @@ const ContactForm = () => {
           Message
         </label>
         <textarea
+          aria-label={"message"}
           id="message"
           value={formData.message}
           onChange={(e) =>
@@ -62,6 +65,7 @@ const ContactForm = () => {
 
       <button
         type="submit"
+        aria-label={"submit"}
         className="w-full py-3 px-6 bg-neutral-700 hover:bg-neutral-600 
                  text-white rounded-lg transition-colors"
       >

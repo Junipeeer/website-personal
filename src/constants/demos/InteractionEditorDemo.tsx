@@ -8,7 +8,7 @@ const InteractionEditorDemo = () => {
       <IntroAnimation className="space-y-8">
         {/* Content section with normal width */}
         <div className="content-wrapper">
-          <div className="space-y-6 p-6">
+          <div className="page-header border-b-transparent">
             <ProjectBackLink />
             <h1 className="text-4xl font-bold text-white">
               Interaction Editor
@@ -40,11 +40,11 @@ const InteractionEditorDemo = () => {
             </div>
           </div>
 
-          <div className="md:hidden mt-8 p-6 bg-yellow-900/20 border border-yellow-600/30 rounded-lg">
+          <div className="md:hidden mt-8 p-4 sm:p-6 bg-yellow-900/20 border border-yellow-600/30 rounded-lg">
             <p className="text-yellow-200/80">
-              ⚠️ Small Screen detected - We recommend using a Tablet or PC to
-              use this editor. Using a smaller screen like a smartphone is
-              possible, but not advised.
+              ⚠️ Small Screen detected - I recommend using a Tablet or PC to use
+              this editor. Using a smaller screen like a smartphone is
+              technically possible, but not intended.
             </p>
           </div>
         </div>

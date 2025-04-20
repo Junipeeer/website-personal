@@ -29,7 +29,7 @@ const ProjectTemplate = ({ projectId, sections }: ProjectTemplateProps) => {
       <ProjectHero image={project.image} alt={project.title} />
 
       {/* Content */}
-      <IntroAnimation className="content-wrapper -mt-65">
+      <IntroAnimation className="content-wrapper -mt-65 ">
         <ProjectBackLink />
 
         <ProjectHeader project={project} />
