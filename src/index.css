@@ -6,13 +6,13 @@
 
 @font-face {
   font-family: "Exo 2";
-  src: url("../fonts/Exo2-VariableFont_wght.ttf") format("truetype");
+  src: url("./fonts/Exo2-VariableFont_wght.ttf") format("truetype");
 }
 
 
 @font-face {
   font-family: "Outfit";
-  src: url("../fonts/Outfit/Outfit-VariableFont_wght.ttf") format("truetype");
+  src: url("./fonts/Outfit/Outfit-VariableFont_wght.ttf") format("truetype");
 }
 
 .logo {
