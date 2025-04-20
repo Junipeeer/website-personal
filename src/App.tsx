@@ -37,7 +37,7 @@ function ScrollToTop() {
 
 export default function AppContainer() {
   return (
-    <Router>
+    <Router basename="/website-personal">
       <App />
     </Router>
   );
