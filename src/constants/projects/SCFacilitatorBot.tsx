@@ -1,4 +1,4 @@
-import ProjectTemplate from "../../components/project helpers/ProjectTemplate";
+import ProjectTemplate from "../../components/project-helpers/ProjectTemplate";
 
 const InteractionEditor = () => {
   const sections = [

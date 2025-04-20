@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { LinkBlob } from "../components/project helpers/Blobs";
+import { LinkBlob } from "../components/project-helpers/Blobs";
 import { projects } from "../constants";
 import { IntroAnimation } from "../components/TransitionsOverlays";
 

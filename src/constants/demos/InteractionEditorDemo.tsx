@@ -1,6 +1,6 @@
 import { IntroAnimation } from "../../components/TransitionsOverlays";
-import { ProjectBackLink } from "../../components/project helpers/ProjectArticleSections";
-import { LinkBlob } from "../../components/project helpers/Blobs";
+import { ProjectBackLink } from "../../components/project-helpers/ProjectArticleSections";
+import { LinkBlob } from "../../components/project-helpers/Blobs";
 
 const InteractionEditorDemo = () => {
   return (

@@ -1,4 +1,4 @@
-import { TechnologyBlobs } from "../components/project helpers/Blobs";
+import { TechnologyBlobs } from "../components/project-helpers/Blobs";
 import { IntroAnimation } from "../components/TransitionsOverlays";
 
 interface BlogPost {

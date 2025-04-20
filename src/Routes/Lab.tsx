@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { IntroAnimation } from "../components/TransitionsOverlays";
-import { TechnologyBlobs } from "../components/project helpers/Blobs";
+import { TechnologyBlobs } from "../components/project-helpers/Blobs";
 import { demoProjects, projects } from "../constants";
 
 const Lab = () => {

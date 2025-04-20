@@ -1,6 +1,6 @@
 import { projects } from "../constants/index";
-import ProjectCard from "../components/project helpers/ProjectCard";
-import { LinkBlob } from "../components/project helpers/Blobs";
+import ProjectCard from "../components/project-helpers/ProjectCard";
+import { LinkBlob } from "../components/project-helpers/Blobs";
 import { IntroAnimation } from "../components/TransitionsOverlays";
 
 const Portfolio = () => {
