@@ -58,7 +58,7 @@ const SceneObjects = ({ active }: Props) => {
         duration={0.2}
       >
         <Text
-          font={"/fonts/Exo2-VariableFont_wght.ttf"}
+          font={"./fonts/Exo2-VariableFont_wght.ttf"}
           fontWeight={400}
           fontSize={2}
           color="hotpink"

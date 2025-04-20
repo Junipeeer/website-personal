@@ -28,7 +28,7 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
   const cubeRef = useRef<Group | null>(null);
   const [showCube, setShowCube] = useState(false);
   const [interactable, setInteractable] = useState(false);
-  const { nodes } = useGLTF("/models/cube.glb");
+  const { nodes } = useGLTF("./models/cube.glb");
   const outlineColor = useMemo(() => getPortalColor(activeFace), [activeFace]);
 
   // Handle cube appearance after mount
@@ -123,7 +123,7 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
       {/* Front Text */}
       <Center position={[-1.9, 2, 5.5]} scale={[1, 1, 0.5]}>
         <Text3D
-          font={"/fonts/Exo 2_Regular.json"}
+          font={"./fonts/Exo 2_Regular.json"}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
@@ -139,7 +139,7 @@ const Cube = ({ isMouseInWindow, activeFace }: Props) => {
       </Center>
       <Center position={[0.8, -2.5, 5.5]} scale={[1, 1, 0.3]}>
         <Text3D
-          font={"/fonts/Exo 2_Regular.json"}
+          font={"./fonts/Exo 2_Regular.json"}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}

@@ -55,7 +55,7 @@ const SceneObjects = ({ active }: Props) => {
       >
         <group>
           <Text
-            font={"/fonts/Exo2-VariableFont_wght.ttf"}
+            font={"./fonts/Exo2-VariableFont_wght.ttf"}
             fontWeight={400}
             fontSize={3}
             color="#ffcc30"

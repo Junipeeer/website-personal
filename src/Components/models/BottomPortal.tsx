@@ -53,7 +53,7 @@ const SceneObjects = ({ active }: Props) => {
       >
         <group>
           <Text
-            font={"/fonts/Exo2-VariableFont_wght.ttf"}
+            font={"./fonts/Exo2-VariableFont_wght.ttf"}
             fontWeight={400}
             fontSize={3}
             color="aqua"
@@ -66,7 +66,7 @@ const SceneObjects = ({ active }: Props) => {
           <Text
             position={[0, 0, 1]}
             rotation={[0, 0, pi / 24]}
-            font={"/fonts/Exo2-VariableFont_wght.ttf"}
+            font={"./fonts/Exo2-VariableFont_wght.ttf"}
             fontWeight={400}
             fontSize={1}
             color="#212121"

@@ -76,7 +76,7 @@ const WebsiteAlpha = () => {
             </h2>
             <div className="flex justify-center">
               <img
-                src="/img/website-thumbnail-old.png"
+                src="./img/website-thumbnail-old.png"
                 className="md:w-10/12"
                 alt="old version of the website landing page with transparent cube"
               ></img>
