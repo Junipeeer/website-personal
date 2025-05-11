@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { techIcons } from "../../constants";
+import { navLinks, techIcons } from "../../constants";
 
 interface TechBlobProps {
   technologies: string[];
@@ -7,9 +7,12 @@ interface TechBlobProps {
 
 export const TechnologyBlobs = ({ technologies }: TechBlobProps) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 sm:mb-8 mb-6">
       {technologies.map((tech, i) => (
-        <span key={i} className="project-tech font-bold">
+        <span
+          key={i}
+          className="project-tech md:*:font-bold md:text-neutral-300 text-white/80"
+        >
           {techIcons[tech] && (
             <span className="text-lg">{techIcons[tech]}</span>
           )}
@@ -38,7 +41,7 @@ export const LinkBlob = ({
       href={link}
       target={"_blank"}
       rel="noopener noreferrer"
-      className="project-link"
+      className="project-link group-hover/lb:text-white hover:text-white"
       aria-label={`External link: ${text}`}
     >
       <span className="text-2xl" aria-hidden="true">
@@ -47,11 +50,47 @@ export const LinkBlob = ({
       <span className="text-md">{text}</span>
     </a>
   ) : (
-    <Link to={link} className="project-link" aria-label={`Link: ${text}`}>
+    <Link
+      to={link}
+      className="project-link group-hover/lb:text-white hover:text-white"
+      aria-label={`Link: ${text}`}
+    >
       <span className="text-2xl" aria-hidden="true">
         {techIcons[icon]}
       </span>
       <span className="text-md">{text}</span>
+    </Link>
+  );
+};
+
+interface NavigationLinkProps {
+  route: string;
+  label: string;
+  text?: string;
+  border?: string;
+}
+
+export const NavigationLink = ({
+  route,
+  label,
+  text = "Read more",
+  border = navLinks[2].color,
+}: NavigationLinkProps) => {
+  return (
+    <Link
+      to={route}
+      aria-label={label}
+      style={{ "--hover-border": border } as React.CSSProperties}
+      className="group/btn flex items-center gap-2 px-3 py-2
+      rounded-sm border-2 border-neutral-400 hover:border-white group-hover/card:border-[var(--hover-border)] text-neutral-300 hover:text-white transition-all z-10 w-fit"
+    >
+      <span className="text-lg ">{text}</span>
+      <span
+        className="transition-transform group-hover/btn:translate-x-1"
+        aria-hidden="true"
+      >
+        {techIcons.Arrow}
+      </span>
     </Link>
   );
 };

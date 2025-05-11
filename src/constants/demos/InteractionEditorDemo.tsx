@@ -1,6 +1,9 @@
 import { IntroAnimation } from "../../components/TransitionsOverlays";
 import { ProjectBackLink } from "../../components/project-helpers/ProjectArticleSections";
-import { LinkBlob } from "../../components/project-helpers/Blobs";
+import {
+  LinkBlob,
+  NavigationLink,
+} from "../../components/project-helpers/Blobs";
 
 const InteractionEditorDemo = () => {
   return (
@@ -9,16 +12,18 @@ const InteractionEditorDemo = () => {
         {/* Content section with normal width */}
         <div className="content-wrapper">
           <div className="page-header border-b-transparent">
-            <ProjectBackLink />
             <h1 className="text-4xl font-bold text-white">
               Interaction Editor
             </h1>
-            <LinkBlob
-              icon="Arrow"
-              text="Full Project description"
-              external={false}
-              link="/project/interaction-editor"
-            />
+            <div className="flex items-center gap-4">
+              <ProjectBackLink />
+              <NavigationLink
+                text="Full Project description"
+                route="/project/interaction-editor"
+                label="To full Project description"
+              />
+            </div>
+
             <p className="text-lg leading-relaxed">
               This is a Vue.js based editor for creating Labanotation scores. It
               provides an interactive online interface for documenting

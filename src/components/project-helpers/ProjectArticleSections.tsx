@@ -29,11 +29,11 @@ export default ProjectHero;
 export const ProjectBackLink = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-start mb-6 ">
+    <div className="flex justify-start">
       <button
         onClick={() => navigate(-1)}
-        className="group cursor-pointer flex items-center gap-2 px-3 py-2 bg-neutral-700/50 hover:bg-neutral-600/50 
-        rounded-lg text-neutral-300 hover:text-white transition-all z-10"
+        className="group cursor-pointer flex items-center gap-2 px-3 py-2 rounded border-2 border-neutral-400
+         hover:border-white text-neutral-300 hover:text-white transition-all z-10"
         aria-label="Go back to previous page"
       >
         <span
@@ -55,7 +55,10 @@ interface HeaderProps {
 export const ProjectHeader = ({ project }: HeaderProps) => {
   return (
     <div className="project-card p-4 sm:p-8">
-      <h1 className="text-4xl font-bold text-white mb-4">{project.title}</h1>
+      <ProjectBackLink />
+      <h1 className="text-4xl font-bold text-white mt-6 mb-4">
+        {project.title}
+      </h1>
       <p className="text-sm text-neutral-500 mb-4">{project.timeframe}</p>
       {project.role && (
         <p className="text-sm text-neutral-400 mb-4">

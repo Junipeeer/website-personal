@@ -39,7 +39,11 @@ const Portfolio = () => {
 
           <div className="grid grid-cols-1 gap-12">
             {projects.map((project, index) => (
-              <ProjectCard project={project} key={index}></ProjectCard>
+              <ProjectCard
+                project={project}
+                key={index}
+                hasLink={true}
+              ></ProjectCard>
             ))}
           </div>
         </IntroAnimation>

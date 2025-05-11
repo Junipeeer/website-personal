@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { IntroAnimation } from "../components/TransitionsOverlays";
-import { TechnologyBlobs } from "../components/project-helpers/Blobs";
+import {
+  NavigationLink,
+  TechnologyBlobs,
+} from "../components/project-helpers/Blobs";
 import { demoProjects, projects } from "../constants";
 
 const Lab = () => {
@@ -36,10 +39,9 @@ const Lab = () => {
                   };
 
               return (
-                <Link
-                  to={"/demo/" + displayData.route}
+                <div
                   key={index}
-                  className="block p-4 border-l-2 hover:bg-neutral-700/50 transition-colors duration-200 rounded mx-2 sm:mx-12"
+                  className="block p-4 border-l-2 hover:bg-neutral-700/50 transition-colors duration-200 mx-2 sm:mx-12"
                   style={{ borderColor: displayData.border }}
                 >
                   <div className="flex justify-between items-center">
@@ -51,9 +53,13 @@ const Lab = () => {
                       <div className="mt-2">
                         <TechnologyBlobs technologies={demo.tags} />
                       </div>
+                      <NavigationLink
+                        route={"/demo/" + displayData.route}
+                        label={"To project: " + displayData.title}
+                      />
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>
