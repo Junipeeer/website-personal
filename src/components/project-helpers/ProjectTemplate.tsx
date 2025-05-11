@@ -2,7 +2,6 @@ import { projects } from "../../constants";
 import ProjectHero, {
   ProjectSection,
   ProjectHeader,
-  ProjectBackLink,
 } from "../../components/project-helpers/ProjectArticleSections";
 import { IntroAnimation } from "../../components/TransitionsOverlays";
 import { JSX } from "react";
