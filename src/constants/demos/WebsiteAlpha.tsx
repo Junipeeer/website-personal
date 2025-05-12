@@ -9,10 +9,11 @@ const WebsiteAlpha = () => {
         {/* Content section with normal width */}
         <div className="content-wrapper">
           <div className="page-header border-b-transparent">
+            <ProjectBackLink link="/lab" />
             <h1 className="text-4xl font-bold text-white">
               Alpha test for this website
             </h1>
-            <ProjectBackLink />
+
             <p className="text-lg leading-relaxed">
               Before I switched to Three.js, I created a simple demo using React
               and Framer Motion. Here the nod to the design of the GameCube UI
@@ -76,7 +77,7 @@ const WebsiteAlpha = () => {
             </h2>
             <div className="flex justify-center">
               <img
-                src="/img/website-thumbnail-old.png"
+                src="/img/website-thumbnail-old.jpg"
                 className="md:w-10/12"
                 alt="old version of the website landing page with transparent cube"
               ></img>

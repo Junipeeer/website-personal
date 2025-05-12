@@ -7,7 +7,7 @@ interface TechBlobProps {
 
 export const TechnologyBlobs = ({ technologies }: TechBlobProps) => {
   return (
-    <div className="flex flex-wrap gap-2 sm:mb-8 mb-6">
+    <div className="flex flex-wrap gap-2">
       {technologies.map((tech, i) => (
         <span
           key={i}
@@ -63,26 +63,26 @@ export const LinkBlob = ({
   );
 };
 
-interface NavigationLinkProps {
+interface NavigationButtonProps {
   route: string;
   label: string;
   text?: string;
   border?: string;
 }
 
-export const NavigationLink = ({
+export const NavigationButton = ({
   route,
   label,
   text = "Read more",
-  border = navLinks[2].color,
-}: NavigationLinkProps) => {
+  border = "white",
+}: NavigationButtonProps) => {
   return (
     <Link
       to={route}
       aria-label={label}
       style={{ "--hover-border": border } as React.CSSProperties}
       className="group/btn flex items-center gap-2 px-3 py-2
-      rounded-sm border-2 border-neutral-400 hover:border-white group-hover/card:border-[var(--hover-border)] text-neutral-300 hover:text-white transition-all z-10 w-fit"
+      rounded-sm border-2 border-neutral-400 hover:border-[var(--hover-border)] text-neutral-300 hover:text-white transition-all z-10 w-fit"
     >
       <span className="text-lg ">{text}</span>
       <span

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Project, techIcons } from "../../constants";
 import { LinkBlob, TechnologyBlobs } from "./Blobs";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { OpactityAnimation } from "../TransitionsOverlays";
 
 interface HeroProps {
@@ -26,24 +26,41 @@ const ProjectHero = ({ image, alt }: HeroProps) => {
 
 export default ProjectHero;
 
-export const ProjectBackLink = () => {
+export const ProjectBackLink = ({ link = "" }: { link?: string }) => {
   const navigate = useNavigate();
   return (
     <div className="flex justify-start">
-      <button
-        onClick={() => navigate(-1)}
-        className="group cursor-pointer flex items-center gap-2 px-3 py-2 rounded border-2 border-neutral-400
-         hover:border-white text-neutral-300 hover:text-white transition-all z-10"
-        aria-label="Go back to previous page"
-      >
-        <span
-          className=" transition-transform group-hover:-translate-x-1"
-          aria-hidden="true"
+      {link !== "" ? (
+        <Link
+          to={link}
+          className="group cursor-pointer flex items-center gap-2 px-3 py-2 rounded border-2 border-neutral-400
+        hover:border-white text-neutral-300 hover:text-white transition-all z-10"
+          aria-label="Go back to previous page"
         >
-          {techIcons.back}
-        </span>
-        <span className="text-lg">Back</span>
-      </button>
+          <span
+            className=" transition-transform group-hover:-translate-x-1"
+            aria-hidden="true"
+          >
+            {techIcons.back}
+          </span>
+          <span className="text-lg">Back</span>
+        </Link>
+      ) : (
+        <button
+          onClick={() => navigate(-1)}
+          className="group cursor-pointer flex items-center gap-2 px-3 py-2 rounded border-2 border-neutral-400
+         hover:border-white text-neutral-300 hover:text-white transition-all z-10"
+          aria-label="Go back to previous page"
+        >
+          <span
+            className=" transition-transform group-hover:-translate-x-1"
+            aria-hidden="true"
+          >
+            {techIcons.back}
+          </span>
+          <span className="text-lg">Back</span>
+        </button>
+      )}
     </div>
   );
 };

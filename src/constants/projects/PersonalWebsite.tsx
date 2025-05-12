@@ -121,9 +121,10 @@ const InteractionEditor = () => {
           <p>
             The last challenge, which I am still working on, is dynamically
             adding content without having to rebuild the project. Currently I am
-            packaging all content with the website so I can statically host it
-            on GitHub Pages, though in the future having an externally hosted DB
-            for projects, demos, and blog posts would be more convenient.
+            packaging and building the website with Vite so I can statically
+            host it, though in the future having an externally hosted DB and API
+            backend for both creating and loading projects, demos, and blog
+            posts would be more convenient.
           </p>
         </>
       ),

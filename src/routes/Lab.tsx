@@ -1,6 +1,6 @@
 import { IntroAnimation } from "../components/TransitionsOverlays";
 import {
-  NavigationLink,
+  NavigationButton,
   TechnologyBlobs,
 } from "../components/project-helpers/Blobs";
 import { demoProjects, projects } from "../constants";
@@ -20,47 +20,53 @@ const Lab = () => {
           </div>
 
           <div className="grid gap-4">
-            {demoProjects.map((demo, index) => {
-              // Try to find matching project, otherwise use demo data
-              const project = projects.find((p) => p.id === demo.id);
-              const displayData = project
-                ? {
-                    title: project.title,
-                    description: project.description,
-                    border: project.border,
-                    route: project.route,
-                  }
-                : {
-                    title: demo.title,
-                    description: demo.description,
-                    border: "#e6cf74", // Default border color
-                    route: demo.route,
-                  };
+            <IntroAnimation className="space-y-8">
+              {demoProjects.map((demo, index) => {
+                // Try to find matching project, otherwise use demo data
+                const project = projects.find((p) => p.id === demo.id);
+                const displayData = project
+                  ? {
+                      title: project.title,
+                      description: project.description,
+                      border: project.border,
+                      route: project.route,
+                    }
+                  : {
+                      title: demo.title,
+                      description: demo.description,
+                      border: "#e6cf74", // Default border color
+                      route: demo.route,
+                    };
 
-              return (
-                <div
-                  key={index}
-                  className="block p-4 border-l-2 hover:bg-neutral-700/50 transition-colors duration-200 mx-2 sm:mx-12"
-                  style={{ borderColor: displayData.border }}
-                >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h2 className="text-xl font-bold text-white">
-                        {displayData.title}
-                      </h2>
-                      <p className="text-sm mt-1">{displayData.description}</p>
-                      <div className="mt-2">
-                        <TechnologyBlobs technologies={demo.tags} />
+                return (
+                  <div
+                    key={index}
+                    className="block  border-l-2 hover:bg-neutral-700/50 transition-colors duration-200 mx-2 sm:mx-12 rounded-r-md"
+                    style={{ borderColor: displayData.border }}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div className="group/card p-4">
+                        <h2 className="text-xl font-bold text-white">
+                          {displayData.title}
+                        </h2>
+                        <p className="mt-1">{displayData.description}</p>
+                        <div className="mt-4">
+                          <TechnologyBlobs technologies={demo.tags} />
+                        </div>
+                        <div className="mt-6">
+                          <NavigationButton
+                            route={"/demo/" + displayData.route}
+                            label={"To project: " + displayData.title}
+                            text={"View demo"}
+                            border={displayData.border}
+                          />
+                        </div>
                       </div>
-                      <NavigationLink
-                        route={"/demo/" + displayData.route}
-                        label={"To project: " + displayData.title}
-                      />
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </IntroAnimation>
           </div>
         </IntroAnimation>
       </div>
