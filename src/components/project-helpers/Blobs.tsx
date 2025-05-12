@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { navLinks, techIcons } from "../../constants";
+import { techIcons } from "../../constants";
 
 interface TechBlobProps {
   technologies: string[];
