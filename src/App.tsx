@@ -10,7 +10,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Portfolio from "./routes/Portfolio";
-
+import { Analytics } from "@vercel/analytics/next";
 import { useEffect, useState } from "react";
 import Blog from "./routes/Blog";
 import Lab from "./routes/Lab";
@@ -83,6 +83,7 @@ function App() {
       {/* Overlay for loading into home */}
       <LoadingOverlay />
       <ScrollToTop />
+      <Analytics />
       <Header />
       {/* Overlay for transitioning from home */}
       <TransitionFromHome portalBgColor={portalBgColor} />
