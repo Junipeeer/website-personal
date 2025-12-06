@@ -102,7 +102,6 @@ export const IntroAnimation = ({ children, className }: IntroProps) => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: [0.33, 1, 0.68, 1],
       },
     },
   };
@@ -138,7 +137,6 @@ export const OpactityAnimation = ({ children, className }: IntroProps) => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: [0.33, 1, 0.68, 1],
       },
     },
   };
