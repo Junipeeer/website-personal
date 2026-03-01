@@ -12,12 +12,12 @@ const About = () => {
           <div className="space-y-6 border-b-2 border-[#95e468] sm:p-6 p-2">
             <h1 className="text-4xl font-bold text-white">About Me</h1>
             <p className="text-lg leading-relaxed text-justify">
-              Hi, I'm Julian 👋 I am a recent M.Sc. graduate in the field of
-              media technologies. I enjoy solving problems creatively and
-              working on engaging projects, with a passion for usability and
-              accessibility. I try to apply my skills to better facilitate
-              users' interaction with media systems and create solutions to
-              real-world problems.
+              Hi, I'm Julian 👋 I am a Software Developer and recent M.Sc.
+              graduate in the field of media technologies. I enjoy solving
+              problems creatively and working on engaging projects, with a
+              passion for usability and accessibility. I try to apply my skills
+              to better facilitate users' interaction with media systems and
+              create solutions to real-world problems.
             </p>
             {/* Social Links - Moved up and redesigned */}
             <div className="space-y-6">
@@ -35,6 +35,42 @@ const About = () => {
                   text="JSchalon"
                   link="https://github.com/JSchalon/"
                 ></LinkBlob>
+              </div>
+            </div>
+          </div>
+          {/* Work Section */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-semibold text-white">
+              Work Experience
+            </h2>
+            <div className="border-l-2 border-neutral-700 pl-6 space-y-8">
+              <div>
+                <h3 className="text-white text-xl">
+                  Windows Application Software Developer
+                </h3>
+                <p className="text-sm">nok9 • 2025 - now</p>
+                <p className="skill-paragraph mt-2">
+                  nok9 is a Malmö-based company that produces testing and
+                  certification hardware for wireless charging devices using the
+                  Qi standard. My main responsibilities in this role include
+                  updating and maintaining our software, which is internally
+                  used to create tests per the Qi standard specification, and
+                  that customers use to test and certify devices against. This
+                  includes both the GUI and the underlying logic, including
+                  communication with our firmware.
+                </p>
+                <p className="skill-paragraph mt-2">
+                  In this role as the main software developer for nok9 I
+                  developed several skills, both in self-management, working in
+                  multi-disciplinary teams, but also hard skills, both in C# and
+                  the Qi standard. nok9's software is quite complex and has a
+                  large codebase, so I have gained significant experience
+                  working with and understanding legacy code, improving it and
+                  adding new features. I have directly worked with our hardware
+                  and firmware engineers, as well as our production and customer
+                  service to implement new features and further develop existing
+                  ones.
+                </p>
               </div>
             </div>
           </div>
@@ -180,6 +216,19 @@ const About = () => {
                   on clean architecture and test-driven development.
                 </p>
               </div>
+              <div>
+                <h3 className="text-white text-xl">C#</h3>
+                <p className="skill-paragraph mt-2">
+                  The bulk of my experience in C# comes from working at nok9,
+                  though I had some Unity experience before and my Java
+                  knowledge was helpful as well. I have mainly worked on
+                  maintaining and developing a WPF-based windows application,
+                  with some additional work on a Blazor-based webservice. I have
+                  worked directly with both WPF and a migration to Avalonia,
+                  though my main work has been more on technical features, as
+                  well as performance and stability improvements.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -192,9 +241,9 @@ const About = () => {
               <div>
                 <h3 className="text-white text-xl">Usability & Design</h3>
                 <p className="skill-paragraph mt-2">
-                  Because of my background in media technologies, I am familiar
-                  with base concepts around usability, accessibility, and UI/UX
-                  design. I have worked with wireframes and prototypes and
+                  I am familiar with base concepts around usability,
+                  accessibility, and UI/UX design, due to my background in media
+                  technologies. I have worked with wireframes and prototypes and
                   performed usability testing before. I try to put a strong
                   focus on accessibility and inclusive design principles.
                 </p>
@@ -207,6 +256,27 @@ const About = () => {
                   for design and collaboration. I have experience with data
                   visualization and analysis using Tableau and network analysis
                   with Gephi.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Standards and Such */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-semibold text-white">
+              Standards and Specifications
+            </h2>
+            <div className="border-l-2 border-neutral-700 pl-6 space-y-8">
+              <div>
+                <h3 className="text-white text-xl">Qi Standard</h3>
+                <p className="skill-paragraph mt-2">
+                  I have gained significant experience with the Qi standard for
+                  wireless charging from my work at nok9. I am familiar with the
+                  technical specifications and requirements for both
+                  transmitters and receivers, as well as the testing and
+                  certification processes involved. My knowledge of the
+                  communication protocol is extensive, with a fundamental
+                  understanding of the underlying physical communications layer
+                  as well.
                 </p>
               </div>
             </div>
